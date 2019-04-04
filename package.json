@@ -7,7 +7,8 @@
     "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
-    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit",
+    "compile:sass": "node-sass public/styles/sass/main.scss public/styles/css/style.css -w"
   },
   "license": "ISC",
   "dependencies": {
@@ -15,6 +16,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "mysql2": "^1.6.4",
+    "node-sass": "^4.11.0",
     "sequelize": "^4.41.2"
   },
   "devDependencies": {
