@@ -35,18 +35,20 @@
 
     &__button {  
         
-        &--home {
-            position: absolute;
+        &-box--home {
+            position: relative;
 
             &-1 {
-                bottom: 4rem;
-                left: 80rem;
+                top: 12rem;
+                right: 15rem;
                 animation: moveInRight 1s ease-out;
+                position: absolute;
             }
 
             &-2 {
-                bottom: 4rem;
-                right: 80rem;
+                top: 12rem;
+                left: 15rem;
+                position: absolute;
                 animation: moveInLeft 1s ease-out;
             }
         }
