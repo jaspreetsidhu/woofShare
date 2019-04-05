@@ -1,0 +1,19 @@
+.bold {
+    font-weight: 600;
+}
+.color-primary {
+    color: $color-primary;
+}
+.color-secondary {
+    color: $color-secondary;
+}
+.color-tertiary {
+    color: $color-tertiary;
+}
+
+.color-red {
+    color: $color-red;
+}
+.color-red-dark {
+    color: darken($color-red, 15%);
+}

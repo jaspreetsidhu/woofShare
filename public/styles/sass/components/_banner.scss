@@ -1,0 +1,54 @@
+.banner {
+
+    position: relative;
+
+    &--home {
+        background-image: url('/images/bg-home.jpeg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-top: 1px solid $color-grey-light;
+        padding: 20rem;
+    } 
+
+    &__text-box { 
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+              
+    }
+
+    &__primary-heading {
+        font-size: 4rem;
+        font-weight: 900;
+        animation: moveInLeft 1s ease-out;
+    }
+
+    &__secondary-heading {
+        font-size: 3rem;
+        font-weight: 700;
+        animation: moveInRight 1s ease-out; 
+    }
+
+
+    &__button {  
+        
+        &--home {
+            position: absolute;
+
+            &-1 {
+                bottom: 4rem;
+                left: 80rem;
+                animation: moveInRight 1s ease-out;
+            }
+
+            &-2 {
+                bottom: 4rem;
+                right: 80rem;
+                animation: moveInLeft 1s ease-out;
+            }
+        }
+    }
+}

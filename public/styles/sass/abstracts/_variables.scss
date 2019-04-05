@@ -1,0 +1,22 @@
+// COLORS
+$color-primary: #295ba7;
+$color-secondary: #94ac3c;
+$color-tertiary: #fcc314;
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-red: #DD4B39;
+
+$color-primary-light: lighten($color-primary, 15%);
+$color-secondary-light: lighten($color-secondary, 15%);
+$color-tertiary-light: lighten($color-tertiary, 15%);
+
+$color-primary-dark: darken($color-primary, 10%);
+$color-secondary-dark: darken($color-secondary, 10%);
+$color-tertiary-dark: darken($color-tertiary, 10%);
+
+$color-grey-light: #eee;
+$color-grey-dark: #333;
+
+// FONT
+$default-font-size: 1.6rem; 

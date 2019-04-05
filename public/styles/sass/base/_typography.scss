@@ -1,0 +1,25 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: $default-font-size;
+    /* font-size: 16px; */ 
+    line-height: 1.7;
+    color: $color-grey-dark; 
+}
+
+h1, h2 {
+    color: $color-secondary-dark;
+}
+
+.icon-sm {
+    font-size: 1.2rem;
+}
+.icon-med {
+    font-size: 2.4rem;
+}
+.icon-lg {
+    font-size: 4rem;
+}
+.icon-xl {
+    font-size: 6rem;
+}

@@ -1,32 +1,58 @@
 <div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+  {{> header }}
+  <div class="banner banner--home">
+    <div class="banner__text-box">
+      <h1 class="banner__primary-heading">Some Heading About The Website!</h1>
+      <h2 class="banner__secondary-heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+    </div>
+    <div class="banner__button-box">
+      <button class="btn btn-lg btn-theme-primary banner__button banner__button--home banner__button--home-1">Get started as an
+        loaner</button>
+      <button class="btn btn-lg btn-theme-secondary banner__button banner__button--home banner__button--home-2">Get started as
+        an borrower</button>
     </div>
   </div>
+  <div class="container">
+    <section class="section-about mt-5">
+      <h1 class="my-5 text-center">Lorem Ipsum Doler At</h1>
+      <div class="row">
+        <div class="col-4">
+          <div class="feature-box">
+            <i class="fab fa-font-awesome-flag icon-xl p-5 feature-box__icon"></i>
+            <h3 class="color-secondary my-4 feature-box__heading">Lorem ipsum dolor</h3>
+            <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore distinctio
+              voluptate quidem nam ad dicta delectus facere minus obcaecati, adipisci tempora odio ab. Magnam, odio
+              voluptatem illum veritatis minima magni!
+            </p>
+            <button class="btn btn-lg btn-theme-primary my-3">Some Button For Something</button>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="feature-box">
+            <i class="fab fa-font-awesome-flag icon-xl p-5 feature-box__icon"></i>
+            <h3 class="color-secondary my-4 feature-box__heading">Lorem ipsum dolor</h3>
+            <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore distinctio
+              voluptate quidem nam ad dicta delectus facere minus obcaecati, adipisci tempora odio ab. Magnam, odio
+              voluptatem illum veritatis minima magni!
+            </p>
+            <button class="btn btn-lg btn-theme-tertiary my-3">And this..</button>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="feature-box">
+            <i class="fab fa-font-awesome-flag icon-xl p-5 feature-box__icon"></i>
+            <h3 class="color-secondary my-4 feature-box__heading">Lorem ipsum dolor</h3>
+            <p class="feature-box__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore distinctio
+              voluptate quidem nam ad dicta delectus facere minus obcaecati, adipisci tempora odio ab. Magnam, odio
+              voluptatem illum veritatis minima magni!
+            </p>
+            <button class="btn btn-lg btn-theme-secondary my-3">And this too</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  {{> footer }}
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

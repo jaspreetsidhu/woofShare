@@ -1,0 +1,57 @@
+.header {
+    padding: 1rem 0rem; 
+    position: relative;
+
+    img {
+        height: 10rem;
+    }
+    &__logo-text {
+        font-family: 'Chango', cursive;        
+        text-transform: uppercase;
+        display: inline-block;
+        line-height: 1;
+        position: absolute;
+        top: 2.5rem;
+        padding-left: 1rem;
+
+        &--1 {
+            letter-spacing: .28rem;
+            font-size: 3.8rem;
+        }
+
+        &--2 {
+            font-size: 3.6rem;
+        }
+    }
+}
+
+.nav {    
+    margin-top: 4rem;
+
+    ul {
+        list-style-type: none;
+       
+        li {
+            display: inline;
+            text-transform: uppercase;
+
+            a {
+                color: $color-grey-dark;
+
+                &:hover,
+                &:active {
+                    text-decoration: none;
+                }
+
+                &.btn {
+                    color: #fff;
+                    padding: 1rem;
+                    width: 10rem;
+                    font-size: 1.2rem;
+                    outline: none;
+                }
+            }
+        }
+    }
+
+}

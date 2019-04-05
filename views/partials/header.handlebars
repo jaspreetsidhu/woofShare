@@ -1,0 +1,50 @@
+<div class="container">
+  <header>
+    <div class="row">
+      <div class="header col-4">
+        <img src="images/wf-logo.svg" alt="logo" />
+        <div class="header__logo-text">
+          <span class="color-secondary header__logo-text--1">Woof</span><br>
+          <span class="color-tertiary header__logo-text--2">Share</span>
+        </div>
+      </div>
+      <div class="col-8">
+        <nav class="nav">
+          <ul>
+            <li class="pr-5"><a href="#!">What is WoofShare?</a></li>
+            <li class="pr-5"><a href="#!">How it works</a></li>
+            <li><a href="#!" class="btn btn-theme-primary">Get Started</a></li>
+            <li class="px-2">- Or -</li>
+            <li><a href="#!" class="btn btn-theme-secondary" data-toggle="modal" data-target="#loginModal">Login</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="color-primary modal-title bold" id="loginModalLabel">User Login</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <button class="btn btn-theme-google btn-lg m-5"><i class="fab fa-google pr-3"></i>Login with Google</button>
+        <div class="text-left m-5">
+          <p><span class="color-red-dark bold">Note:</span> We are currently in beta testing. As such, we are only providing login authentication via Google. If
+            you do not wish to sign in with Google, please check back with us periodically. We will be adding additional
+            login options in the future.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
