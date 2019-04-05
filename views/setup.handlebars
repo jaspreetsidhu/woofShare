@@ -4,28 +4,46 @@
         <div class="row">
             <div class="col-12">
                 <section class="signUp">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
+                    <h1 class="my-5 ml-3">Sign up to be a borrower</h1>
+                    <form action="#!" class="form form__signUp">
+                        <div class="form__group">
+                            <input id="name" type="text" class="form__input" placeholder="Username" required>
+                            <label for="name" class="form__label">Username</label>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Password">
+                        <div class="form__group">
+                            <input id="search_term" type="text" class="form__input" placeholder="Address" required>
+                            <label for="search_term" class="form__label">Address</label>
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </section>
             </div>
+            </form>
+            </section>
         </div>
     </div>
-    {{> footer }}
 </div>
+</div>
+<script>
+    var autocomplete;
+
+function activatePlacesSearch(){
+    var input = document.getElementById('search_term');
+    autocomplete = new google.maps.places.Autocomplete(input);       
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        fillInAddress();
+    });
+}
+
+function fillInAddress() {
+    /* Get the place details from the Autocomplete object. */
+    /* The Autocomplete.getPlace() call retrieves a PlaceResult object */
+
+    var place = autocomplete.getPlace();
+
+    console.log(place);
+
+    /* Use data from place.address_components[] according to your needs */
+    /* For reference, use the link: */
+    /* https://developers.google.com/maps/documentation/javascript/places#place_details_results */
+}
+</script>
+{{> footer }}
