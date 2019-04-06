@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "",
-    "database": "exampledb",
+    "password": "Test123",
+    "database": "woofShare_db",
     "host": "localhost",
     "dialect": "mysql"
   },
