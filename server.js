@@ -30,7 +30,16 @@ passport.use(new GoogleStrategy(
 
 
 var HTMLroutes = require('./routes/htmlRoutes');
+app.get('/auth/google', passport.authenticate('google'));  
+// This is where Google sends users once they authenticate with Google
 
+app.get('/auth/google/callback',  
+  passport.authenticate('google', { failureRedirect: '/', session: false }),
+  (req, res) => {
+    console.log('wooo we authenticated, here is our user object:', req.user);
+    res.json(req.user);
+  }
+);
 app.use(HTMLroutes);
 
 
