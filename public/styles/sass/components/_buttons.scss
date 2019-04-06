@@ -17,9 +17,10 @@
 
 .btn-theme-primary {
     background-color: $color-primary;
-    color: $color-white;
+    color: $color-white !important;
     font-weight: 700;
     transition: all .5s;
+    cursor: pointer;
 
     &:hover {
         color: $color-white;
@@ -28,9 +29,10 @@
 }
 .btn-theme-secondary {
     background-color: $color-secondary;
-    color: $color-white;
+    color: $color-white !important;
     font-weight: 700;
     transition: all .5s;
+    cursor: pointer;
 
     &:hover {
         color: $color-white;
@@ -40,8 +42,9 @@
 .btn-theme-tertiary {
     background-color: $color-tertiary; 
     font-weight: 700;
-    color: $color-black;
+    color: $color-black !important;
     transition: all .5s;
+    cursor: pointer;
 
     &:hover {
         color: $color-black;
@@ -49,7 +52,7 @@
     }
 }
 
-.btn-theme-google {
+.btn-theme-red {
     background-color: #DD4B39;
     color: $color-white;
 
