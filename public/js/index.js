@@ -3,7 +3,10 @@ $(".header").on("click", function() {
 });
 
 $(".fa-heart").on("click", function() {
-  console.log($(this).data("dogid"));
+  var thisDog = $(this).data("dogid");
+  console.log(thisDog);
+  var allItems = $("i").find(`[data-dogid='${thisDog}']`);
+  console.log(allItems);
   if ($(this).hasClass("fas")) {
     $(this).removeClass("fas");
     $(this).addClass("far");
