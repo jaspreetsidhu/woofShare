@@ -26,7 +26,7 @@
         <section class="gallery__table mt-5">
             <div class="row galler__table__row">
                 <div class="col-4">
-                                        <div class="gallery-card">
+                    <div class="gallery-card">
                         <div class="gallery-card__side gallery-card__side--front">
                             <i class="fas fa-heart"></i>
                             <div class="gallery-card__picture">
@@ -58,7 +58,8 @@
                         <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-1">
                             <div class="gallery-card__cta">
                                 <i class="fas fa-heart icon-xl p-5 gallery-card__cta--favorite"></i>
-                                <a href="#!" class="gallery-card__cta--profile">See Full Profile...</a>
+                                <a href="#!" class="gallery-card__cta--profile" data-toggle="modal"
+                                    data-target=".bd-example-modal-lg">See Full Profile...</a>
                                 <a href="#!" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
                                     now!</a>
                             </div>
@@ -142,6 +143,67 @@
                 </div>
             </div>
         </section>
+    </div>
+    <!-- MODAL -->
+    <!-- Large modal -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="images/dog-1.jpg" alt="dog-1" style="width:100%;" />
+                            <h1>Woofy</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur distinctio sint ad vel
+                                voluptatem obcaecati nobis, dolor delectus nesciunt sunt? Fugit accusamus ea sed quaerat
+                                corrupti soluta iusto nobis nesciunt.</p>
+                            <div class="gallery-card__details__icons">
+                                <div class="row">
+                                    <div class="col-6 gallery-card__details__icons--schedule">
+                                        <h3>Rating:</h3>
+                                        <i class="fas fa-paw"></i>
+                                        <i class="fas fa-paw"></i>
+                                        <i class="fas fa-paw"></i>
+                                        <i class="fas fa-paw"></i>
+                                    </div>
+                                    <div class="col-6 gallery-card__details__icons--schedule">
+                                        <h3>Availability:</h3>
+                                        <i class="fas fa-calendar-alt"></i> M T W R F S U
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="#!" class="btn btn-theme-red btn-lg m-4">Reserve
+                                            now!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="my-3">Reviews</h2>
+                            <table>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <i class="fas fa-paw"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-top"><img class="mt-2"
+                                            src="http://lorempixel.com/50/50/people/1/" /></td>
+                                    <td class="text-small pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        Vero autem aperiam
+                                        voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium error
+                                        nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 {{> footer }}
