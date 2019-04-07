@@ -127,7 +127,7 @@ h1, h2 {
   box-shadow: none; }
 
 .btn-med {
-  padding: .5rem 1.5rem;
+  padding: 1rem 2rem;
   font-size: 1.5rem;
   border-radius: 1rem; }
 
@@ -442,3 +442,15 @@ h1, h2 {
   border: 1px solid #333;
   padding: 4rem;
   border-radius: 4px; }
+
+.gallery-card__modal__left-col__img {
+  width: 100%;
+  margin-left: -1.5rem; }
+
+.gallery-card__modal__left-col__heading {
+  font-size: 4rem;
+  font-weight: 900;
+  display: inline-block;
+  background-image: linear-gradient(to right, #1f457e, #4a80d3);
+  -webkit-background-clip: text;
+  color: transparent; }

@@ -59,8 +59,9 @@
                             <div class="gallery-card__cta">
                                 <i class="fas fa-heart icon-xl p-5 gallery-card__cta--favorite"></i>
                                 <a href="#!" class="gallery-card__cta--profile" data-toggle="modal"
-                                    data-target=".bd-example-modal-lg">See Full Profile...</a>
-                                <a href="/confirmation" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
+                                    data-target=".gallery-card__modal">See Full Profile...</a>
+                                <a href="/confirmation"
+                                    class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
                                     now!</a>
                             </div>
                         </div>
@@ -146,63 +147,94 @@
     </div>
     <!-- MODAL -->
     <!-- Large modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade gallery-card__modal" tabindex="-1" role="dialog" aria-labelledby="galleryModalLg"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6">
-                            <img src="images/dog-1.jpg" alt="dog-1" style="width:100%;" />
-                            <h1>Woofy</h1>
+                        <div class="col-6 gallery-card__modal__left-col">
+                            <img src="images/dog-1.jpg" alt="dog-1" class="gallery-card__modal__left-col__img" />
+                            <h1 class="gallery-card__modal__left-col__heading">Woofy</h1>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur distinctio sint ad vel
                                 voluptatem obcaecati nobis, dolor delectus nesciunt sunt? Fugit accusamus ea sed quaerat
                                 corrupti soluta iusto nobis nesciunt.</p>
                             <div class="gallery-card__details__icons">
                                 <div class="row">
                                     <div class="col-6 gallery-card__details__icons--schedule">
-                                        <h3>Rating:</h3>
-                                        <i class="fas fa-paw"></i>
-                                        <i class="fas fa-paw"></i>
-                                        <i class="fas fa-paw"></i>
-                                        <i class="fas fa-paw"></i>
+                                        <h3>Overall Rating:</h3>
+                                         <img src="images/rating_3_half.svg" width="100px" class="pb-2" />
                                     </div>
                                     <div class="col-6 gallery-card__details__icons--schedule">
                                         <h3>Availability:</h3>
                                         <i class="fas fa-calendar-alt"></i> M T W R F S U
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-6  gallery-card__modal__right-col">
+                            <h2 class="my-3 gallery-card__modal__right-col__heading">User Reviews</h2>
+                            <div class="gallery__user-review">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <a href="/confirmation" class="btn btn-theme-red btn-lg m-4">Reserve
-                                            now!</a>
+                                    <div class="col-3 pr-0 text-center">
+                                        <img class="mt-2" src="http://lorempixel.com/75/75/people/1/" />
+                                        <h5 class="m-0 bold">Jane D.</h5>
+                                        <img src="images/rating_4.svg" width="90%" />
+                                    </div>
+                                    <div class="col-9 text-small">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Vero autem aperiam
+                                            voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium
+                                            error
+                                            nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__user-review">
+                                <div class="row">
+                                    <div class="col-3 pr-0 text-center">
+                                        <img class="mt-2" src="http://lorempixel.com/75/75/people/2/" />
+                                        <h5 class="m-0 bold">John D.</h5>
+                                        <img src="images/rating_2_half.svg" width="90%" />
+                                    </div>
+                                    <div class="col-9 text-small">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Vero autem aperiam
+                                            voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium
+                                            error
+                                            nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__user-review">
+                                <div class="row">
+                                    <div class="col-3 pr-0 text-center">
+                                        <img class="mt-2" src="http://lorempixel.com/75/75/people/3/" />
+                                        <h5 class="m-0 bold">Joe D.</h5>
+                                        <img src="images/rating_0.svg" width="90%" />
+                                    </div>
+                                    <div class="col-9 text-small">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Vero autem aperiam
+                                            voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium
+                                            error
+                                            nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <h2 class="my-3">Reviews</h2>
-                            <table>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <i class="fas fa-paw"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-top"><img class="mt-2"
-                                            src="http://lorempixel.com/50/50/people/1/" /></td>
-                                    <td class="text-small pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Vero autem aperiam
-                                        voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium error
-                                        nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?</td>
-                                </tr>
-                            </table>
-                        </div>
                     </div>
                 </div>
-
+                <div class="modal-footer">
+                    <a href="/confirmation" class="btn btn-theme-red btn-lg">Reserve
+                        now!</a>
+                    <button type="button" class="btn btn-secondary btn-med" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
