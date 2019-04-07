@@ -2,20 +2,21 @@ var express = require("express");
 const passport = require('passport');  
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
-var cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
 
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 var exphbs = require("express-handlebars");
-
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(express.static('public')); 
-
-app.use(cookieParser());
 
 // Add session support
 app.use(session({  
@@ -61,22 +62,17 @@ passport.use(new GoogleStrategy(
   },
 ));
 
-
-
 app.get('/auth/google', passport.authenticate('google'));  
+
+
 // This is where Google sends users once they authenticate with Google
-
-app.post("/signUp", function(req, res) {
-  console.log("response from user",req.body);
-});
-
 app.get('/auth/google/callback',  
   passport.authenticate('google', { failureRedirect: '/', session: true }),
   (req, res) => {
     console.log('wooo we authenticated, here is our user object:', req.user);
   //  res.json(req.user);
-  console.log("response from user",req.body);
-  console.log("cookies",req.cookies);
+  //console.log("response from user",req.body);
+  //console.log("cookies",req.cookies);
   //ADD into database
 
   //Redirect to page (Home Should show logged in name & Profile pics)
@@ -93,6 +89,11 @@ app.get('/protected', accessProtectionMiddleware, (req, res) => {
 //HTML Routes
 var HTMLroutes = require('./routes/htmlRoutes');
 app.use(HTMLroutes);
+
+//Api Routes
+var apiRoutes = require('./routes/apiRoutes');
+app.use(apiRoutes);
+
 
 // Requiring our models for syncing
 var db = require("./models");

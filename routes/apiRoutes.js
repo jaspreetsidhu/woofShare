@@ -1,4 +1,12 @@
+var express = require('express');
+var router = express.Router();
+
+var userdetails;
 // POST route for saving a new post
-app.post("/signUp", function(req, res) {
-    console.log("response from user",req.body);
+router.post("/api/signUp", function(req, res) {
+    console.log("SignUP Post",req.body);
+    userdetails =req.body;
+
+    res.json(true);
   });
+  module.exports = router;

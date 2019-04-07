@@ -6,7 +6,7 @@
                 <section class="signUp">
                     <h1 class="my-5 ml-3">Sign up to be a borrower</h1>
                       <!--form action="#!" class="form form__signUp" !-->
-                          <form action="/auth/google" class="form form__signUp">
+                          <form id="loginForm"  class="form form__signUp" >
                        
                         <div class="form__group">
                             <input id="name" type="text" class="form__input" placeholder="Username" required>
@@ -17,7 +17,7 @@
                             <label for="search_term" class="form__label">Address</label>
                         </div>
                         <div class="form__group">
-                            <button id="signUpSubmit" class="btn btn-theme-google btn-lg"><i class="fab fa-google pr-3"></i>Sign up with Google</button>
+                            <button id="signUpSubmit" class="btn btn-theme-google btn-lg" type="submit"><i class="fab fa-google pr-3"></i>Sign up with Google</button>
                             <span class="mx-3 signUp__why text-small color-primary">Why do I have to sign up with Google?</span>
                         </div>
             </div>

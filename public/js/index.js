@@ -16,5 +16,6 @@ $(".fa-heart").on("click", function() {
   }
 });
 
+
 // get favorites from local storage or empty array
 var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
