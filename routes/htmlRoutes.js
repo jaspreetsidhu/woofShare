@@ -14,4 +14,8 @@ router.get("/gallery", function (req, res) {
     res.render("gallery");
 });
 
+router.get("/confirmation", function (req, res) {
+    res.render("confirmation");
+});
+
 module.exports = router;

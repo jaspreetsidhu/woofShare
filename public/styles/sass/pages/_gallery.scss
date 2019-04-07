@@ -9,4 +9,34 @@
         }
     }
 
+    &-card {
+
+        &__modal {
+
+            &__left-col {
+
+                &__img {
+                    width: 100%;
+                    margin-left: -1.5rem;
+                }
+                
+                &__heading {
+                    font-size: 4rem;
+                    font-weight: 900;
+                    display: inline-block;
+                    background-image: linear-gradient(to right, $color-primary-dark, $color-primary-light);
+                    -webkit-background-clip: text;
+                    color: transparent;
+                }
+            }
+
+            &__right-col {
+
+                &__heading {
+                    
+                }
+            }
+        }
+    }
+
 }
