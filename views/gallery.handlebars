@@ -8,17 +8,25 @@
 
                         <input type="search" name="search" placeholder="Tag Search" class="mr-4" />
                         <select name="age" id="age" class="mr-4">
-                            <option>Some Option</option>
-                            <optionSome Option</option> <option>SSome Option</option>
+                            <option selected="selected">--Sort By Age--</option>
+                            <option value="puppy">Puppy</option>
+                            <option value="adult">Adult</option>
+                            <option value="senior">Senior</option>
                         </select>
                         <select name="rating" id="rating" class="mr-4">
-                            <option>Some Option</option>
-                            <option>Some Option</option>
-                            <option>Some Option</option>
-                            <option>Some Option</option>
+                            <option selected="selected">--Sort By Rating--</option>
+                            <option value="paws-1">1 Paw</option>
+                            <option value="paws-2">2 Paws</option>
+                            <option value="paws-3">3 Paws</option>
+                            <option value="paws-4">4 Paws</option>
                         </select>
-                        <input type="checkbox" class="ml-4" />Some option
-                        <input type="checkbox" class="ml-4" />Some option
+                        <select name="distance" id="distance" class="mr-4">
+                            <option selected="selected">--Sort By Distance--</option>
+                            <option value="dist-5">Within 5 miles</option>
+                            <option value="dist-10">Within 10 miles</option>
+                            <option value="dist-15">Within 15 miles</option>
+                            <option value="dist-20">Within 20 miles</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -57,7 +65,6 @@
                         </div>
                         <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-1">
                             <div class="gallery-card__cta">
-
                             </div>
                         </div>
                     </div>
@@ -92,7 +99,8 @@
                         </div>
                         <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-2">
                             <div class="gallery-card__cta">
-                                <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite"></i>
+                                <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite"
+                                    data-dogid="einstein"></i>
                                 <a href="#!" class="gallery-card__cta--profile">See Full Profile...</a>
                                 <a href="#!" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
                                     now!</a>
@@ -129,7 +137,8 @@
                         </div>
                         <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-3">
                             <div class="gallery-card__cta">
-                                <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite"></i>
+                                <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite"
+                                    data-dogid="cuddles"></i>
                                 <a href="#!" class="gallery-card__cta--profile">See Full Profile...</a>
                                 <a href="#!" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
                                     now!</a>
