@@ -1,10 +1,14 @@
 var express = require("express");
+<<<<<<< HEAD
 const passport = require('passport');  
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
 
+=======
+var connection = require("./config/connection");
+>>>>>>> 0612d8733c49ac50db33c10b8a2429b9c0f2bb7e
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -16,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(express.static('public')); 
+app.use(express.static("public"));
 
 // Add session support
 app.use(session({  
@@ -90,6 +94,7 @@ app.get('/protected', accessProtectionMiddleware, (req, res) => {
 var HTMLroutes = require('./routes/htmlRoutes');
 app.use(HTMLroutes);
 
+<<<<<<< HEAD
 //Api Routes
 var apiRoutes = require('./routes/apiRoutes');
 app.use(apiRoutes);
@@ -105,3 +110,8 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+=======
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
+>>>>>>> 0612d8733c49ac50db33c10b8a2429b9c0f2bb7e
