@@ -18,17 +18,9 @@ router.get("/gallery", function(req, res) {
   });
 });
 
-<<<<<<< HEAD
+
 router.get("/confirmation", function (req, res) {
     res.render("confirmation");
 });
 
-<<<<<<< HEAD
-
 module.exports = router;
-=======
-module.exports = router;
-=======
-module.exports = router;
->>>>>>> 2de2661ea2f6b4e7e005814ef1d6ac2bc81805e8
->>>>>>> 0612d8733c49ac50db33c10b8a2429b9c0f2bb7e
