@@ -18,4 +18,12 @@ router.get("/gallery", function(req, res) {
   });
 });
 
+<<<<<<< HEAD
+router.get("/confirmation", function (req, res) {
+    res.render("confirmation");
+});
+
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 2de2661ea2f6b4e7e005814ef1d6ac2bc81805e8
