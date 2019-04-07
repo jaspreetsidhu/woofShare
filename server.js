@@ -94,7 +94,6 @@ app.get('/protected', accessProtectionMiddleware, (req, res) => {
 var HTMLroutes = require('./routes/htmlRoutes');
 app.use(HTMLroutes);
 
-<<<<<<< HEAD
 //Api Routes
 var apiRoutes = require('./routes/apiRoutes');
 app.use(apiRoutes);
@@ -110,8 +109,3 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-=======
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
->>>>>>> 0612d8733c49ac50db33c10b8a2429b9c0f2bb7e
