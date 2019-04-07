@@ -37,5 +37,14 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Users;
+
+    Users.associate = function(models) {
+        Users.hasMany(models.rating);
+        Users.hasOne(models.rental)
+     };
+
+
+
+
+    return User;
   };
