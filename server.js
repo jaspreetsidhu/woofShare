@@ -1,14 +1,11 @@
 var express = require("express");
-<<<<<<< HEAD
 const passport = require('passport');  
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
 
-=======
 var connection = require("./config/connection");
->>>>>>> 0612d8733c49ac50db33c10b8a2429b9c0f2bb7e
 
 var app = express();
 var PORT = process.env.PORT || 3000;
