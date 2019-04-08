@@ -40,7 +40,7 @@ app.use(session({
     {
       clientID: process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_ID || '382558953142-m0ik7j02qokj2kmggaf5hvo1qku4t109.apps.googleusercontent.com',
       clientSecret: process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_SECRET || 'TjzHVzxiKU68XSrMCtzIERJe',
-      callbackURL: process.env.CALL_BACK_URL ||'http://localhost:3000/auth/google/callback',
+      callbackURL: process.env.GOOGLE_CALL_BACK_URL ||'/auth/google/callback',
       scope: ['email'],
     },
     // This is a "verify" function required by all Passport strategies
