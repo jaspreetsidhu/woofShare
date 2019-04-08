@@ -15,6 +15,9 @@ app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
 
+// Requiring our models for syncing
+var db = require("./models");
+
 // Google APi call
 require("./util/google-Auth")(app);
 
@@ -27,14 +30,11 @@ app.use(HTMLroutes);
 var apiRoutes = require('./routes/apiRoutes');
 app.use(apiRoutes);
 
-
-// Requiring our models for syncing
-var db = require("./models");
-
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
+//{ force: true }
+db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });

@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
+var db = require("../models");
 
 module.exports = function(app) {
 
@@ -62,8 +62,33 @@ app.use(session({
     passport.authenticate('google', { failureRedirect: '/', session: true }),
     (req, res) => {
       const jwt = JSON.stringify(req.user);
-      //Add data validation login and routing to approriate page 
-      res.redirect('/signUp');
+      
+      console.log(req.user.emails[0].value);
+
+      // validate if the new user
+      db.Users.findOne({
+        where: {
+          email: req.user.emails[0].value
+        }
+      }).then(function(results) {
+        console.log("results: ",JSON.stringify(results));
+        if(results)
+        {
+         console.log("username:",results.userName);
+          //Set Login user cookies
+          var sendUserDetails = JSON.stringify({
+            displayName: results.userName,
+            photoUrl: results.photo
+          });
+          res.cookie("userDetails", sendUserDetails);
+          res.redirect('/gallery');
+        }
+
+
+         
+        else
+        res.redirect('/signUp');
+      });    
     }
   );
 
