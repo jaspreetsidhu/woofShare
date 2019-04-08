@@ -69,4 +69,4 @@ function createConnection() {
       tokens: tokens,
     };
   }
-  view rawgoogle-full-version.js hosted with ❤ by GitHub
+  // view rawgoogle-full-version.js hosted with ❤ by GitHub
