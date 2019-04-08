@@ -1,17 +1,43 @@
-module.exports = function(sequelize, DataTypes) {
-    var rental = sequelize.define("Rental", {
-        requestDate: {
-            type: DataTypes.DATEONLY
-            }
-          },
-         daysToRent : {
-            type: DataTypes.INTEGER
-         }
-        });
-
-        dog.associate = function(models) {
-
-
-        return rental;
-  
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Rental = sequelize.define('Rental', {
+    requestDate: {
+      type: DataTypes.DATEONLY
+      },
+    daysToRent: {
+      type: DataTypes.INTEGER
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'Users',
+        key: 'id',
+        as: 'userId'
+      }
+    },
+    dogId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'Dogs',
+        key: 'id',
+        as: 'dogId'
+      }
+    },
+  }, { tableName: 'rentals' });
+  Rental.associate = function(models) {
+    // associations can be defined here
+    Rental.belongsTo(models.Dog, {
+			// foreignKey: 'dogId',
+			as: 'dog',
+			onDelete: 'CASCADE'
+		});
+		Rental.belongsTo(models.User, {
+		// foreignKey: 'userId',
+			onDelete: 'CASCADE',
+			foreignKey: 'userId'
+		});
   };
+  return Rental;
+};

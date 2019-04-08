@@ -10,6 +10,7 @@ var exphbs = require("express-handlebars");
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(bodyParser.json())
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -33,8 +34,6 @@ var db = require("./models");
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
