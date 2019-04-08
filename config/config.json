@@ -4,6 +4,7 @@
     "password": "password",
     "database": "woofShare_db",
     "host": "localhost",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
@@ -16,6 +17,11 @@
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
+    "username": "ida6regzukry87l2",
+    "password": "cw2g4o0wnjckxyek",
+    "database": "fpv0xlgoqnvtf1ru",
+    "host": "y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql"
   }
 }

@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         email: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
               isEmail:true
@@ -26,16 +26,23 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         address: { 
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         photo:{
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: true,
             validate:{
                 isUrl:{msg:"invalid URL"}
             }
         }
     });
+    // Users.associate = function(models) {
+    //      Users.hasMany(models.rental, {
+    //              foreignKey: 'id',
+    //              sourceKey: 'rentalID'
+    //           })
+    //          };
+
     return Users;
   };

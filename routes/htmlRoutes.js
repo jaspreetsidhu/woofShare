@@ -18,7 +18,6 @@ router.get("/gallery", function(req, res) {
   });
 });
 
-
 router.get("/confirmation", function (req, res) {
     res.render("confirmation");
 });
