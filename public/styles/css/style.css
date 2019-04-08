@@ -454,3 +454,58 @@ h1, h2 {
   background-image: linear-gradient(to right, #1f457e, #4a80d3);
   -webkit-background-clip: text;
   color: transparent; }
+
+  
+.dropdown:not(:first)  {
+  margin-bottom: 15px;
+}
+
+.dropdown-toggle:not(:first)  {
+  width: 85%;
+}
+
+.dropdown-menu:not(:first)  {
+  width: 77%;
+}
+
+.user-details {
+    background: #295ba7;
+    color: #fff !important;
+    border-radius: 5px;
+    max-height: 35px;
+    
+    padding: .2rem .33rem;
+    width: 15rem;
+    font-size: 1.2rem;
+    display: inline-block;
+    
+}
+
+.user-details a {
+    color: #fff;
+    text-decoration: none;
+}
+a.dropdown-item {
+    color: #573E8A;
+}
+.user-details img {
+    width: 25px;
+    height: 25px;
+    margin-right: .25rem;   
+}
+.user-details i {
+    margin-right: .25rem;
+    cursor: pointer;
+}
+.user-details span{
+  background-color: #295ba7;
+  color: #fff !important;
+  font-weight: 700;
+  transition: all .5s;
+  cursor: pointer; }
+
+  .user-details:hover {
+    color: #fff;
+    background-color: #4a80d3; }
+
+
