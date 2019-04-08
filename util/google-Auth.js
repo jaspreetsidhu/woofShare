@@ -83,9 +83,6 @@ app.use(session({
           res.cookie("userDetails", sendUserDetails);
           res.redirect('/gallery');
         }
-
-
-         
         else
         res.redirect('/signUp');
       });    
