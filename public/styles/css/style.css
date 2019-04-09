@@ -739,3 +739,30 @@ h1, h2 {
   background-image: linear-gradient(to right, #1f457e, #4a80d3);
   -webkit-background-clip: text;
   color: transparent; }
+
+.profile__left-col {
+  background-color: #eee;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 4px; }
+  .profile__left-col__img img {
+    border-radius: 50%;
+    width: 15rem;
+    object-fit: contain; }
+  .profile__left-col__img h3 {
+    margin-top: 2rem;
+    color: #295ba7;
+    font-weight: 900; }
+  .profile__left-col__menu a {
+    color: #94ac3c; }
+
+.profile__active__img img {
+  width: 100%; }
+
+.profile__active__schedule-details h4 {
+  display: inline; }
+
+.profile__active__schedule-details span {
+  margin-right: 2rem;
+  padding-left: .5rem;
+  font-size: 1.4rem; }

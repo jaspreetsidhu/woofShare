@@ -18,9 +18,13 @@ router.get("/gallery", function(req, res) {
   });
 });
 
-
 router.get("/confirmation", function (req, res) {
     res.render("confirmation");
 });
+
+router.get("/user-profile", function (req, res) {
+  res.render("userProfile");
+});
+
 
 module.exports = router;
