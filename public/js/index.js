@@ -16,45 +16,65 @@ $(".fa-heart").on("click", function() {
   }
 });
 
+
 // datepicker JS
 
 const pickUpDate = datepicker('#pickUpDate', {
-  id: 1,
-  onSelect: (instance, date) => {
-    // Both instances will be set because they are linked by `id`.
-    instance.setMin(date);
-    document.getElementById("returnDate").removeAttribute("disabled");
-  },
-    formatter: (input, date, instance) => {
-    const value = date.toLocaleDateString();
-    input.value = value; // => '1/1/2099'
+    id: 1,
+    onSelect: (instance, date) => {
+      // Both instances will be set because they are linked by `id`.
+      instance.setMin(date);
+      document.getElementById("returnDate").removeAttribute("disabled");
+    },
+      formatter: (input, date, instance) => {
+      const value = date.toLocaleDateString();
+      input.value = value; // => '1/1/2099'
+    }
+  });
+  
+  pickUpDate.setMin(new Date());
+  const returnDate = datepicker('#returnDate', {
+    id: 1,
+    onSelect: (instance, date) => {
+      // Both instances will be set because they are linked by `id`.
+      instance.setMax(date);
+    },
+      formatter: (input, date, instance) => {
+      const value = date.toLocaleDateString();
+      input.value = value; // => '1/1/2099'
+    }
+  });
+  returnDate.setMin(new Date());
+  
+  // terms of service and confirm button
+  function confirmTos() {
+    if(!$('#tos').is(":checked")) {
+      $('#tos').click();
+    }  
   }
-});
-
-pickUpDate.setMin(new Date());
-const returnDate = datepicker('#returnDate', {
-  id: 1,
-  onSelect: (instance, date) => {
-    // Both instances will be set because they are linked by `id`.
-    instance.setMax(date);
-  },
-    formatter: (input, date, instance) => {
-    const value = date.toLocaleDateString();
-    input.value = value; // => '1/1/2099'
+  $('#tos').change(function() {
+    if($(this).is(":checked")) {
+      $("#confirmReservation").removeAttr("disabled");
+      $("#tosWarning").empty();
+    } else {
+      $("#confirmReservation").attr("disabled", true);
+      $("#tosWarning").text("You must agree to the Terms of Service");
+    }
+  });
+ 
+  function confirmResValidation(){
+    var pickUpDate = $("#pickUpDate").val();
+    var returnDate = $("#returnDate").val();
+    var start = moment(pickUpDate, "M/D/YYYY");
+    var end = moment(returnDate, "M/D/YYYY");
+    console.log(end.diff(start, 'days'));
+    
   }
-});
-returnDate.setMin(new Date());
+  
+  $("#confirmReservation").on("click", function(e){
+    confirmResValidation();
+  });
 
-// terms of service 
-$('#tos').change(function() {
-  if($(this).is(":checked")) {
-    $("#confirm").removeAttr("disabled");
-    $("#niceTry").empty();
-  } else {
-    $("#confirm").attr("disabled", true);
-    $("#niceTry").text("Nice try, buddy..");
-  }
-});
-
+  
 // get favorites from local storage or empty array
 var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
