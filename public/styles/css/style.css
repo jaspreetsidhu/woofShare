@@ -106,7 +106,7 @@ h1, h2 {
     font-weight: 900;
     animation: moveInLeft 1s ease-out; }
   .banner__secondary-heading {
-    font-size: 3rem;
+    font-size: 2.4rem;
     font-weight: 700;
     animation: moveInRight 1s ease-out; }
   .banner__button-box--home {
@@ -159,7 +159,6 @@ h1, h2 {
 
 .btn-theme-tertiary {
   background-color: #fcc314;
-  font-weight: 700;
   color: #000 !important;
   transition: all .5s;
   cursor: pointer; }
