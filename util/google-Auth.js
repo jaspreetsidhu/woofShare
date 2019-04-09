@@ -1,6 +1,8 @@
 const passport = require('passport');  
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+var db = require("../models");
 
 module.exports = function(app) {
 
@@ -38,34 +40,17 @@ app.use(session({
     {
       clientID: process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_ID || '382558953142-m0ik7j02qokj2kmggaf5hvo1qku4t109.apps.googleusercontent.com',
       clientSecret: process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_SECRET || 'TjzHVzxiKU68XSrMCtzIERJe',
-      callbackURL: 'http://localhost:3000/auth/google/callback',
+      callbackURL: process.env.GOOGLE_CALL_BACK_URL ||'/auth/google/callback',
       scope: ['email'],
     },
     // This is a "verify" function required by all Passport strategies
     (accessToken, refreshToken, profile, cb) => {
-      console.log('Our user authenticated with Google, and Google sent us back this profile info identifying the authenticated user:', profile);
+      //  console.log('Google Profile:', profile);
       return cb(null, profile);
     },
   ));
   
-  app.get('/auth/google', passport.authenticate('google'));  
-  
-  
-  // // This is where Google sends users once they authenticate with Google
-  // app.get('/auth/google/callback',  
-  //   passport.authenticate('google', { failureRedirect: '/', session: true }),
-  //   (req, res) => {
-  //     console.log('wooo we authenticated, here is our user object:', req.user);
-  //   //  res.json(req.user);
-  //   //console.log("response from user",req.body);
-  //   //console.log("cookies",req.cookies);
-  //   //ADD into database
-  
-  //   //Redirect to page (Home Should show logged in name & Profile pics)
-  //    res.redirect('/');
-  //   }
-  // );
-  app.get('/protected', accessProtectionMiddleware, (req, res) => {  
+ app.get('/protected', accessProtectionMiddleware, (req, res) => {  
     res.json({
       message: 'You have accessed the protected endpoint!',
       yourUserInfo: req.user,
@@ -77,21 +62,40 @@ app.use(session({
     passport.authenticate('google', { failureRedirect: '/', session: true }),
     (req, res) => {
       const jwt = JSON.stringify(req.user);
-  //const uD =JSON.stringify(userdetails);
-    //  const jwt = createJWTFromUserData(req.user);
-      const htmlWithEmbeddedJWT = `
-      <html>
-        <script>
-          // Save JWT to localStorage
-          window.localStorage.setItem('JWT', '${jwt}');
-          
-          // Redirect browser to root of application
-          window.location.href = '/';
-        </script>
-      </html>
-      `;
-  
-      res.send(htmlWithEmbeddedJWT);
+      
+      console.log(req.user.emails[0].value);
+
+      // validate if the new user
+      db.Users.findOne({
+        where: {
+          email: req.user.emails[0].value
+        }
+      }).then(function(results) {
+        console.log("results: ",JSON.stringify(results));
+        if(results)
+        {
+         console.log("username:",results.userName);
+          //Set Login user cookies
+          var sendUserDetails = JSON.stringify({
+            displayName: results.userName,
+            photoUrl: results.photo
+          });
+          res.cookie("userDetails", sendUserDetails);
+          res.redirect('/gallery');
+        }
+        else
+        res.redirect('/signUp');
+      });    
     }
   );
+
+  // Logout 
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.clearCookie("userDetails");
+    
+    passport.logout;
+    
+    res.redirect('/');
+  });
 }

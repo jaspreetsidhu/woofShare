@@ -1,5 +1,47 @@
 <div id="confirmation">
     {{> header }}
-
+    <div class="container mt-5">
+        <section class="confirmation" style="min-height: 400px">
+            <h1>Reservation Details</h1>
+            <div class="confirmation__selection">
+                <div class="row mt-5">
+                    <div class="col-2 confirmation__selection__img">
+                        <img src="/{{dog.photoUrl}}" />
+                    </div>
+                    <div class="col-5">
+                        <h3>{{dog.name}}</h3>
+                        <hr />
+                        <p class="text-small">{{dog.profile}}</p>
+                    </div>
+                    <div class="col-5">
+                        <form action="/api/dogs/reserve" method="post">
+                            <div class="form__group">
+                                <label for="pickUpDate" class="form__label"><span class="color-red">* </span>Pick Up
+                                    Date</label>
+                                <input class="form__input" id="pickUpDate" name="pickUpDate" type="text" placeholder="M/D/YYYY"
+                                    required />
+                            </div>
+                            <input type="text" required="true" name="dogId" value="{{dog.id}}" hidden>
+                            <div class="form__group">
+                                <label for="returnDate" class="form__label"><span class="color-red">* </span>Return
+                                    Date</label>
+                                <input class="form__input" id="returnDate" name="returnDate" type="text" placeholder="M/D/YYYY" required
+                                    disabled />
+                            </div>
+                            <div class="form__group">
+                                <input type="checkbox" id="tos" />
+                                <label for="tos" class="text-small">I agree to WoofShare's <a class="color-primary"
+                                        href="#!">Terms of Service</a></label>
+                                <br>
+                                <span class="text-tiny color-red" id="niceTry"></span>
+                            </div>
+                            <button id="confirm" class="btn btn-theme-secondary btn-lg" disabled>Confirm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
+<script src="/js/datepicker.js"></script>
 {{> footer }}

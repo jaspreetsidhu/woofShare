@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var connection = require("../config/connection");
+var DogController = require('../controllers/DogController')
 
 router.get("/", function(req, res) {
   res.render("index");
@@ -11,16 +12,22 @@ router.get("/signUp", function(req, res) {
 });
 
 router.get("/gallery", function(req, res) {
-  connection.query("SELECT * FROM doggie", function(err, data) {
-    if (err) throw err;
-    console.log(data);
-    res.render("gallery", { dogs: data });
-  });
+  DogController.getAllDogs(req, res);
+  // connection.query("SELECT * FROM dogs", function(err, data) {
+  //   if (err) throw err;
+  //   console.log(data);
+  //   res.render("gallery", { dogs: data, token: 'fofjffl' });
+  // });
 });
 
 
-router.get("/confirmation", function (req, res) {
-    res.render("confirmation");
+router.get("/confirmation/:dogId", function (req, res) {
+    // res.render("confirmation");
+    // DogController.getSingleDog(req, res, function(data) {
+    //   res.send(data);
+    // });
+    DogController.getSingleDog(req, res)
 });
+
 
 module.exports = router;

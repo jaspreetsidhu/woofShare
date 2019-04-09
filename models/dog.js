@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
           len: [1]
       }
     },
-    photo_url: {
+    photoUrl: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -39,9 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       as: "ratings",
       foreignKey: 'dogId',
     });
-    Dog.hasOne(models.Rental, {
+    Dog.hasMany(models.Rental, {
       onDelete: "cascade",
-      foreignKey: 'rentals',
+      foreignKey: 'dogId',
       as: 'rental'
     })
   };

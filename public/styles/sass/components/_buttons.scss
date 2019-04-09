@@ -34,9 +34,13 @@
     transition: all .5s;
     cursor: pointer;
 
-    &:hover {
+    &:hover:not(:disabled) {
         color: $color-white;
         background-color: $color-secondary-light;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
     }
 }
 .btn-theme-tertiary {

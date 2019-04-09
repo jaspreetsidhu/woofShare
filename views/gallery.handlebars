@@ -1,6 +1,6 @@
 <div id="gallery">
     {{> header }}
-    <div class="container mt-5" style="min-height: 400px">
+    <div class="container mt-5">
         <section class="gallery__controls">
             <div class="row">
                 <div class="col-12">
@@ -35,7 +35,7 @@
             <div class="row galler__table__row">
                 {{#each dogs}}
                 {{#if available}}
-                {{> dog}}
+                    {{> dog}}
                 {{/if}}
                 {{/each}}
             </div>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="/confirmation" class="btn btn-theme-red btn-lg">Reserve
+                    <a href="/confirmation/{{this.dataValues.id}}" class="btn btn-theme-red btn-lg">Reserve
                         now!</a>
                     <button type="button" class="btn btn-secondary btn-med" data-dismiss="modal">Cancel</button>
                 </div>

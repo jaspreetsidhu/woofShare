@@ -10,11 +10,13 @@ var exphbs = require("express-handlebars");
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(bodyParser.json())
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
+
+// Requiring our models for syncing
+var db = require("./models");
 
 // Google APi call
 require("./util/google-Auth")(app);
@@ -27,10 +29,6 @@ app.use(HTMLroutes);
 //Api Routes
 var apiRoutes = require('./routes/apiRoutes');
 app.use(apiRoutes);
-
-
-// Requiring our models for syncing
-var db = require("./models");
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

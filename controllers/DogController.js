@@ -1,5 +1,6 @@
 var models = require('../models/index')
 var Sequelize = require('sequelize')
+var moment = require('moment')
 
 var Op = Sequelize.Op
 
@@ -33,17 +34,18 @@ class DogController {
         'age',
         'available',
         'profile',
-        'card_color'
+        'card_color',
+        'photoUrl'
       ]
     })
     .then( function(dogs){
       if(dogs){
-        console.log
-        return response.status(200).json({
-          status: 'SUCCESS',
-          message: 'Dogs Fetched Successfully',
-          data: dogs
-        })
+        // return response.status(200).json({
+        //   status: 'SUCCESS',
+        //   message: 'Dogs Fetched Successfully',
+        //   data: dogs
+        // })
+        response.render('gallery', { dogs: dogs,});
       }
     })
     .catch(function(err){
@@ -88,27 +90,20 @@ class DogController {
         'age',
         'available',
         'profile',
-        'card_color'
+        'card_color',
+        'photoUrl',
       ]
     })
     .then( function(singleDog){
       if(singleDog){
-        return response.status(200).json({
-          status: 'SUCCESS',
-          message: 'Fetched a single dog',
-          data: singleDog
-        })
+        response.render('confirmation', { dog: singleDog })
       }
-      return response.status(404).json({
-        status: 'Failed',
-        message: 'Dog is not found'
-      })
     })
     .catch( function(error){
       return response.status(500).json({
         status: 'FAILED',
         message: 'Error processing request, please try again',
-        Error: err.toString()
+        Error: error.toString()
       })
     })
   }
@@ -330,6 +325,68 @@ static delete(request, response){
         Error: err.toString()
       });
     });
+  }
+
+  static reserve(request, response) {
+    var { pickUpDate, returnDate, dogId } = request.body
+    console.log("=================>>>>", pickUpDate, returnDate)
+    // const myDate = moment(str, 'YYYY-MM-DD').toDate();
+    // pickUpDate = moment(pickUpDate).format('MM-DD-YYYY HH:MM:SS');
+    pickUpDate = moment(pickUpDate, "MM-DD-YYYY HH:MM:SS")
+    // returnDate = moment(returnDate, 'MM-DD-YYYY HH:MM:SS')
+    models.Rental.create({
+      pickUpDate,
+      returnDate: pickUpDate,
+      daysToRent: 1,
+      dogId,
+      userId: 1,
+    })
+    .then(function(){
+    models.Dog.findOne({
+      where :{
+        id: dogId
+      },
+      attributes: [
+        'available',
+        'id'
+      ]
+    })
+    .then(function(foundDog){
+      console.log(foundDog)
+      if(foundDog){
+        const value = {
+          available: 0,
+        }
+        foundDog.update(value, {
+          where:{
+            id: foundDog.dataValues.id
+          }
+        })
+        .then(function(){
+          response.redirect('/gallery')
+        })
+      }
+      else {
+        response.status(404).json({
+          message: 'Dog not found or has been deleted'
+        });
+      }
+    })
+    .catch(function(err) {
+      response.status(500).json({
+        status: 'FAILED',
+        message: 'Error processing request, please try again',
+        Error: err.toString()
+      });
+    });
+    })
+    .catch(function(err) {
+      response.status(500).json({
+        status: 'FAILED',
+        message: 'Error processing request, please try again',
+        Error: err.toString()
+      });
+  });
   }
 }
 module.exports = DogController

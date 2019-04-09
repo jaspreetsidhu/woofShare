@@ -8,7 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      requestDays: {
+      returnDate: {
+        type: Sequelize.DATE
+      },
+      pickUpDate: {
         type: Sequelize.DATE
       },
       createdAt: {

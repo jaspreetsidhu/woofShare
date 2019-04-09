@@ -1,12 +1,14 @@
 {
-  "name": "exercise1_animals",
+  "name": "woofshare",
   "version": "1.0.0",
-  "description": "",
+  "description": "woofshare",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "node server.js",
     "watch": "nodemon server.js",
+    "start": "node server.js",
+    "lint": "eslint **/*.js --quiet",
+    "fix": "eslint --fix .",
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit",
     "compile:sass": "node-sass public/styles/sass/main.scss public/styles/css/style.css -w"
   },
   "author": "",
@@ -14,11 +16,14 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
+    "cookies": "^0.7.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "express-jwt": "^5.3.1",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.5",
     "node-sass": "^4.11.0",
@@ -28,6 +33,13 @@
     "sequelize": "^5.2.12"
   },
   "devDependencies": {
-    "validatorjs": "^3.15.1"
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.7.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.7"
   }
 }

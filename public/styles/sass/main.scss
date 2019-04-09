@@ -10,12 +10,14 @@
 @import "components/banner";
 @import "components/buttons";
 @import "components/cards";
+@import "components/datepicker";
 @import "components/feature-box";
 @import "components/form"; 
 
 @import "layout/header";
 @import "layout/footer";
 
+@import "pages/confirmation";
 @import "pages/home";
 @import "pages/signUp";
 @import "pages/gallery";  

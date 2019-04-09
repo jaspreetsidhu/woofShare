@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Rental = sequelize.define('Rental', {
-    requestDate: {
+    returnDate: {
+      type: DataTypes.DATEONLY
+      },
+    pickUpDate: {
       type: DataTypes.DATEONLY
       },
     daysToRent: {
