@@ -66,7 +66,7 @@ app.use(session({
       console.log(req.user.emails[0].value);
 
       // validate if the new user
-      db.Users.findOne({
+      db.User.findOne({
         where: {
           email: req.user.emails[0].value
         }
