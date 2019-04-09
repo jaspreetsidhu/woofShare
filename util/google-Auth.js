@@ -45,7 +45,7 @@ app.use(session({
     },
     // This is a "verify" function required by all Passport strategies
     (accessToken, refreshToken, profile, cb) => {
-       console.log('Google Profile:', profile);
+      //  console.log('Google Profile:', profile);
       return cb(null, profile);
     },
   ));
@@ -66,7 +66,7 @@ app.use(session({
       console.log(req.user.emails[0].value);
 
       // validate if the new user
-      db.Users.findOne({
+      db.User.findOne({
         where: {
           email: req.user.emails[0].value
         }
