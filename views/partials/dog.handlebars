@@ -3,14 +3,14 @@
         <div class="gallery-card__side gallery-card__side--front">
             <i class="far fa-heart"></i>
             <div class="gallery-card__picture">
-                <img src="{{this.image_url}}" alt="dog+{{this.id}}" />
+                <img src="{{this.dataValues.photoUrl}}" alt="dog+{{this.dataValues.id}}" />
             </div>
             <h4 class="gallery-card__heading">
                 <span
-                    class="gallery-card__heading-span gallery-card__heading-span--{{this.card_color}}">{{this.dog_name}}</span>
+                    class="gallery-card__heading-span gallery-card__heading-span--{{this.dataValues.card_color}}">{{this.dataValues.name}}</span>
             </h4>
             <div class="gallery-card__details">
-                <p class="text-small">{{this.dog_profile}}</p>
+                <p class="text-small">{{this.dataValues.profile}}</p>
                 <div class="gallery-card__details__icons">
                     <div class="row">
                         <div class="col-6">
@@ -24,11 +24,11 @@
                 </div>
             </div>
         </div>
-        <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-{{this.card_color}}">
+        <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-{{this.dataValues.card_color}}">
             <div class="gallery-card__cta">
-                <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite" data-dogid="{{this.dog_name}}"></i>
-                <a href="#!" class="gallery-card__cta--profile"  data-toggle="modal" data-target=".gallery-card__modal">See Full Profile...</a>
-                <a href="#!" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
+                <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite" data-dogid="{{this.dataValues.name}}"></i>
+                <a href="#" class="gallery-card__cta--profile"  data-toggle="modal" data-target=".gallery-card__modal">See Full Profile...</a>
+                <a href="/confirmation/{{this.dataValues.id}}" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
                     now!</a>
             </div>
         </div>

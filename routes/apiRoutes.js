@@ -1,18 +1,20 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+//var db = require("../models");
 
-// POST route for saving a new user
-router.post("/api/signUp", function(req, res) {
-    console.log("SignUP Post",req.body);
-    const jwt = JSON.stringify(req.user);
-  
-    console.log("Callback:",jwt );
-  console.log("userDetails" ,req.user.photos[0].value)
-  
-  var sendUserDetails =JSON.stringify( {displayName:req.body.name,
-    photoUrl:req.user.photos[0].value
-  });
-  res.cookie("userDetails",sendUserDetails).send("done");
-  
-  });
-  module.exports = router;
+var DogController = require("../controllers/DogController");
+var UserController = require("../controllers/UserController");
+var dogValidation = require("../middlewares/validateDog");
+
+router.post("/api/signUp", UserController.createUser);
+
+//my route
+router.post("/api/dogs", dogValidation, DogController.addDog);
+router.get("/api/dogs", DogController.getAllDogs);
+router.get("/api/dogs/filterby", DogController.filterDogs);
+router.get("/api/dogs/:dogId", DogController.getSingleDog);
+router.patch("/api/dogs/:dogId", dogValidation, DogController.update);
+router.delete("/api/dogs/:dogId", DogController.delete);
+router.post("/api/dogs/reserve", DogController.reserve);
+
+module.exports = router;

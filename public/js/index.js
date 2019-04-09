@@ -19,6 +19,7 @@ $(".fa-heart").on("click", function() {
 
 // datepicker JS
 
+<<<<<<< HEAD
 const pickUpDate = datepicker('#pickUpDate', {
     id: 1,
     onSelect: (instance, date) => {
@@ -74,6 +75,45 @@ const pickUpDate = datepicker('#pickUpDate', {
   $("#confirmReservation").on("click", function(e){
     confirmResValidation();
   });
+=======
+const pickUpDate = datepicker("#pickUpDate", {
+  id: 1,
+  onSelect: (instance, date) => {
+    // Both instances will be set because they are linked by `id`.
+    instance.setMin(date);
+    document.getElementById("returnDate").removeAttribute("disabled");
+  },
+  formatter: (input, date, instance) => {
+    const value = date.toLocaleDateString();
+    input.value = value; // => '1/1/2099'
+  }
+});
+
+pickUpDate.setMin(new Date());
+const returnDate = datepicker("#returnDate", {
+  id: 1,
+  onSelect: (instance, date) => {
+    // Both instances will be set because they are linked by `id`.
+    instance.setMax(date);
+  },
+  formatter: (input, date, instance) => {
+    const value = date.toLocaleDateString();
+    input.value = value; // => '1/1/2099'
+  }
+});
+returnDate.setMin(new Date());
+
+// terms of service
+$("#tos").change(function() {
+  if ($(this).is(":checked")) {
+    $("#confirm").removeAttr("disabled");
+    $("#niceTry").empty();
+  } else {
+    $("#confirm").attr("disabled", true);
+    $("#niceTry").text("Nice try, buddy..");
+  }
+});
+>>>>>>> 75ca0624a74d1043e2aed6d74143746d4e407570
 
   
 // get favorites from local storage or empty array

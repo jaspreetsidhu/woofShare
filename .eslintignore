@@ -1,2 +1,5 @@
 models/index.js
-node_modules
+node_modules/
+google-Auth.js
+google-Auth2.js
+migrations/
