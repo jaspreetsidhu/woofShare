@@ -1,4 +1,9 @@
-/* DROP DATABASE IF EXISTS dog_db;
+/* 
+Make sure you npm install -g mysql2 first before you run the sequelize command to initialize the database
+
+
+
+DROP DATABASE IF EXISTS dog_db;
 CREATE DATABASE dog_db;
 USE dog_db;
 
@@ -20,7 +25,7 @@ ALTER TABLE `dogs` MODIFY COLUMN `updatedAt` DATETIME NOT NULL DEFAULT NOW() ON 
 SELECT * FROM dogs;
 use dog_db;
 
-INSERT INTO dogs(name, photo_url, size, breed,age, profile, available, card_color,createdAt,updatedAt)
+INSERT INTO dogs(name, photoUrl, size, breed,age, profile, available, card_color,createdAt,updatedAt)
 VALUES 
 ("Bruser", "images/dog-1.jpg", "Large","TERRIER", "Senior", "I am a calm dog who loves to go for walks on a leash.  I do not get along with other dogs.", 1, 3,'2019-04-08 04:43:58', '2019-04-08 04:43:58'),
 ("Butch", "images/dog-2.jpg", "Medium","HOUND", "Adult", "I have tons of energy and I love to run with my friends.  I like to play with other dogs, but I hate cats.", 1, 2,'2019-04-08 04:43:58', '2019-04-08 04:43:58'),
@@ -33,6 +38,7 @@ VALUES
 SELECT * FROM dogs;
 
 INSERT INTO `dog_db`.`ratings` (`id`, `score`, `review`, `userId`, `dogId`, `createdAt`, `updatedAt`) VALUES ('1', '3', 'Very good', '1', '1', '2019-04-08 04:43:50', '2019-04-08 04:43:50');
+INSERT INTO `dog_db`.`ratings` (`id`, `score`, `review`, `userId`, `dogId`, `createdAt`, `updatedAt`) VALUES ('3', '2', 'awesome', '1', '1', '2019-04-08 04:43:50', '2019-04-08 04:43:50');
 
 select * from ratings;
 
