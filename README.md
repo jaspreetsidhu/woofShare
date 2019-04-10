@@ -3,18 +3,56 @@
 ## What Is WoofShare
   Woofshare connects people to dogs and dogs to people, and provides innovative solutions for dogs, dog lovers and dog owners.
 
-      Dog Lovers- WoofShare allows an individual to rent a dog, spend time with them, and return them.
+      Dog Lovers - WoofShare allows an individual to rent a dog, spend time with them, and return them.
 
-      Dog Owners- WoofShare Share A Dog program allows a dog owner to rent their dog to other dog lovers who spend time with them and love them when working or traveling. 
+      Dog Owners - WoofShare Share A Dog program allows a dog owner to rent their dog to other dog lovers who spend time with them and love them when working or traveling. 
 
       Dog Shelters and Fosters- WoofShare Share A Dog program also allows dog shelters and fosters to rent dogs in their care to individuals to help exercise their dogs and provide human interaction with them.
+
+## What Is WoofShare
+  Woofshare connects people to dogs and dogs to people, and provides innovative solutions for dogs, dog lovers and dog owners.
+
+     * Dog Lovers- WoofShare allows an individual to rent a dog, spend time with them, and return them.  
+
+     * Dog Owners (Future Feature)- WoofShare Share A Dog program allows a dog owner to rent their dog to other dog lovers who spend time with them and love them when working or traveling.
+
+     * Dog Shelters and Fosters (Future Feature)- WoofShare Share A Dog program also allows dog shelters and fosters to rent dogs in their care to individuals to help exercise their dogs and provide human interaction with them.
 
 ## How WoofShare Works
   There are 2 User Groups:  Dog Renters and Dog Owners
 
-### Dog Renters
-    Dog Renters can access WoofShare and view the Dog Library.  To become an approved renter, the user must provide basic identifying information and sign the WoofShare Renters Terms of Service
+  * Dog Renters - To become an approved renter, the user must provide basic identifying information and sign the WoofShare Renters Terms of Service.  Dog renters can access WoofShare and view the Dog Gallery which allows the user to view and select the dogs that are available to rent.  Upon returning the dog in, the user, completes a review which displays review rating and description.  MySql database stores and retreives all data for the dog and renter.
+   
+    
+  * Dog Owners (Future Feature) - Dog Owners sign up by completing a rental agreement.  Upon approval of terms, their dog is posted and available for renters to view in the dog gallery.  This user group includes dog shelters and fosters who may have more than one dog to rent.
 
+# Application Overview
+  The following appications, libraries, methods and packages are utilized:
+  * Node and Express Web Server
+  * MySQL Database with a Sequelize ORM
+  * GET and POST routes for retrieving and adding new data
+  * Deployed in Heroku (with Data)
+  * Google API
+  * Google User Authentication (see User Authentication below for details)
+    
+This application also contains a folder structure which meets MVC Paradigm, and adheres to quality coding standards and formatting (including indentation, scoping, and naming).  Also, the application is designed to protect sensitive API key information on the server.
+
+## Application Dependencies
+   * body-parser
+   * cookie-parser
+   * cookies
+   * express
+   * express-handlebars
+   * express-jwt
+   * express-session
+   * jsonwebtoken
+   * mysql
+   * mysql2
+   * node-sass
+   * nodemon
+   * passport
+   * passport-google-oauth20
+   * sequelize
 
 ## User Authentication using Passport-Google-oauth20
 

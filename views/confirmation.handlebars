@@ -18,24 +18,26 @@
                             <div class="form__group">
                                 <label for="pickUpDate" class="form__label"><span class="color-red">* </span>Pick Up
                                     Date</label>
-                                <input class="form__input" id="pickUpDate" name="pickUpDate" type="text" placeholder="M/D/YYYY"
-                                    required />
+                                <input class="form__input" id="pickUpDate" type="text" placeholder="M/D/YYYY" required
+                                    autocomplete="off" />
                             </div>
                             <input type="text" required="true" name="dogId" value="{{dog.id}}" hidden>
                             <div class="form__group">
                                 <label for="returnDate" class="form__label"><span class="color-red">* </span>Return
                                     Date</label>
-                                <input class="form__input" id="returnDate" name="returnDate" type="text" placeholder="M/D/YYYY" required
-                                    disabled />
+                                <input class="form__input" id="returnDate" type="text" placeholder="M/D/YYYY" required
+                                    disabled autocomplete="off" />
                             </div>
                             <div class="form__group">
                                 <input type="checkbox" id="tos" />
                                 <label for="tos" class="text-small">I agree to WoofShare's <a class="color-primary"
-                                        href="#!">Terms of Service</a></label>
+                                        href="#!" data-toggle="modal" data-target=".tos__modal">Terms of
+                                        Service</a></label>
                                 <br>
-                                <span class="text-tiny color-red" id="niceTry"></span>
+                                <span class="text-tiny color-red" id="tosWarning"></span>
                             </div>
-                            <button id="confirm" class="btn btn-theme-secondary btn-lg" disabled>Confirm</button>
+                            <button id="confirmReservation" class="btn btn-theme-secondary btn-lg"
+                                disabled>Confirm</button>
                         </form>
                     </div>
                 </div>
@@ -43,5 +45,82 @@
         </section>
     </div>
 </div>
-<script src="/public/js/datepicker.js"></script>
+<!-- TOS Modal -->
+<div class="modal fade tos__modal" tabindex="-1" role="dialog" aria-labelledby="tosModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="confirmation__tos__content text-small">
+                            <h2 class="text-center bold">WoofShare Renters' Terms of Service</h2>
+                            <p>The actions individual renters take can have a big impact on the WoofShare Dog Sharing
+                                System; therefore, all renters must agree to WoofShare Renters Terms of Service prior to
+                                account approval. Violation of WoofShare terms of service may result in termination
+                                and/or
+                                suspension of your account.</p>
+                            <h4 class="bold color-primary">Definitions</h4>
+                            </h4>
+                            <p>Care, custody and control – Care implied that you have temporary charge or have the
+                                responsibility of watching over the dog you are renting. Custody implies safekeeping of
+                                the dog you are renting, and control refers to you having power over dog.</p>
+                            <p>Care, custody and control timeframe begins immediately upon taking position of the dog
+                                and
+                                continues without interruption, until you have safely checked the animal in with the dog
+                                owner/caregiver and have completed the return agreement in WoofShare.</p>
+                            <h4 class="bold color-primary">Terms Agreement</h4>
+                            <p>I understand the meaning and timeframe of care, custody and control as written herein,
+                                and
+                                agree that WoofShare accepts no liability when my rental dog is in my care, custody and
+                                control.</p>
+                            <p>I agree to ensure the care and safety of my rental dog when my rental dog is in my care
+                                custody and control.</p>
+                            <p>I agree to ensure to follow all additional dog owner/caregiver instructions to ensure the
+                                well-being of my rental dog while it is in my care, custody and control.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="/gallery" class="btn btn-secondary btn-med">Decline</a>
+                <button onclick="confirmTos()" type="button" class="btn btn-theme-secondary btn-med"
+                    data-dismiss="modal">Agree</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- <script src="js/datepicker.js"></script>
+<script>
+
+    // datepicker JS
+
+const pickUpDate = datepicker('#pickUpDate', {
+    id: 1,
+    onSelect: (instance, date) => {
+      // Both instances will be set because they are linked by `id`.
+      instance.setMin(date);
+      document.getElementById("returnDate").removeAttribute("disabled");
+    },
+      formatter: (input, date, instance) => {
+      const value = date.toLocaleDateString();
+      input.value = value; // => '1/1/2099'
+    }
+  });
+  
+  pickUpDate.setMin(new Date());
+  const returnDate = datepicker('#returnDate', {
+    id: 1,
+    onSelect: (instance, date) => {
+      // Both instances will be set because they are linked by `id`.
+      instance.setMax(date);
+    },
+      formatter: (input, date, instance) => {
+      const value = date.toLocaleDateString();
+      input.value = value; // => '1/1/2099'
+    }
+  });
+  returnDate.setMin(new Date());
+  
+</script> --}}
+
 {{> footer }}
