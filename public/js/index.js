@@ -17,35 +17,7 @@ $(".fa-heart").on("click", function() {
 });
 
 
-// datepicker JS
 
-const pickUpDate = datepicker('#pickUpDate', {
-    id: 1,
-    onSelect: (instance, date) => {
-      // Both instances will be set because they are linked by `id`.
-      instance.setMin(date);
-      document.getElementById("returnDate").removeAttribute("disabled");
-    },
-      formatter: (input, date, instance) => {
-      const value = date.toLocaleDateString();
-      input.value = value; // => '1/1/2099'
-    }
-  });
-  
-  pickUpDate.setMin(new Date());
-  const returnDate = datepicker('#returnDate', {
-    id: 1,
-    onSelect: (instance, date) => {
-      // Both instances will be set because they are linked by `id`.
-      instance.setMax(date);
-    },
-      formatter: (input, date, instance) => {
-      const value = date.toLocaleDateString();
-      input.value = value; // => '1/1/2099'
-    }
-  });
-  returnDate.setMin(new Date());
-  
   // terms of service and confirm button
   function confirmTos() {
     if(!$('#tos').is(":checked")) {

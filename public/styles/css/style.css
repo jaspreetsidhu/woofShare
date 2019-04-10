@@ -39,6 +39,9 @@ html {
 body {
   box-sizing: border-box; }
 
+ul {
+  list-style-type: none !important; }
+
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -755,6 +758,8 @@ h1, h2 {
     font-weight: 900; }
   .profile__left-col__menu a {
     color: #94ac3c; }
+  .profile__left-col__menu__nav-tabs {
+    margin-top: 0; }
 
 .profile__active__img img {
   width: 100%; }
