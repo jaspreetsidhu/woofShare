@@ -36,8 +36,8 @@ class DogController {
         "profile",
         "card_color",
         "photoUrl",
-        [models.sequelize.fn('ROUND', models.sequelize.fn('AVG', 
-        models.sequelize.col('score'))), 'ratingAvg']
+        [models.sequelize.fn("ROUND", models.sequelize.fn("AVG", 
+        models.sequelize.col("score"))), "ratingAvg"]
       ]
     })
       .then(function(dogs) {
@@ -47,7 +47,7 @@ class DogController {
           //   message: 'Dogs Fetched Successfully',
           //   data: dogs
           // })
-         // console.log(dogs);
+          // console.log(dogs);
           response.render("gallery", { dogs: dogs });
         }
       })
@@ -408,64 +408,4 @@ class DogController {
       });
   }
 }
-  /**
-   * @static
-   * Method to delete a dog instance by Id
-   * @body {*} request
-   * @param {*} response
-   * @memberof DogController
-   */
-
-  // static searchByAge(request, response) {
-  // var age = request.body.age;
-  // if (age == null) {
-  //   return response.status(400).json({
-  //     status: "Failed",
-  //     message: "age should not be null"
-  //   });
-  // }
-  // else
-  // {
-  //   models.Dog.findAll({
-  //     where: {
-  //       age: age
-  //     },
-  //     include: [
-  //       {
-  //         model: models.Rating,
-  //         as: "ratings",
-  //         attributes: ["review", "score"]
-  //       }
-  //     ],
-  //     attributes: [
-  //       "id",
-  //       "name",
-  //       "size",
-  //       "breed",
-  //       "age",
-  //       "available",
-  //       "profile",
-  //       "card_color",
-  //       [model.sequelize.fn('AVG', 
-  //       model.sequelize.col('score')), 'ratingAvg']
-  //     ]
-  //   })
-  //     .then(function(dogs) {
-  //       if (dogs) {
-  //         console.log;
-  //         return response.status(200).json({
-  //           status: "SUCCESS",
-  //           message: "Dogs Fetched Successfully",
-  //           data: dogs
-  //         });
-  //       }
-  //     })
-  //     .catch(function(err) {
-  //       return response.status(500).json({
-  //         status: "FAILED",
-  //         message: "Error processing request, please try again",
-  //         Error: err.toString()
-  //       });
-  //     });
-//}
 module.exports = DogController;
