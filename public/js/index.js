@@ -7,11 +7,15 @@ var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 function renderHearts() {
   var favoriteHearts = JSON.parse(localStorage.getItem("favorites"));
-  for (i = 0; i < favoriteHearts.length; i++) {
-    $("#heartOne" + [favoriteHearts[i]]).removeClass("far");
-    $("#heartOne" + [favoriteHearts[i]]).addClass("fas");
-    $("#heartTwo" + [favoriteHearts[i]]).removeClass("far");
-    $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
+  if (localStorage.getItem("favorites") === null) {
+    return;
+  } else {
+    for (i = 0; i < favoriteHearts.length; i++) {
+      $("#heartOne" + [favoriteHearts[i]]).removeClass("far");
+      $("#heartOne" + [favoriteHearts[i]]).addClass("fas");
+      $("#heartTwo" + [favoriteHearts[i]]).removeClass("far");
+      $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
+    }
   }
 }
 
@@ -34,37 +38,33 @@ $(".fa-heart").on("click", function() {
   }
 });
 
-
-
-  // terms of service and confirm button
-  function confirmTos() {
-    if(!$('#tos').is(":checked")) {
-      $('#tos').click();
-    }  
+// terms of service and confirm button
+function confirmTos() {
+  if (!$("#tos").is(":checked")) {
+    $("#tos").click();
   }
-  $('#tos').change(function() {
-    if($(this).is(":checked")) {
-      $("#confirmReservation").removeAttr("disabled");
-      $("#tosWarning").empty();
-    } else {
-      $("#confirmReservation").attr("disabled", true);
-      $("#tosWarning").text("You must agree to the Terms of Service");
-    }
-  });
- 
-  function confirmResValidation(){
-    var pickUpDate = $("#pickUpDate").val();
-    var returnDate = $("#returnDate").val();
-    var start = moment(pickUpDate, "M/D/YYYY");
-    var end = moment(returnDate, "M/D/YYYY");
-    console.log(end.diff(start, 'days'));
-    
+}
+confirmTos();
+$("#tos").change(function() {
+  if ($(this).is(":checked")) {
+    $("#confirmReservation").removeAttr("disabled");
+    $("#tosWarning").empty();
+  } else {
+    $("#confirmReservation").attr("disabled", true);
+    $("#tosWarning").text("You must agree to the Terms of Service");
   }
-  
-  $("#confirmReservation").on("click", function(e){
-    confirmResValidation();
-  });
+});
 
-  
+function confirmResValidation() {
+  var pickUpDate = $("#pickUpDate").val();
+  var returnDate = $("#returnDate").val();
+  var start = moment(pickUpDate, "M/D/YYYY");
+  var end = moment(returnDate, "M/D/YYYY");
+  console.log(end.diff(start, "days"));
+}
+
+$("#confirmReservation").on("click", function() {
+  confirmResValidation();
+});
 // get favorites from local storage or empty array
 var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
