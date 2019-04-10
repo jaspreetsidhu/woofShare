@@ -29,7 +29,7 @@ router.get("/confirmation/:dogId", function(req, res) {
 });
 
 router.get("/user-profile", function (req, res) {
-  res.render("userProfile");
+  res.render("userProfile"); 
 });
 
 
