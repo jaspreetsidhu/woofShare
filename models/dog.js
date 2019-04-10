@@ -36,13 +36,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "dogs" }
   );
-  
   Dog.associate = function (models){
     Dog.hasMany(models.Rating, {
       onDelete: "cascade",
       as: "ratings",
-      foreignKey: "dogId",
-    });
+      foreignKey: "dogId"
+    });                         
     Dog.hasMany(models.Rental, {
       onDelete: "cascade",
       foreignKey: "dogId",
