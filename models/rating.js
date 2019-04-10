@@ -19,20 +19,20 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: {
         type: DataTypes.INTEGER,
-        onDelete: "CASCADE",
+        // onDelete: "CASCADE",
         references: {
           model: "users",
           key: "id",
-          as: "userId"
+          as: "User_Id"
         }
       },
       dogId: {
         type: DataTypes.INTEGER,
-        onDelete: "CASCADE",
+        // onDelete: "CASCADE",
         references: {
           model: "dogs",
           key: "id",
-          as: "dogId"
+          as: "Dog_Id"
         }
       }
     },
@@ -42,12 +42,10 @@ module.exports = (sequelize, DataTypes) => {
   Rating.associate = function(models) {
     Rating.belongsTo(models.Dog, {
       as: "dog",
-      onDelete: "CASCADE",
       foreignKey: "dogId"
     });
     Rating.belongsTo(models.User, {
       as: "user",
-      onDelete: "CASCADE",
       foreignKey: "userId"
     });
   };

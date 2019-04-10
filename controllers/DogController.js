@@ -23,8 +23,7 @@ class DogController {
       include: [
         {
           model: models.Rating,
-          as: "ratings",
-          attributes: ["review", "score"]
+          as: "ratings"
         }
       ],
       attributes: [
@@ -36,7 +35,11 @@ class DogController {
         "available",
         "profile",
         "card_color",
-        "photoUrl"
+        "photoUrl",
+        [
+          models.sequelize.fn("ROUND", ("AVG", models.sequelize.col("score"))),
+          "ratingAvg"
+        ]
       ]
     })
       .then(function(dogs) {
@@ -46,6 +49,7 @@ class DogController {
           //   message: 'Dogs Fetched Successfully',
           //   data: dogs
           // })
+          // console.log(dogs);
           response.render("gallery", { dogs: dogs });
         }
       })
