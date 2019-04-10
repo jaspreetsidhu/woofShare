@@ -28,4 +28,9 @@ router.get("/confirmation/:dogId", function(req, res) {
   DogController.getSingleDog(req, res);
 });
 
+router.get("/user-profile", function (req, res) {
+  res.render("userProfile"); 
+});
+
+
 module.exports = router;

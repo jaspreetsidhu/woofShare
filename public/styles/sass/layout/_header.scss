@@ -24,6 +24,27 @@
             font-size: 3.6rem;
         }
     }
+
+    &__user-details {
+
+        max-width: 15rem;
+        display: inline-block;
+
+        img {
+            width: 2rem;
+            margin-bottom: .33rem;
+        }
+
+        &__toggle a {
+            color: white !important;
+            text-transform: none;
+        }
+
+        &__dropdown a {
+            color: $color-primary !important;
+            text-transform: uppercase;
+        }
+    }
 }
 
 .nav {    

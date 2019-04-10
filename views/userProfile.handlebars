@@ -1,0 +1,75 @@
+<div id="userProfile">
+    {{> header }}
+    <div class="container mt-5">
+        <section class="profile" style="min-height: 400px">
+            <div class="row">
+                <div class="col-3 profile__left-col">
+                    <div class="profile__left-col__img">
+                        <img src="http://lorempixel.com/500/500/people/10/" />
+                        <h3>User Name</h3>
+                    </div>
+                    <div class="profile__left-col__menu">
+                       <ul class="nav nav-tabs profile__left-col__menu__nav-tabs" id="myTab" role="tablist">
+                            <li ><a class="nav-item nav-link active" id="nav-active-tab" data-toggle="tab"
+                                    href="#nav-active" role="tab" aria-controls="nav-active"
+                                    aria-selected="true">Active</a></li>
+                            <li ><a class="nav-item nav-link" id="nav-completed-tab" data-toggle="tab"
+                                    href="#nav-completed" role="tab" aria-controls="nav-completed"
+                                    aria-selected="false">Completed</a></li>
+                            <li ><a class="nav-item nav-link" id="nav-reviewed-tab" data-toggle="tab"
+                                    href="#nav-reviewed" role="tab" aria-controls="nav-reviewed"
+                                    aria-selected="false">Reviews</a></li>
+                            <li ><a class="nav-item nav-link" id="nav-archived-tab" data-toggle="tab"
+                                    href="#nav-archived" role="tab" aria-controls="nav-archived"
+                                    aria-selected="false">Archive</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-active" role="tabpanel"
+                            aria-labelledby="nav-active-tab">
+
+                            <div class="row profile__active">
+                                <div class="col-3">
+                                    <div class="profile__active__img">
+                                        <img src="images/dog-2.jpg" />
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="confirmation__selection__description">
+                                        <h3><span>Woofy</span> | <span>American Grey Wolf</span></h3>
+                                        <hr />
+                                        <p class="text-small">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                            Voluptas
+                                            odio
+                                            debitis accusantium
+                                            repellat alias laboriosam deserunt? Numquam, eaque qui, totam dignissimos
+                                            deserunt vero
+                                            esse
+                                            ad magnam, doloribus distinctio error ratione?</p>
+                                    </div>
+                                    <div class="profile__active__schedule-details">
+                                        <h4 class="color-primary bold">Picked Up:</h4>
+                                        <span id="pickedUpDate">04/08/2019</span>
+                                        <h4 class="color-primary bold">Return By:</h4>
+                                        <span id="pickedUpDate">04/09/2019</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-completed" role="tabpanel"
+                            aria-labelledby="nav-completed-tab">
+                            Completed
+                        </div>
+                        <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">
+                            Reviews</div>
+                        <div class="tab-pane fade" id="nav-archived" role="tabpanel" aria-labelledby="nav-archived-tab">
+                            Archive</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{{> footer }}

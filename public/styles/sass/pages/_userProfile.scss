@@ -1,0 +1,60 @@
+.profile {
+
+    &__left-col {
+        background-color: $color-grey-light;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 4px;
+
+        &__img {
+
+            img {
+                border-radius: 50%;
+                width: 15rem;
+                object-fit: contain;
+            }      
+            
+            h3 {
+                margin-top: 2rem;
+                color: $color-primary;
+                font-weight: 900;
+            }
+        }
+
+        &__menu {
+
+            a {
+                color: $color-secondary;
+            }
+
+            &__nav-tabs {
+                margin-top: 0;
+            }
+        }
+    }
+
+    &__active {
+
+            &__img {
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            &__schedule-details {
+
+                h4 {
+                    display: inline;
+                }
+
+                span {
+                    margin-right: 2rem;
+                    padding-left: .5rem;
+                    font-size: 1.4rem;
+                }
+            }
+
+  
+    }
+}
