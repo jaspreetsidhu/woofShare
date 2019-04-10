@@ -3,19 +3,8 @@
 ## What Is WoofShare
   Woofshare connects people to dogs and dogs to people, and provides innovative solutions for dogs, dog lovers and dog owners.
 
-      Dog Lovers - WoofShare allows an individual to rent a dog, spend time with them, and return them.
-
-      Dog Owners - WoofShare Share A Dog program allows a dog owner to rent their dog to other dog lovers who spend time with them and love them when working or traveling. 
-
-      Dog Shelters and Fosters- WoofShare Share A Dog program also allows dog shelters and fosters to rent dogs in their care to individuals to help exercise their dogs and provide human interaction with them.
-
-## What Is WoofShare
-  Woofshare connects people to dogs and dogs to people, and provides innovative solutions for dogs, dog lovers and dog owners.
-
      * Dog Lovers- WoofShare allows an individual to rent a dog, spend time with them, and return them.  
-
      * Dog Owners (Future Feature)- WoofShare Share A Dog program allows a dog owner to rent their dog to other dog lovers who spend time with them and love them when working or traveling.
-
      * Dog Shelters and Fosters (Future Feature)- WoofShare Share A Dog program also allows dog shelters and fosters to rent dogs in their care to individuals to help exercise their dogs and provide human interaction with them.
 
 ## How WoofShare Works
