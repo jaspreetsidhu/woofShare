@@ -2,20 +2,26 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "woofShare_db",
+    "database": "dog_db",
     "host": "localhost",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "testdb",
+    "password": "password",
+    "database": "dog_db",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
+    "username": "ida6regzukry87l2",
+    "password": "cw2g4o0wnjckxyek",
+    "database": "fpv0xlgoqnvtf1ru",
+    "host": "y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql"
   }
 }

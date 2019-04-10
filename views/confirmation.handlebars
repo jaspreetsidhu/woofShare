@@ -5,38 +5,23 @@
             <h1>Reservation Details</h1>
             <div class="confirmation__selection">
                 <div class="row mt-5">
-                    <div class="col-2">
-                        <div class="confirmation__selection__img">
-                            <img src="images/dog-2.jpg" />
-                        </div>
-                        <div class="confirmation__selection__rating">
-                            <img src="images/rating_4.svg">
-                        </div>
+                    <div class="col-2 confirmation__selection__img">
+                        <img src="/{{dog.photoUrl}}" />
                     </div>
                     <div class="col-5">
-                        <div class="confirmation__selection__description">
-                            <h3><span>Woofy</span> | <span>American Grey Wolf</span></h3>
-                            <hr />
-                            <p class="text-small">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
-                                odio
-                                debitis accusantium
-                                repellat alias laboriosam deserunt? Numquam, eaque qui, totam dignissimos deserunt vero
-                                esse
-                                ad magnam, doloribus distinctio error ratione?</p>
-                        </div>
-                        <div class="confirmation__selection__availability">
-                            <h4 class="color-primary bold">Available:</h4>
-                            <p>Mon, Tues, Wed, Thurs, Fri, Sat, Sun</p>
-                        </div>
+                        <h3>{{dog.name}}</h3>
+                        <hr />
+                        <p class="text-small">{{dog.profile}}</p>
                     </div>
                     <div class="col-5">
-                        <form>
+                        <form action="/api/dogs/reserve" method="post">
                             <div class="form__group">
                                 <label for="pickUpDate" class="form__label"><span class="color-red">* </span>Pick Up
                                     Date</label>
                                 <input class="form__input" id="pickUpDate" type="text" placeholder="M/D/YYYY" required
                                     autocomplete="off" />
                             </div>
+                            <input type="text" required="true" name="dogId" value="{{dog.id}}" hidden>
                             <div class="form__group">
                                 <label for="returnDate" class="form__label"><span class="color-red">* </span>Return
                                     Date</label>
