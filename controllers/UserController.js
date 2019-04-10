@@ -23,17 +23,8 @@ class UserController {
         photo: request.user.photos[0].value
       }
     })
-      .spread(function(user, created) {
-        if (!created) {
-          const token = jwt.sign({ user }, process.env.JWTKEY, {
-            expiresIn: process.env.TOKEN_EXPIRATION
-          });
-          response.cookie("userDetails", sendUserDetails).send(token);
-        }
-        const token = jwt.sign({ user }, process.env.JWTKEY, {
-          expiresIn: process.env.TOKEN_EXPIRATION
-        });
-        response.cookie("userDetails", sendUserDetails).send(token);
+      .spread(function() {
+        response.cookie("userDetails", sendUserDetails).send("done");
       })
       .catch(function(err) {
         response.status(500).json({
