@@ -15,7 +15,7 @@
             }      
             
             h3 {
-                margin-top: 2rem;
+                margin: 2rem 0;
                 color: $color-primary;
                 font-weight: 900;
             }
@@ -28,7 +28,24 @@
             }
 
             &__nav-tabs {
+
                 margin-top: 0;
+                display: block; 
+            }
+
+            &__nav-link {
+                &.active {
+                    background-color: $color-secondary;
+                }
+                border: none;
+
+                &:hover {
+                    border: none;
+                    background-color: $color-tertiary;
+                    color: $color-black;
+                    margin: 0;
+                    padding: .6rem 1rem;
+                }
             }
         }
     }

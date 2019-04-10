@@ -753,13 +753,24 @@ h1, h2 {
     width: 15rem;
     object-fit: contain; }
   .profile__left-col__img h3 {
-    margin-top: 2rem;
+    margin: 2rem 0;
     color: #295ba7;
     font-weight: 900; }
   .profile__left-col__menu a {
     color: #94ac3c; }
   .profile__left-col__menu__nav-tabs {
-    margin-top: 0; }
+    margin-top: 0;
+    display: block; }
+  .profile__left-col__menu__nav-link {
+    border: none; }
+    .profile__left-col__menu__nav-link.active {
+      background-color: #94ac3c; }
+    .profile__left-col__menu__nav-link:hover {
+      border: none;
+      background-color: #fcc314;
+      color: #000;
+      margin: 0;
+      padding: .6rem 1rem; }
 
 .profile__active__img img {
   width: 100%; }
