@@ -97,7 +97,7 @@ h1, h2 {
     background-position: center;
     background-size: cover;
     border-top: 1px solid #eee;
-    padding: 20rem; }
+    padding: 30rem; }
   .banner__text-box {
     position: absolute;
     top: 20%;
@@ -107,11 +107,15 @@ h1, h2 {
   .banner__primary-heading {
     font-size: 4rem;
     font-weight: 900;
-    animation: moveInLeft 1s ease-out; }
+    animation: moveInLeft 1s ease-out;
+    color: #fff;
+    text-shadow: 1px 1px #333; }
   .banner__secondary-heading {
     font-size: 2.4rem;
     font-weight: 700;
-    animation: moveInRight 1s ease-out; }
+    animation: moveInRight 1s ease-out;
+    color: #fff;
+    text-shadow: 1px 1px #333; }
   .banner__button-box--home {
     position: relative; }
     .banner__button-box--home-1 {
@@ -124,6 +128,20 @@ h1, h2 {
       left: 15rem;
       position: absolute;
       animation: moveInLeft 1s ease-out; }
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .5;
+  overflow: hidden; }
+  .bg-video__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; }
 
 .btn:focus, .btn:active {
   outline: none !important;
@@ -645,6 +663,20 @@ h1, h2 {
 .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
   opacity: 1; }
 
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: 1.6rem;
+  transform: skewX(-12deg); }
+  .story__text {
+    transform: skewX(12deg);
+    min-height: 25rem; }
+
 .header {
   padding: 1rem 0rem;
   position: relative;
@@ -717,9 +749,47 @@ h1, h2 {
   .confirmation__tos__content h2 {
     margin-bottom: 2rem; }
 
-.section-about h1 {
-  font-size: 3.2rem;
-  font-weight: 700; }
+.section__about {
+  position: relative;
+  padding: 10rem 0; }
+  .section__about h1 {
+    font-size: 3.2rem;
+    font-weight: 700; }
+  .section__about__what-is {
+    padding: 20rem 0; }
+    .section__about__what-is__desc {
+      background-color: #eee;
+      padding: 4rem;
+      width: 90%; }
+      .section__about__what-is__desc h1 {
+        margin-bottom: 3rem; }
+  .section__about__for-who {
+    padding: 10rem; }
+  .section__about__composition {
+    position: relative; }
+    .section__about__composition__photo {
+      width: 55%;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+      transition: all .4s;
+      outline-offset: 2rem; }
+      .section__about__composition__photo--p1 {
+        left: 0;
+        top: -2rem; }
+      .section__about__composition__photo--p2 {
+        right: 0;
+        top: 2rem; }
+      .section__about__composition__photo--p3 {
+        left: 20%;
+        top: 10rem; }
+      .section__about__composition__photo:hover {
+        transform: scale(1.05) translateY(-0.5rem);
+        box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+        z-index: 20; }
+    .section__about__composition:hover .section__about__composition__photo:not(:hover) {
+      transform: scale(0.95); }
 
 .signUp {
   min-height: 45rem; }

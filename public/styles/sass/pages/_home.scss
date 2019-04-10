@@ -1,7 +1,72 @@
-.section-about {
+.section__about {
+    position: relative;
+    padding: 10rem 0;
+  
     h1 {
         font-size: 3.2rem;
         font-weight: 700;
        
+    }    
+
+    &__what-is {
+
+        padding: 20rem 0;
+
+        &__desc {
+            background-color: $color-grey-light;
+            padding: 4rem;
+            width: 90%;
+
+            h1 {
+                margin-bottom: 3rem;
+            }
+        }
     }
+    
+    &__for-who {
+        padding: 10rem;
+    }
+
+    &__composition {
+        position: relative;
+
+
+        &__photo {
+            width: 55%;
+            box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+            border-radius: 2px;
+            position: absolute; 
+            z-index: 10;
+            transition: all .4s;
+            outline-offset: 2rem; 
+    
+            &--p1 {
+                left: 0;
+                top: -2rem;
+            }
+    
+            &--p2 {
+                right: 0;
+                top: 2rem;
+            }
+    
+            &--p3 {
+                left: 20%;
+                top: 10rem;
+            }
+    
+            &:hover {
+                transform: scale(1.05) translateY(-.5rem);
+                box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
+                z-index: 20;
+            }
+        }
+        
+        &:hover &__photo:not(:hover) {
+            transform: scale(.95);
+        }
+    }
+
+
+
 }
