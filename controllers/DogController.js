@@ -98,7 +98,11 @@ class DogController {
         "available",
         "profile",
         "card_color",
-        "photoUrl"
+        "photoUrl",
+        [
+          models.sequelize.fn("ROUND", ("AVG", models.sequelize.col("score"))),
+          "ratingAvg"
+        ]
       ]
     })
       .then(function(singleDog) {

@@ -19,6 +19,7 @@ router.get("/gallery", function(req, res) {
   //   res.render("gallery", { dogs: data, token: 'fofjffl' });
   // });
 });
+
 // Age filtering for gallery
 router.get("gallery/age/:age", function(req, res) {
   let ageSearch = req.params.age;
@@ -46,7 +47,12 @@ router.get("/confirmation/:dogId", function(req, res) {
   // DogController.getSingleDog(req, res, function(data) {
   //   res.send(data);
   // });
-  DogController.getSingleDog(req, res);
+  // Check Authentication before reserve 
+  if (req.isAuthenticated())
+    DogController.getSingleDog(req, res);
+  else{
+    res.redirect("/auth/google/callback");
+  }
 });
 
 router.get("/user-profile", function (req, res) {
