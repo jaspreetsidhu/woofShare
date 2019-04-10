@@ -17,6 +17,7 @@ function renderHearts() {
       $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
     }
   }
+
 }
 
 renderHearts();
@@ -37,7 +38,6 @@ $(".fa-heart").on("click", function() {
     renderHearts();
   }
 });
-
 // terms of service and confirm button
 function confirmTos() {
   if (!$("#tos").is(":checked")) {

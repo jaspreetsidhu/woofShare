@@ -17,4 +17,7 @@ router.patch("/api/dogs/:dogId", dogValidation, DogController.update);
 router.delete("/api/dogs/:dogId", DogController.delete);
 router.post("/api/dogs/reserve", DogController.reserve);
 
+// router.post("/api/gallery/:age", DogController.searchByAge);
+
+
 module.exports = router;
