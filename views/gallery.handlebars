@@ -6,22 +6,26 @@
                 <div class="col-12">
                     <div class="gallery__controls-menu">
 
-                        <input type="search" name="search" placeholder="Tag Search" class="mr-4" />
-                        <select name="age" id="age" class="mr-4">
-                            <option selected="selected">--Sort By Age--</option>
+                        {{!-- <input type="search" name="search" placeholder="Tag Search" class="mr-4" /> --}}
+                   
+                            <input type="search" name="search" placeholder="Tag Search" id="tagSearch">
+                            <button type="button"><i class="fa fa-search" id="searchFilter"></i></button>
+                        
+                        <select name="age" id="age" class=" ml-4 mr-4">
+                            <option value="" selected="selected">--Sort By Age--</option>
                             <option value="puppy">Puppy</option>
                             <option value="adult">Adult</option>
                             <option value="senior">Senior</option>
                         </select>
                         <select name="rating" id="rating" class="mr-4">
-                            <option selected="selected">--Sort By Rating--</option>
+                            <option value="" selected="selected">--Sort By Rating--</option>
                             <option value="paws-1">1 Paw</option>
                             <option value="paws-2">2 Paws</option>
                             <option value="paws-3">3 Paws</option>
                             <option value="paws-4">4 Paws</option>
                         </select>
                         <select name="distance" id="distance" class="mr-4">
-                            <option selected="selected">--Sort By Distance--</option>
+                            <option value="" selected="selected">--Sort By Distance--</option>
                             <option value="dist-5">Within 5 miles</option>
                             <option value="dist-10">Within 10 miles</option>
                             <option value="dist-15">Within 15 miles</option>

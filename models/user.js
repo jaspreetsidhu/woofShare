@@ -44,7 +44,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function(models) {
     User.hasMany(models.Rating, {
-      onDelete: "cascade",
       as: "user",
       foreignKey: "userId"
     });

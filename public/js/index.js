@@ -7,12 +7,15 @@ var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 function renderHearts() {
   var favoriteHearts = JSON.parse(localStorage.getItem("favorites"));
-  for (i = 0; i < favoriteHearts.length; i++) {
-    $("#heartOne" + [favoriteHearts[i]]).removeClass("far");
-    $("#heartOne" + [favoriteHearts[i]]).addClass("fas");
-    $("#heartTwo" + [favoriteHearts[i]]).removeClass("far");
-    $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
+  if(favoriteHearts){
+    for (i = 0; i < favoriteHearts.length; i++) {
+      $("#heartOne" + [favoriteHearts[i]]).removeClass("far");
+      $("#heartOne" + [favoriteHearts[i]]).addClass("fas");
+      $("#heartTwo" + [favoriteHearts[i]]).removeClass("far");
+      $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
+    }
   }
+
 }
 
 renderHearts();
@@ -33,7 +36,6 @@ $(".fa-heart").on("click", function() {
     renderHearts();
   }
 });
-
 
 
   // terms of service and confirm button
