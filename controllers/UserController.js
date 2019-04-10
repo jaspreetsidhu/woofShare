@@ -2,7 +2,6 @@
 var models = require("../models/index");
 //var Sequelize = require("sequelize");
 var dotenv = require("dotenv");
-var jwt = require("jsonwebtoken");
 dotenv.config();
 
 class UserController {
