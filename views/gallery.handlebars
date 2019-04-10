@@ -7,25 +7,25 @@
                     <div class="gallery__controls-menu">
 
                         <input type="search" name="search" placeholder="Tag Search" class="mr-4" />
-                        <select name="age" id="age" class="mr-4">
-                            <option selected="selected">--Sort By Age--</option>
-                            <option value="puppy">Puppy</option>
-                            <option value="adult">Adult</option>
-                            <option value="senior">Senior</option>
+                        <select name="age" onchange="location = this.value;" id="age" class="mr-4">
+                            <option selected disabled>--Sort By Age--</option>
+                            <option value="gallery/age/puppy">Puppy</option>
+                            <option value="gallery/age/adult">Adult</option>
+                            <option value="gallery/age/senior">Senior</option>
                         </select>
-                        <select name="rating" id="rating" class="mr-4">
-                            <option selected="selected">--Sort By Rating--</option>
-                            <option value="paws-1">1 Paw</option>
-                            <option value="paws-2">2 Paws</option>
-                            <option value="paws-3">3 Paws</option>
-                            <option value="paws-4">4 Paws</option>
+                        <select name="rating" onchange="location = this.value;" id="rating" class="mr-4">
+                            <option selected disabled>--Sort By Rating--</option>
+                            <option value="/gallery/rating/paws-1">1 Paw</option>
+                            <option value="/gallery/rating/paws-2">2 Paws</option>
+                            <option value="/gallery/rating/paws-3">3 Paws</option>
+                            <option value="/gallery/rating/paws-4">4 Paws</option>
                         </select>
-                        <select name="distance" id="distance" class="mr-4">
-                            <option selected="selected">--Sort By Distance--</option>
-                            <option value="dist-5">Within 5 miles</option>
-                            <option value="dist-10">Within 10 miles</option>
-                            <option value="dist-15">Within 15 miles</option>
-                            <option value="dist-20">Within 20 miles</option>
+                        <select name="distance" onchange="location = this.value;" id="distance" class="mr-4">
+                            <option selected disabled>--Sort By Distance--</option>
+                            <option value="/gallery/distance/dist-5">Within 5 miles</option>
+                            <option value="/gallery/distance/dist-10">Within 10 miles</option>
+                            <option value="/gallery/distance/dist-15">Within 15 miles</option>
+                            <option value="/gallery/distance/dist-20">Within 20 miles</option>
                         </select>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <div class="row galler__table__row">
                 {{#each dogs}}
                 {{#if available}}
-                    {{> dog}}
+                {{> dog}}
                 {{/if}}
                 {{/each}}
             </div>
@@ -59,7 +59,7 @@
                                 <div class="row">
                                     <div class="col-6 gallery-card__details__icons--schedule">
                                         <h3>Overall Rating:</h3>
-                                         <img src="images/rating_3_half.svg" width="100px" class="pb-2" />
+                                        <img src="images/rating_3_half.svg" width="100px" class="pb-2" />
                                     </div>
                                     <div class="col-6 gallery-card__details__icons--schedule">
                                         <h3>Availability:</h3>

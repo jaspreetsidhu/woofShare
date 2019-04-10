@@ -2,17 +2,35 @@ $(".header").on("click", function() {
   window.location.href = "/";
 });
 
+// get favorites from local storage or empty array
+var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+function renderHearts() {
+  var favoriteHearts = JSON.parse(localStorage.getItem("favorites"));
+  for (i = 0; i < favoriteHearts.length; i++) {
+    $("#heartOne" + [favoriteHearts[i]]).removeClass("far");
+    $("#heartOne" + [favoriteHearts[i]]).addClass("fas");
+    $("#heartTwo" + [favoriteHearts[i]]).removeClass("far");
+    $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
+  }
+}
+
+renderHearts();
+
 $(".fa-heart").on("click", function() {
   var thisDog = $(this).data("dogid");
-  console.log(thisDog);
-  var allItems = $("i").find(`[data-dogid='${thisDog}']`);
-  console.log(allItems);
-  if ($(this).hasClass("fas")) {
-    $(this).removeClass("fas");
-    $(this).addClass("far");
-  } else if ($(this).hasClass("far")) {
-    $(this).removeClass("far");
-    $(this).addClass("fas");
+  if (favorites.includes(thisDog)) {
+    $("#heartOne" + thisDog).removeClass("fas");
+    $("#heartOne" + thisDog).addClass("far");
+    $("#heartTwo" + thisDog).removeClass("fas");
+    $("#heartTwo" + thisDog).addClass("far");
+    let index = favorites.indexOf(thisDog);
+    favorites.splice(index, 1);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  } else {
+    favorites.push(thisDog);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    renderHearts();
   }
 });
 
@@ -55,6 +73,3 @@ $("#tos").change(function() {
     $("#niceTry").text("Nice try, buddy..");
   }
 });
-
-// get favorites from local storage or empty array
-var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
