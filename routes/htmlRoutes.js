@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 //var connection = require("../config/connection");
 var DogController = require("../controllers/DogController");
+var UserController = require("../controllers/UserController");
 
 router.get("/", function(req, res) {
   res.render("index");
@@ -56,7 +57,7 @@ router.get("/confirmation/:dogId", function(req, res) {
 });
 
 router.get("/user-profile", function (req, res) {
-  res.render("userProfile"); 
+  UserController.getUser(req,res);
 });
 
 router.get("/privacy-policy", function (req, res) {
