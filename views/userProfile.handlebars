@@ -26,9 +26,27 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    {{#each rentals }}
-                    {{>user}}
-                    {{/each}}
+                    <div class="tab-content" id="nav-tabContent">
+                        {{!-- {{#each rentals }}
+                        {{#unless returnComplete}}
+                            {{>userActive}}
+                        {{/unless}}
+                        {{/each}} --}}
+                        {{#each rentals }}
+                            {{#if returnComplete}}
+                                {{#if statusArchive}}
+                                    {{>userArchive}}
+                                {{else}}
+                                    {{>userCompleted}}
+                                {{/if}}
+                            {{else}}
+                                {{>userActive}}
+                            {{/if}}
+                        {{/each}}
+
+                        <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">           
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

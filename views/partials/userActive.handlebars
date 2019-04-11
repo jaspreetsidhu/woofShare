@@ -1,0 +1,26 @@
+
+    <div class="tab-pane fade show active" id="nav-active" role="tabpanel" aria-labelledby="nav-active-tab">
+
+        <div class="row profile__active">
+            <div class="col-3">
+                <div class="profile__active__img">
+                    <img src="{{this.dog.dataValues.photoUrl}}" />
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="confirmation__selection__description">
+                    <h3><span>{{this.dog.dataValues.name}}</span> | <span>{{this.dog.dataValues.breed}}</span></h3>
+                    <hr />
+                    <p class="text-small">{{this.dog.dataValues.profile}}</p>
+                </div>
+                <div class="profile__active__schedule-details">
+                    <h4 class="color-primary bold">Picked Up:</h4>
+                    <span id="pickedUpDate">{{this.dataValues.pickUpDate}}</span>
+                    <h4 class="color-primary bold">Return By:</h4>
+                    <span id="pickedUpDate">{{this.dataValues.returnDate}}</span>
+                    <button class="btn btn-theme-red" id="completeReturn">Mark Complete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+

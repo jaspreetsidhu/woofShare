@@ -33,34 +33,34 @@ class UserController {
         });
       });
   }
-  //getDog Rentals
-  static getDogRentals(userRecordId, response) {
-    models.Rental.findAll({
-      attributes: ["returnDate", "pickUpDate", "userId", "dogId"],
-      include: [
-        {
-          model: models.Dog,
-          as: "dog",
-          attributes: ["id", "name", "breed", "profile", "photoUrl"]
-        }
-      ],
-      where: {
-        userId: userRecordId
-      }
-    })
-      .then(function(dogRentals) {
-        console.log("dogRentals", dogRentals);
-        return dogRentals;
-        // response.render("userProfile", { user: userRecord });
-      })
-      .catch(function(err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error retrieving user, please try again",
-          error: err.toString()
-        });
-      });
-  }
+  // //getDog Rentals
+  // static getDogRentals(userRecordId, response) {
+  //   models.Rental.findAll({
+  //     attributes: ["returnDate", "pickUpDate", "userId", "dogId", "returnComplete"],
+  //     include: [
+  //       {
+  //         model: models.Dog,
+  //         as: "dog",
+  //         attributes: ["id", "name", "breed", "profile", "photoUrl"]
+  //       }
+  //     ],
+  //     where: {
+  //       userId: userRecordId
+  //     }
+  //   })
+  //     .then(function(dogRentals) {
+  //       console.log("dogRentals", dogRentals);
+  //       return dogRentals;
+  //       // response.render("userProfile", { user: userRecord });
+  //     })
+  //     .catch(function(err) {
+  //       response.status(500).json({
+  //         status: "FAILED",
+  //         message: "Error retrieving user, please try again",
+  //         error: err.toString()
+  //       });
+  //     });
+  // }
 
   //get user
   static getUser(request, response) {
@@ -78,7 +78,7 @@ class UserController {
           // console.log("DogRentals", res);
           //,userRentDetails: res
           models.Rental.findAll({
-            attributes: ["returnDate", "pickUpDate", "userId", "dogId"],
+            attributes: ["returnDate", "pickUpDate", "userId", "dogId", "returnComplete", "statusArchive"],
             include: [
               {
                 model: models.Dog,

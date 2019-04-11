@@ -29,7 +29,15 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
           as: "dogId"
         }
-      }
+      },
+      returnComplete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      statusArchive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
     },
     { tableName: "rentals" }
   );
