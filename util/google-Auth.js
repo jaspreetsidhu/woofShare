@@ -1,8 +1,8 @@
 const passport = require('passport');  
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
-var db = require("../models");
+require('https').globalAgent.options.rejectUnauthorized = false;
+
 
 module.exports = function(app) {
 
@@ -61,41 +61,17 @@ app.use(session({
   app.get('/auth/google/callback',  
     passport.authenticate('google', { failureRedirect: '/', session: true }),
     (req, res) => {
-      const jwt = JSON.stringify(req.user);
-      
-      console.log(req.user.emails[0].value);
-
-      // validate if the new user
-      db.User.findOne({
-        where: {
-          email: req.user.emails[0].value
-        }
-      }).then(function(results) {
-        console.log("results: ",JSON.stringify(results));
-        if(results)
-        {
-         console.log("username:",results.userName);
-          //Set Login user cookies
-          var sendUserDetails = JSON.stringify({
-            displayName: results.userName,
-            photoUrl: results.photo
-          });
-          res.cookie("userDetails", sendUserDetails);
-          res.redirect('/gallery');
-        }
-        else
-        res.redirect('/signUp');
-      });    
+      // const jwt = JSON.stringify(req.user);
+      //Add data validation login and routing to approriate page 
+      res.redirect('/signUp');
     }
   );
 
   // Logout 
   app.get('/logout', function(req, res){
     req.logout();
-    res.clearCookie("userDetails");
-    
+    req.session.user = null;
     passport.logout;
-    
     res.redirect('/');
   });
 }

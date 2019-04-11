@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("users", {
+    return queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,36 +19,36 @@ module.exports = {
       userName: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: {
+        unique:{
           args: true,
-          msg: "Username already in use!"
+          msg: 'Username already in use!'
         }
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
-          isEmail: true
+          isEmail:true
         },
         unique: {
-          args: true,
-          msg: "Email address already in use!"
+            args: true,
+            msg: 'Email address already in use!'
         }
       },
       address: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      photo: {
+      photo:{
         type: Sequelize.STRING,
         allowNull: true,
-        validate: {
-          isUrl: { msg: "invalid URL" }
+        validate:{
+            isUrl:{msg:"invalid URL"}
         }
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("users");
+    return queryInterface.dropTable('users');
   }
 };
