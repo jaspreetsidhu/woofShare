@@ -734,7 +734,23 @@ h1, h2 {
 .footer {
   background-color: #295ba7;
   color: #fff;
-  padding: 4rem 0rem; }
+  padding: 6rem 0rem; }
+  .footer__col a:link,
+  .footer__col a:visited {
+    color: #fff;
+    transition: all 1s; }
+  .footer__col--2 {
+    text-align: center;
+    margin-top: 6rem;
+    font-size: 1.4rem; }
+    .footer__col--2 a:hover,
+    .footer__col--2 a:active {
+      text-decoration: underline; }
+  .footer__col--3 {
+    padding: 5rem; }
+    .footer__col--3 a:hover,
+    .footer__col--3 a:active {
+      color: #4a80d3; }
 
 .confirmation__selection__img img {
   width: 100%;

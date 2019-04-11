@@ -59,5 +59,9 @@ router.get("/user-profile", function (req, res) {
   res.render("userProfile"); 
 });
 
+router.get("/privacy-policy", function (req, res) {
+  res.render("privacyPolicy"); 
+});
+
 
 module.exports = router;
