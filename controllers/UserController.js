@@ -78,7 +78,13 @@ class UserController {
           // console.log("DogRentals", res);
           //,userRentDetails: res
           models.Rental.findAll({
-            attributes: ["returnDate", "pickUpDate", "userId", "dogId", "returnComplete", "statusArchive"],
+            attributes: [
+              "returnDate",
+              "pickUpDate", "userId",
+              "dogId",
+              "returnComplete",
+              "statusArchive"
+            ],
             include: [
               {
                 model: models.Dog,

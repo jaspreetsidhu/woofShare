@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       statusArchive: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
-      },
+      }
     },
     { tableName: "rentals" }
   );
