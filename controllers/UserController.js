@@ -33,5 +33,88 @@ class UserController {
         });
       });
   }
+  //getDog Rentals
+  static getDogRentals(userRecordId, response) {
+    models.Rental.findAll({
+      attributes: ["returnDate", "pickUpDate", "userId", "dogId"],
+      include: [
+        {
+          model: models.Dog,
+          as: "dog",
+          attributes: ["id", "name", "breed", "profile", "photoUrl"]
+        }
+      ],
+      where: {
+        userId: userRecordId
+      }
+    })
+      .then(function(dogRentals) {
+        console.log("dogRentals", dogRentals);
+        return dogRentals;
+        // response.render("userProfile", { user: userRecord });
+      })
+      .catch(function(err) {
+        response.status(500).json({
+          status: "FAILED",
+          message: "Error retrieving user, please try again",
+          error: err.toString()
+        });
+      });
+  }
+
+  //get user
+  static getUser(request, response) {
+    models.User.findOne({
+      attributes: ["id", "userName", "email", "photo"],
+      where: {
+        email: request.user.emails[0].value
+      }
+    })
+      .then(function(userRecord) {
+        console.log("User Details:", userRecord);
+        if (userRecord) {
+          console.log("userdetails", userRecord.dataValues.id);
+          //  var userRentalDetail= getDogRentals(userRecord.dataValues.id,response);
+          // console.log("DogRentals", res);
+          //,userRentDetails: res
+          models.Rental.findAll({
+            attributes: ["returnDate", "pickUpDate", "userId", "dogId"],
+            include: [
+              {
+                model: models.Dog,
+                as: "dog",
+                attributes: ["id", "name", "breed", "profile", "photoUrl"]
+              }
+            ],
+            where: {
+              userId: userRecord.dataValues.id
+            }
+          })
+            .then(function(dogRentals) {
+              console.log("dogRentals", dogRentals);
+              //return dogRentals;
+              // response.render("userProfile", { user: userRecord });
+              response.render("userProfile", {
+                user: userRecord,
+                rentals: dogRentals
+              });
+            })
+            .catch(function(err) {
+              response.status(500).json({
+                status: "FAILED",
+                message: "Error retrieving Rental, please try again",
+                error: err.toString()
+              });
+            });
+        }
+      })
+      .catch(function(err) {
+        response.status(500).json({
+          status: "FAILED",
+          message: "Error retrieving user, please try again",
+          error: err.toString()
+        });
+      });
+  }
 }
 module.exports = UserController;
