@@ -1,47 +1,53 @@
 var express = require("express");
 var router = express.Router();
-//var connection = require("../config/connection");
-var DogController = require("../controllers/DogController");
-var UserController = require("../controllers/UserController");
+var DogController = require('../controllers/DogController')
+var UserController = require('../controllers/UserController')
+var RatingController = require('../controllers/RatingController')
+var RentalController = require('../controllers/RentalController')
+var authenticate = require('../middlewares/authenticator')
 
 router.get("/", function(req, res) {
-  res.render("index");
+    res.render("index");
 });
 
 router.get("/signUp", function(req, res) {
-  res.render("signUp");
+  if (req.session.user) {
+    res.redirect('/gallery')
+  } else {
+    UserController.signup(req, res);
+  }
 });
 
-router.get("/gallery", function(req, res) {
+router.get("/gallery", authenticate, function(req, res) {
   DogController.getAllDogs(req, res);
-  // connection.query("SELECT * FROM dogs", function(err, data) {
-  //   if (err) throw err;
-  //   console.log(data);
-  //   res.render("gallery", { dogs: data, token: 'fofjffl' });
-  // });
+});
+router.get("/create/dog", authenticate, function(req, res) {
+  res.render('createDog')
+});
+router.get("/dog/:dogId/rate", authenticate, function(req, res) {
+  RatingController.rateDog(req, res);
 });
 
-// Age filtering for gallery
-router.get("gallery/age/:age", function(req, res) {
-  let ageSearch = req.params.age;
-  console.log(ageSearch);
-  DogController.filterDogs(ageSearch, res);
-});
-
-// Rating filtering for gallery
-router.get("gallery/rating/:rating", function(req, res) {
-  let ratingSearch = req.params.rating;
-  console.log(ratingSearch);
-  DogController.filterDogs(req, res);
-});
-
-// Rating filtering for gallery
+// Rating filtering for distance
+// I believe Zach was working on this feature
 router.get("gallery/distance/:distance", function(req, res) {
   let distSearch = req.params.distance;
   console.log(distSearch);
   DogController.filterDogs(distSearch, res);
   res.render("gallery", res);
 });
+
+
+router.get("/rentals", authenticate, function(req, res) {
+  RentalController.getRentals(req, res);
+});
+
+
+
+// router.get("/confirmation/:dogId", authenticate, function (req, res) {
+//     DogController.getSingleDog(req, res)
+
+// });
 
 router.get("/confirmation/:dogId", function(req, res) {
   // res.render("confirmation");
@@ -55,6 +61,11 @@ router.get("/confirmation/:dogId", function(req, res) {
     res.redirect("/auth/google/callback");
   }
 });
+
+router.post("/filter", authenticate, function (req, res) {
+  DogController.filterDogs(req, res)
+});
+
 
 router.get("/user-profile", function (req, res) {
   UserController.getUser(req,res);

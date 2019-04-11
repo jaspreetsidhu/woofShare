@@ -1,8 +1,6 @@
 module.exports = function dogValidation(request, response, next) {
   var { name } = request.body;
 
-  console.log(request.body);
-
   const specialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
 
   const error = [];

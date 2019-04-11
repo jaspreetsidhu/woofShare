@@ -5,32 +5,29 @@
             <div class="row">
                 <div class="col-12">
                     <div class="gallery__controls-menu">
-
+                    <form action="/filter" method="post">
                         {{!-- <input type="search" name="search" placeholder="Tag Search" class="mr-4" /> --}}
-                   
-                            <input type="search" name="search" placeholder="Tag Search" id="tagSearch">
-                            <button type="button"><i class="fa fa-search" id="searchFilter"></i></button>
-                        
-                        <select name="age" id="age" class=" ml-4 mr-4">
-                            <option value="" selected="selected">--Sort By Age--</option>
+                        <select name="age" id="age" class="mr-4">
+                            <option selected="selected">--Sort By Age--</option>
                             <option value="puppy">Puppy</option>
                             <option value="adult">Adult</option>
                             <option value="senior">Senior</option>
                         </select>
-                        <select name="rating" id="rating" class="mr-4">
-                            <option value="" selected="selected">--Sort By Rating--</option>
-                            <option value="paws-1">1 Paw</option>
-                            <option value="paws-2">2 Paws</option>
-                            <option value="paws-3">3 Paws</option>
-                            <option value="paws-4">4 Paws</option>
+                        <select name="size" id="size" class="mr-4">
+                            <option selected="selected">--Sort By Size--</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
                         </select>
-                        <select name="distance" id="distance" class="mr-4">
-                            <option value="" selected="selected">--Sort By Distance--</option>
-                            <option value="dist-5">Within 5 miles</option>
-                            <option value="dist-10">Within 10 miles</option>
-                            <option value="dist-15">Within 15 miles</option>
-                            <option value="dist-20">Within 20 miles</option>
+                        <select name="available" id="available" class="mr-4">
+                            <option selected="selected">--Sort By Availability--</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
                         </select>
+                        <button class="btn btn-success btn-lg "> filter </button>
+                    </form>
+                      <button class="btn btn-warning btn-lg " onclick='window.location.replace("/gallery")'>
+                             Clear</button>
                     </div>
                 </div>
             </div>
@@ -38,9 +35,7 @@
         <section class="gallery__table mt-5">
             <div class="row galler__table__row">
                 {{#each dogs}}
-                {{#if available}}
                     {{> dog}}
-                {{/if}}
                 {{/each}}
             </div>
         </section>
@@ -50,23 +45,68 @@
     <div class="modal fade gallery-card__modal" tabindex="-1" role="dialog" aria-labelledby="galleryModalLg"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content" id="inserted-modal-content">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{> footer }}
+
+<script>
+    function myFunction(e) {
+        e.preventDefault()
+        var link = e.target.href;
+        fetch(link)
+        .then(function (res) {
+            return res.json();
+        }).then(function (data) {
+            var { dog } = data
+            if (!dog.name) {
+                $('.notification').html('Dog is not found')
+                $('.notification').show()
+            } else {
+                var reviews = ''
+                var score = 0
+                if (dog.ratings.length) {
+                    for (i = 0; i < dog.ratings.length; i++) {
+                        score += dog.ratings[i].score
+                        reviews += `
+                        <div class="gallery__user-review">
+                            <div class="row">
+                                <div class="col-3 pr-0 text-center">
+                                    <img class="mt-2" src="${dog.ratings[i].user.photo}" width="100" height="70" style="padding-right: 5px;" />
+                                    <h5 class="m-0 bold">${dog.ratings[i].user.userName}.</h5>
+
+                                    <img src="images/rating_${dog.ratings[i].score}.svg" width="90%" />
+                                </div>
+                                <div class="col-9 text-small">
+                                    <p>${dog.ratings[i].review}</p>
+                                </div>
+                            </div>
+                        </div>`
+                    }
+                    score = Math.round(score/dog.ratings.length)
+                } else {
+                    reviews = 'no user reviews'
+                }
+                
+                var html = `
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 gallery-card__modal__left-col">
-                            <img src="images/dog-1.jpg" alt="dog-1" class="gallery-card__modal__left-col__img" />
-                            <h1 class="gallery-card__modal__left-col__heading">Woofy</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur distinctio sint ad vel
-                                voluptatem obcaecati nobis, dolor delectus nesciunt sunt? Fugit accusamus ea sed quaerat
-                                corrupti soluta iusto nobis nesciunt.</p>
+                            <img src="/${dog.photoUrl}" alt="dog-1" class="gallery-card__modal__left-col__img" />
+                            <h1 class="gallery-card__modal__left-col__heading">${dog.name}</h1>
+                            <p>${dog.profile}</p>
                             <div class="gallery-card__details__icons">
                                 <div class="row">
                                     <div class="col-6 gallery-card__details__icons--schedule">
                                         <h3>Overall Rating:</h3>
-                                         <img src="/images/rating_{{this.dataValues.ratingAvg}}.svg" width="100px" />
+                                        <img src="images/rating_${score}.svg" width="100px" class="pb-2" />
                                     </div>
                                     <div class="col-6 gallery-card__details__icons--schedule">
-                                        <h3>Availability:</h3>
+                                        <h3>Availability: ${dog.available ? 'yes' : 'no' }</h3>
                                         <i class="fas fa-calendar-alt"></i> M T W R F S U
                                     </div>
                                 </div>
@@ -74,68 +114,20 @@
                         </div>
                         <div class="col-6  gallery-card__modal__right-col">
                             <h2 class="my-3 gallery-card__modal__right-col__heading">User Reviews</h2>
-                            <div class="gallery__user-review">
-                                <div class="row">
-                                    <div class="col-3 pr-0 text-center">
-                                        <img class="mt-2" src="http://lorempixel.com/75/75/people/1/" />
-                                        <h5 class="m-0 bold">Jane D.</h5>
-                                        <img src="images/rating_4.svg" width="90%" />
-                                    </div>
-                                    <div class="col-9 text-small">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Vero autem aperiam
-                                            voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium
-                                            error
-                                            nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gallery__user-review">
-                                <div class="row">
-                                    <div class="col-3 pr-0 text-center">
-                                        <img class="mt-2" src="http://lorempixel.com/75/75/people/2/" />
-                                        <h5 class="m-0 bold">John D.</h5>
-                                        <img src="images/rating_2_half.svg" width="90%" />
-                                    </div>
-                                    <div class="col-9 text-small">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Vero autem aperiam
-                                            voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium
-                                            error
-                                            nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gallery__user-review">
-                                <div class="row">
-                                    <div class="col-3 pr-0 text-center">
-                                        <img class="mt-2" src="http://lorempixel.com/75/75/people/3/" />
-                                        <h5 class="m-0 bold">Joe D.</h5>
-                                        <img src="images/rating_0.svg" width="90%" />
-                                    </div>
-                                    <div class="col-9 text-small">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Vero autem aperiam
-                                            voluptate ducimus explicabo qui tenetur. Sapiente consequuntur accusantium
-                                            error
-                                            nostrum tempore amet, possimus repellendus unde nisi doloribus vero? Quae?
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            ${reviews}
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="/confirmation/{{this.dataValues.id}}" class="btn btn-theme-red btn-lg">Reserve
+                    <a href="/confirmation/${dog.id}" class="btn btn-theme-red btn-lg">Reserve
                         now!</a>
                     <button type="button" class="btn btn-secondary btn-med" data-dismiss="modal">Cancel</button>
                 </div>
-            </div>
+                `;
+                document.getElementById("inserted-modal-content").innerHTML = html;
+                $('.gallery-card__modal').modal('show')
+            }
+        });
+    }
 
-        </div>
-    </div>
-</div>
-{{> footer }}
+</script>

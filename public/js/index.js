@@ -2,6 +2,8 @@ $(".header").on("click", function() {
   window.location.href = "/";
 });
 
+//$(".notification").hide();
+
 // get favorites from local storage or empty array
 var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
