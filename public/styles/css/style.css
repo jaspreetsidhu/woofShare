@@ -129,6 +129,10 @@ h1, h2 {
       position: absolute;
       animation: moveInLeft 1s ease-out; }
 
+.paw-bg {
+  background-image: url("../../images/paw-bg.jpg");
+  background-repeat: repeat; }
+
 .bg-video {
   position: absolute;
   top: 0;
@@ -728,7 +732,6 @@ h1, h2 {
           outline: none; }
 
 .footer {
-  margin-top: 8rem;
   background-color: #295ba7;
   color: #fff;
   padding: 4rem 0rem; }
