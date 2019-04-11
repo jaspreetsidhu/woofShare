@@ -1,0 +1,27 @@
+<div id="home">
+    {{> header }}
+        <body>
+      <table border = "1">
+           <tr>
+            <th>Dog Id</th>
+            <th>PickUp Date</th>
+            <th>Return Date</th>
+            <th>Days To Rent</th>
+            <th>UserName</th>
+         </tr>
+        {{#if rentals.length}}
+            {{#each rentals}}
+         <tr>
+            <td>{{this.dogId}}</td>
+            <td>{{moment this.pickUpDate format="YYYY-MM-DD"}}</td>
+            <td>{{moment this.returnDate format="YYYY-MM-DD"}}</td>
+            <td>{{this.daysToRent}}</td>
+            <td>{{this.User.dataValues.userName}}</td>
+         </tr>
+            {{/each}}
+        {{/if}}
+      </table>
+</div>
+
+{{> footer }}
+

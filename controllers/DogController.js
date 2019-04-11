@@ -1,417 +1,331 @@
-var models = require("../models/index");
-var Sequelize = require("sequelize");
-var moment = require("moment");
+var models = require('../models/index')
+var Sequelize = require('sequelize')
+var moment = require('moment')
 
-var Op = Sequelize.Op;
+var Op = Sequelize.Op
 
 /**
  * @class DogController
  * @desc A controller that handles all operations related to dogs
  */
 class DogController {
-  /**
- 
+
+/**
  * @static
  *  Method to get list of dogs
  * @param {*} request
  * @param {*} response
  * @memberof DogController
  */
-  static getAllDogs(request, response) {
-    // var { available, age } = request.query;
+  static getAllDogs(request, response){
+
     models.Dog.findAll({
-      include: [
-        {
-          model: models.Rating,
-          as: "ratings"
-        }
-      ],
+      include: [{
+        model:models.Rating,
+        as: 'ratings',
+        attributes: ['review', 'score']
+      }],
       attributes: [
-        "id",
-        "name",
-        "size",
-        "breed",
-        "age",
-        "available",
-        "profile",
-        "card_color",
-        "photoUrl",
-        [
-          models.sequelize.fn("ROUND", ("AVG", models.sequelize.col("score"))),
-          "ratingAvg"
-        ]
+        'id',
+        'name',
+        'size',
+        'breed',
+        'age',
+        'available',
+        'profile',
+        'card_color',
+        'photoUrl'
       ]
     })
-      .then(function(dogs) {
-        if (dogs) {
-          // return response.status(200).json({
-          //   status: 'SUCCESS',
-          //   message: 'Dogs Fetched Successfully',
-          //   data: dogs
-          // })
-          // console.log(dogs);
-          response.render("gallery", { dogs: dogs });
-        }
+    .then( function(dogs){
+      if(dogs){
+        response.render('gallery', { dogs: dogs, ratings: dogs[0].dataValues.ratings, messages: request.flash('info') });
+      }
+    })
+    .catch(function(err){
+      return response.status(500).json({
+        status: 'FAILED',
+        message: 'Error processing request, please try again',
+        Error: err.toString()
       })
-      .catch(function(err) {
-        return response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: err.toString()
-        });
-      });
+    })
   }
 
-  /**
-   *
-   * @static
-   *  * Method to get a single dog instance
-   * @param {*} request
-   * @param {*} response
-   * @memberof DogController
-   */
-  static getSingleDog(request, response) {
-    var dogId = request.params.dogId;
-    if (!dogId) {
-      return response.status(400).json({
-        status: "Failed",
-        message: "Dog Id must be a number"
-      });
+/**
+ *
+ * @static
+ *  * Method to get a single dog instance
+ * @param {*} request
+ * @param {*} response
+ * @memberof DogController
+ */
+  static getSingleDog(request, response){
+    var dogId = parseInt(request.params.dogId);
+    if(isNaN(dogId)) {
+      request.flash('info', 'Could not find that dog')
+      response.redirect('/gallery')
     }
     models.Dog.findOne({
       where: {
         id: dogId
       },
-      include: [
-        {
-          model: models.Rating,
-          as: "ratings",
-          attributes: ["review", "score"]
-        }
-      ],
+      include: [{
+        model: models.Rating,
+        as: 'ratings',
+        attributes: ['review', 'score', 'userId', 'dogId']
+      }],
       attributes: [
-        "id",
-        "name",
-        "size",
-        "breed",
-        "age",
-        "available",
-        "profile",
-        "card_color",
-        "photoUrl",
-        [
-          models.sequelize.fn("ROUND", ("AVG", models.sequelize.col("score"))),
-          "ratingAvg"
-        ]
+        'id',
+        'name',
+        'size',
+        'breed',
+        'age',
+        'available',
+        'profile',
+        'card_color',
+        'photoUrl',
       ]
     })
-      .then(function(singleDog) {
-        if (singleDog) {
-          response.render("confirmation", { dog: singleDog });
-        }
-      })
-      .catch(function(error) {
-        return response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: error.toString()
-        });
-      });
-  }
-  /**
-   * @static
-   * Method to get dog instance by filtering
-   * @param {*} request
-   * @param {*} response
-   * @memberof DogController
-   */
-  static filterDogs(request, response) {
-    var { available, age, breed, size } = request.query;
-    if (available === "true") {
-      available = true;
-    } else if (available === "false") {
-      available = false;
-    }
-    models.Dog.findAll({
-      where: {
-        [Op.or]: [
-          {
-            available:
-              available === undefined ? { [Op.ne]: undefined } : available
-          },
-          {
-            age: age === undefined ? { [Op.ne]: undefined } : age
-          },
-          {
-            breed: breed === undefined ? { [Op.ne]: undefined } : breed
-          },
-          {
-            size: size === undefined ? { [Op.ne]: undefined } : size
-          }
-        ]
-      },
-      include: [
-        {
-          model: models.Rating,
-          as: "ratings",
-          attributes: ["review", "score"]
-        }
-      ],
-      attributes: [
-        "id",
-        "name",
-        "size",
-        "breed",
-        "age",
-        "available",
-        "profile",
-        "card_color"
-      ]
+    .then( function(singleDog){
+      if(singleDog){
+        response.render('confirmation', { dog: singleDog })
+      } else { 
+        request.flash('info', 'Could not find that dog')
+        response.redirect('/gallery')
+      }
     })
-      .then(function(dogs) {
-        if (dogs) {
-          console.log;
-          return response.status(200).json({
-            status: "SUCCESS",
-            message: "Dogs Fetched Successfully",
-            data: dogs
-          });
-        }
-      })
-      .catch(function(err) {
-        return response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: err.toString()
-        });
-      });
+    .catch( function(error){
+      request.flash('info', 'An error occured while getting dog, please try again')
+      response.redirect('/gallery')
+    })
   }
 
-  /**
-   * @static
-   * Method to add a new dog
-   * @param {*} request
-   * @param {*} response
-   * @memberof DogController
-   */
-  static addDog(request, response) {
-    var {
+/**
+ *
+ * @static
+ *  * Method to get a single dog instance
+ * @param {*} request
+ * @param {*} response
+ * @memberof DogController
+ */
+  static getSingleDogApi(request, response){
+    var dogId = parseInt(request.params.dogId);
+    if(isNaN(dogId)) {
+      return response.status(400).json({
+        status: 'Failed',
+        message: 'Dog Id must be a number'
+      })
+    }
+    models.Dog.findOne({
+      where: {
+        id: dogId
+      },
+      include: [{
+        model: models.Rating,
+        as: 'ratings',
+        attributes: ['review', 'score', 'userId', 'dogId'],
+        include: [{
+          model: models.User,
+          as: 'user',
+          attributes: ['userName', 'photo'],
+        }]
+      }],
+      attributes: [
+        'id',
+        'name',
+        'size',
+        'breed',
+        'age',
+        'available',
+        'profile',
+        'card_color',
+        'photoUrl',
+      ]
+    })
+    .then( function(singleDog){
+      if(singleDog){
+        return response.status(200).json({
+          dog: singleDog.dataValues
+        })
+      } else { 
+        return response.status(404).json({
+          status: 'FAILED',
+          message: 'Could not find dog',
+          dog: []
+        })
+      }
+    })
+    .catch( function(error){
+      return response.status(500).json({
+        status: 'FAILED',
+        message: 'Error processing request, please try again',
+        Error: error.toString()
+      })
+    })
+  }
+
+/**
+ * @static
+ * Method to add a new dog
+ * @param {*} request
+ * @param {*} response
+ * @memberof DogController
+ */
+  static addDog(request, response){
+    var { name, breed, size, age, card_color, profile} = request.body;
+    let photoUrl = null;
+    if (request.file) {
+      photoUrl = "images/" + request.file.filename;
+    }
+    models.Dog.findOrCreate({
+      where:{
+        name : name
+      },
+      defaults: {
       name,
-      photo_url,
+      photoUrl,
       breed,
       size,
       age,
-      card_color,
+      card_color: parseInt(card_color),
       profile
-    } = request.body;
-    models.Dog.findOrCreate({
-      where: {
-        name: name
-      },
-      defaults: {
-        name,
-        photo_url,
-        breed,
-        size,
-        age,
-        card_color,
-        profile
       }
     })
-      .spread(function(dog, created) {
-        if (!created) {
-          return response.status(409).json({
-            status: "Failed",
-            message: "Dog already exists"
-          });
-        }
-        return response.status(201).json({
-          status: "SUCCESS",
-          message: "A new dog successfully created",
-          data: dog
-        });
-      })
-      .catch(function(err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          error: err.toString()
-        });
-      });
+    .spread(function(dog, created){
+      if(!created){
+        request.flash('info', 'Dog already exists')
+        response.redirect('/gallery')
+      } else {
+        request.flash('info', 'A new dog has been added')
+        response.redirect('/gallery')
+      }
+    }).catch(function(err){
+      request.flash('info', 'Could not create do, please try again')
+      response.redirect('/create/dog')
+    });
   }
 
-  /**
-   * @static
-   * Method to update a  dog instance by Id
-   * @param {*} request
-   * @param {*} response
-   * @memberof DogController
-   */
-  static update(request, response) {
-    var { dogId } = request.params;
-    var {
-      name,
-      photo_url,
-      breed,
-      size,
-      //age,
-      card_color,
-      profile
-    } = request.body;
-    models.Dog.findOne({
-      where: {
-        id: dogId
-      },
-      attributes: [
-        "name",
-        "photo_url",
-        "breed",
-        "size",
-        "age",
-        "card_color",
-        "profile",
-        "id",
-        "available"
-      ]
-    })
-      .then(function(foundDog) {
-        if (foundDog) {
-          const value = {
-            name: name || foundDog.name,
-            photo_url: photo_url || foundDog.photo_url,
-            breed: breed || foundDog.breed,
-            size: size || foundDog.size,
-            profile: profile || foundDog.profile,
-            card_color: card_color || foundDog.console
-          };
-          foundDog
-            .update(value, {
-              where: {
-                id: foundDog.dataValues.id
-              }
-            })
-            .then(function(updatedDog) {
-              return response.status(200).json({
-                status: "SUCCESS",
-                message: "Dog has been updated Successfully",
-                data: updatedDog
-              });
-            });
-        } else {
-          response.status(404).json({
-            message: "Dog not found or has been deleted"
-          });
-        }
-      })
-      .catch(function(err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: err.toString()
-        });
-      });
-  }
-
-  /**
-   * @static
-   * Method to delete a dog instance by Id
-   * @param {*} request
-   * @param {*} response
-   * @memberof DogController
-   */
-  static delete(request, response) {
-    const { dogId } = request.params;
-    models.Dog.findOne({
-      where: {
-        id: dogId
-      },
-      attributes: ["id", "name"]
-    })
-      .then(function(foundDog) {
-        if (foundDog) {
-          models.Dog.destroy({
-            where: {
-              id: dogId
-            }
-          }).then(function() {
-            return response.status(200).json({
-              status: "SUCCESS",
-              message: "Article deleted successfully"
-            });
-          });
-        } else {
-          response.status(404).json({
-            status: "FAILED",
-            message: "Dog not found or has been deleted"
-          });
-        }
-      })
-      .catch(function(err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: err.toString()
-        });
-      });
-  }
-
+/**
+ *
+ * @static
+ *  * Method to reserve a single dog instance
+ * @param {*} request
+ * @param {*} response
+ * @memberof DogController
+ */
   static reserve(request, response) {
-    var { pickUpDate, returnDate, dogId } = request.body;
-    console.log("=================>>>>", pickUpDate, returnDate);
-    // const myDate = moment(str, 'YYYY-MM-DD').toDate();
-    // pickUpDate = moment(pickUpDate).format('MM-DD-YYYY HH:MM:SS');
-    pickUpDate = moment(pickUpDate, "MM-DD-YYYY HH:MM:SS");
-    // returnDate = moment(returnDate, 'MM-DD-YYYY HH:MM:SS')
+    var { pickUpDate, returnDate, dogId } = request.body
+    pickUpDate = moment(pickUpDate, "MM-DD-YYYY")
+    returnDate = moment(returnDate, "MM-DD-YYYY")
+    var duration = moment.duration(returnDate.diff(pickUpDate));
+    var days = duration.asDays();
     models.Rental.create({
       pickUpDate,
-      returnDate: pickUpDate,
-      daysToRent: 1,
+      returnDate,
+      daysToRent: days,
       dogId,
-      userId: 1
+      userId: request.session.user.id,
     })
-      .then(function() {
-        models.Dog.findOne({
-          where: {
-            id: dogId
-          },
-          attributes: ["available", "id"]
-        })
-          .then(function(foundDog) {
-            console.log(foundDog);
-            if (foundDog) {
-              const value = {
-                available: 0
-              };
-              foundDog
-                .update(value, {
-                  where: {
-                    id: foundDog.dataValues.id
-                  }
-                })
-                .then(function() {
-                  response.redirect("/gallery");
-                });
-            } else {
-              response.status(404).json({
-                message: "Dog not found or has been deleted"
-              });
+    .then(function(){
+      models.Dog.findOne({
+        where :{
+          id: dogId
+        },
+        attributes: [
+          'available',
+          'id',
+          'name'
+        ]
+      })
+      .then(function(foundDog){
+        if(foundDog){
+          const value = {
+            available: 0,
+          }
+          foundDog.update(value, {
+            where:{
+              id: foundDog.dataValues.id
             }
           })
-          .catch(function(err) {
-            response.status(500).json({
-              status: "FAILED",
-              message: "Error processing request, please try again",
-              Error: err.toString()
-            });
-          });
+          .then(function(updatedDog){
+          request.flash('info', `Dog (${updatedDog.dataValues.name}) has been reserved!`)
+          response.redirect('/gallery')
+          })
+        }
+        else {
+          request.flash('info', 'Dog cannot be found!')
+          response.redirect('/gallery')
+        }
       })
       .catch(function(err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: err.toString()
-        });
+        request.flash('info', 'An error occured')
+        response.redirect('/gallery')
       });
+    })
+    .catch(function(err) {
+      request.flash('info', 'Error processing request, please try again')
+      response.redirect('/gallery')
+  });
   }
+
+  /**
+ * @static
+ * Method to get dog instance by filtering
+ * @param {*} request
+ * @param {*} response
+ * @memberof DogController
+ */
+static filterDogs(request, response){
+  var { available, age, breed, size, } = request.body
+  if(available == 'true'){
+    available = true
+  }
+  else if(available == 'false'){
+    available = false
+  }
+  models.Dog.findAll({
+    where: {
+      [Op.or] : [{available: available === undefined ? {
+        [Op.ne]: undefined
+        } : available},
+      {age: age === undefined ? {
+        [Op.ne]: undefined
+        }: age
+      },
+      {breed: breed === undefined ? {
+        [Op.ne]: undefined
+        } : breed},
+      {size: size === undefined ? {
+          [Op.ne]: undefined
+        } : size},
+    ]},
+    include: [{
+      model:models.Rating,
+      as: 'ratings',
+      attributes: ['review', 'score']
+    }],
+    attributes: [
+      'id',
+      'name',
+      'size',
+      'breed',
+      'age',
+      'available',
+      'profile',
+      'card_color',
+      'photoUrl'
+    ]
+  })
+  .then( function(dogs){
+    if(dogs){
+      response.render('gallery', { dogs: dogs, ratings: dogs[0].dataValues.ratings, messages: request.flash('info') });
+    }
+  })
+  .catch(function(err){
+      request.flash('info', 'Error processing request, please try again')
+      response.redirect('/gallery')
+  })
 }
-module.exports = DogController;
+}
+
+module.exports = DogController

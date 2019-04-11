@@ -1,0 +1,12 @@
+<div id="home">
+    {{> header }}
+    <form action="/api/rate/dogs" method="post">
+        <input type="text" name="score" placeholder="Enter name" value="3">
+        <input type="text" name="review" placeholder="Enter name" value="review one">
+        <input type="text" name="dogId" value="{{dog.id}}" hidden="true">
+        <input type="submit" value="Rate Dog">
+    </form>
+</div>
+
+{{> footer }}
+

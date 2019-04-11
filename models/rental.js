@@ -44,12 +44,11 @@ module.exports = (sequelize, DataTypes) => {
   Rental.associate = function(models) {
     // associations can be defined here
     Rental.belongsTo(models.Dog, {
-      // foreignKey: 'dogId',
-      as: "dog",
-      onDelete: "CASCADE"
+      // as: 'dog',
+      onDelete: "CASCADE",
+      foreignKey: "dogId"
     });
     Rental.belongsTo(models.User, {
-      // foreignKey: 'userId',
       onDelete: "CASCADE",
       foreignKey: "userId"
     });

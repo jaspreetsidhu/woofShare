@@ -12,6 +12,36 @@
                         <h3>{{dog.name}}</h3>
                         <hr />
                         <p class="text-small">{{dog.profile}}</p>
+                        <div class="well well-sm">
+                            <div class="text-right">
+                                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                            </div>
+                            <div class="row" id="post-review-box" style="display:none;">
+                                <div class="col-md-12">
+                                    <form accept-charset="UTF-8" action="/api/rate/dogs" method="post">
+                                        <input id="ratings-hidden" name="dogId" type="hidden" value="{{dog.id}}">
+                                        <textarea class="form-control animated" cols="50" id="new-review" name="review" placeholder="Enter your review here..." rows="5"></textarea>
+                                        <div class="text-right">
+                                            <input type="radio" name="score" value="1">
+                                            <input type="radio" name="score" value="2">
+                                            <input type="radio" name="score" value="3">
+                                            <input type="radio" name="score" value="4">
+                                            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                            <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="col-5">
                         <form action="/api/dogs/reserve" method="post">
@@ -89,7 +119,9 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://unpkg.com/js-datepicker"></script>
+<script src="/js/script.js"></script>
 <script>
 
     // datepicker JS
