@@ -80,7 +80,8 @@ class UserController {
           models.Rental.findAll({
             attributes: [
               "returnDate",
-              "pickUpDate", "userId",
+              "pickUpDate",
+              "userId",
               "dogId",
               "returnComplete",
               "statusArchive"
