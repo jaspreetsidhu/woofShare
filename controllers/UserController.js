@@ -78,12 +78,12 @@ class UserController {
           // console.log("DogRentals", res);
           //,userRentDetails: res
           models.Rental.findAll({
-            attributes: ["returnDate","pickUpDate","userId","dogId"],
+            attributes: ["returnDate", "pickUpDate", "userId", "dogId"],
             include: [
               {
                 model: models.Dog,
                 as: "dog",
-                attributes:["id","name","breed","profile","photoUrl"]
+                attributes: ["id", "name", "breed", "profile", "photoUrl"]
               }
             ],
             where: {
@@ -97,7 +97,7 @@ class UserController {
               response.render("userProfile", {
                 user: userRecord,
                 rentals: dogRentals
-               });
+              });
             })
             .catch(function(err) {
               response.status(500).json({
