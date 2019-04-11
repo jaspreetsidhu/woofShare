@@ -1,31 +1,40 @@
 {
-  "name": "woofshare",
+  "name": "exercise1_animals",
   "version": "1.0.0",
-  "description": "woofshare",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "watch": "nodemon server.js",
-    "start": "node server.js",
-    "lint": "eslint **/*.js --quiet",
-    "fix": "eslint --fix .",
+    "migrate": "node_modules/.bin/sequelize db:migrate",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit",
-    "compile:sass": "node-sass public/styles/sass/main.scss public/styles/css/style.css -w"
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "sequelize db:seed:all",
+    "compile:sass": "node-sass public/styles/sass/main.scss public/styles/css/style.css -w",
+    "lint": "eslint **/*.js --quiet",
+    "fix": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
     "cookies": "^0.7.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "express-jwt": "^5.3.1",
+<<<<<<< HEAD
     "express-session": "^1.16.1",
     "handlebars": "^4.1.1",
+=======
+    "express-session": "^1.15.6",
+    "handlebars-helpers": "^0.10.0",
+>>>>>>> 4cf7a35bddb3a80e958b7cd32145ccabc39c3513
     "jsonwebtoken": "^8.5.1",
     "migrate": "^1.6.2",
     "moment": "^2.24.0",
+    "multer": "^1.4.1",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.5",
     "node-sass": "^4.11.0",
@@ -34,9 +43,14 @@
     "npx": "^10.2.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
+<<<<<<< HEAD
     "seed": "^0.4.4",
     "sequelize": "^5.3.1",
     "statuses": "^1.5.0"
+=======
+    "sequelize": "^5.2.12",
+    "sequelize-cli": "^5.4.0"
+>>>>>>> 4cf7a35bddb3a80e958b7cd32145ccabc39c3513
   },
   "devDependencies": {
     "chai": "^4.1.2",

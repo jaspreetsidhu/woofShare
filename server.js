@@ -1,10 +1,13 @@
 var express = require("express");
-const bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
+var session = require("express-session");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 var exphbs = require("express-handlebars");
+var flash = require("connect-flash");
+var helpers = require("handlebars-helpers")();
 
 app.use(
   bodyParser.urlencoded({
@@ -15,9 +18,16 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
-
-// Requiring our models for syncing
-var db = require("./models");
+app.use(flash());
+app.use(
+  session({
+    secret: "keyboard",
+    saveUninitialized: true,
+    resave: true,
+    cookie: { maxAge: 6000000 }
+  })
+);
+//app.use(session({ secret: 'keyboard', cookie: { maxAge: 600000, userDetails: 'none' }}))
 
 // Google APi call
 require("./util/google-Auth")(app);
@@ -30,10 +40,17 @@ app.use(HTMLroutes);
 var apiRoutes = require("./routes/apiRoutes");
 app.use(apiRoutes);
 
+// Requiring our models for syncing
+var db = require("./models");
+
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-  db.sequelize.sync().then(function() {
-    app.listen(PORT, function() {
+// app.listen(PORT, function() {
+//   console.log("App listening on PORT " + PORT);
+// });
+
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
- });
+});

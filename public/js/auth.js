@@ -3,28 +3,50 @@ $(document).ready(function() {
   $(document).on("click", "#btnGoogleLogin", redirectToGoogleLogin);
   $(document).on("click", "#logOutLink", logout);
 
-  userDetail = Cookies.getJSON("userDetails");
+  userDetail = JSON.parse(localStorage.getItem("userDetails"));
+  var tokenAvailable = false;
+  $("#indexloginLink").hide();
+  $("#dropDownUser").hide();
+  $.get("/api/checkToken", function() {
+    console.log("success");
+  })
+    .done(function(data) {
+      tokenAvailable = true;
+      checkAuthentication(tokenAvailable);
+    })
+    .fail(function(error) {
+      tokenAvailable = false;
+      checkAuthentication(tokenAvailable);
+    });
 
-  if (userDetail === null || typeof userDetail === "undefined") {
-    // Not login
-    //if (window.location.pathname =
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-    //Login Button should not be displyed
-    if (page.toUpperCase() === "SIGNUP") {
-      $("#indexloginLink").hide();
+  function checkAuthentication(tokenAvailable) {
+    if (
+      !tokenAvailable ||
+      userDetail === null ||
+      typeof userDetail === "undefined"
+    ) {
+      // Not login
+      //if (window.location.pathname =
+      var path = window.location.pathname;
+      var page = path.split("/").pop();
+      //Login Button should not be displyed
+      if (page.toUpperCase() === "SIGNUP") {
+        $("#indexloginLink").hide();
+      } else {
+        $("#indexloginLink").show();
+      }
+
+      $("#dropDownUser").hide();
     } else {
-      $("#indexloginLink").show();
+      console.log("logged in");
+      console.log("username:", userDetail.name);
+      $("#indexloginLink").hide();
+      $("#dropDownUser").show();
+      $("#userProfileName").text(userDetail.name);
+      $("#userProfilePic").attr("src", userDetail.photo);
     }
-
-    $("#dropDownUser").hide();
-  } else {
-    console.log("username:", userDetail);
-    $("#indexloginLink").hide();
-    $("#dropDownUser").show();
-    $("#userProfileName").text(userDetail.displayName);
-    $("#userProfilePic").attr("src", userDetail.photoUrl);
   }
+
   // A function to handle what happens when the form is submitted to create a new Author
   function handleAuthFormSubmit(event) {
     event.preventDefault();
@@ -46,8 +68,8 @@ $(document).ready(function() {
     // console.log(userAuth);
     $.post("/api/signUp", userAuth, function(data) {
       if (data) {
-        console.log("success", data);
-        window.localStorage.setItem("userDetails", data);
+        console.log("success", JSON.stringify(data));
+        window.localStorage.setItem("userDetails", JSON.stringify(data));
         window.location.replace("/gallery");
       } else {
         console.log("Fail to obtain data userDetails");
@@ -59,6 +81,7 @@ $(document).ready(function() {
     window.location.replace("/auth/google/callback");
   }
   function logout(event) {
+    localStorage.removeItem("userDetails");
     window.location.replace("/logout");
   }
 });

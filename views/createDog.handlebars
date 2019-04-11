@@ -1,0 +1,75 @@
+<div id="confirmation">
+    {{> header }}
+    <div class="container mt-5">
+        <section class="confirmation" style="min-height: 400px">
+            <h1>Add a new Dog</h1>
+            <div class="confirmation__selection">
+                <div class="row mt-5">
+                  {{!-- <div class="col-2 confirmation__selection__img">
+                        <img src="/{{dog.photoUrl}}" />
+                    </div>
+                    <div class="col-5">
+                        <h3>{{dog.name}}</h3>
+                        <hr />
+                        <p class="text-small">{{dog.profile}}</p>
+                    </div> --}}
+                    <div class="col-5">
+                        <form action="/api/dogs" method="post" enctype="multipart/form-data">
+                            <div class="form__group">
+                                <label for="Name" class="form__label"><span class="color-red">* </span>Name</label>
+                                <input class="form__input" id="name" name="name" type="text" placeholder="enter name"
+                                    required />
+                            </div>
+                            <div class="form__group">
+                                <label for="Breed" class="form__label"><span class="color-red">* </span>Breed</label>
+                                <input class="form__input" id="breed" name="breed" type="text" placeholder="enter breed"
+                                    required />
+                            </div>
+                            <div class="form__group">
+                                <label for="Profile" class="form__label"><span class="color-red">* </span>Profile</label>
+                                <input class="form__input" id="profile" name="profile" type="text" placeholder="little info"
+                                    required />
+                            </div>
+                            <div class="form__group">
+                                <label for="cardColor" class="form__label"><span class="color-red">* </span>Card Color</label>
+                                <input class="form__input" min="1" max="3"  name="card_color" type="number" placeholder="card color number"
+                                    required />
+                            </div>
+                            <div class="form__group">
+                              <select name="age" id="age" name="age">
+                                <option selected="selected">--Select Age--</option>
+                                <option value="puppy">Puppy</option>
+                                <option value="adult">Adult</option>
+                                <option value="senior">Senior</option>
+                              </select>
+                            </div>
+                            <div class="form__group">
+                              <select name="size" id="age" name="size">
+                                <option selected="selected">--Select Age--</option>
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                              </select>
+                            </div>
+                             <div class="form__group">
+                                <label for="Image" class="form__label"><span class="color-red">* </span>Image</label>
+                                <input class="form__input" id="photo" name="photoUrl" type="file" accept="image/*"
+                                    required />
+                            </div>
+                            {{!-- <div class="form__group">
+                                <input type="checkbox" id="tos" />
+                                <label for="tos" class="text-small">I agree to WoofShare's <a class="color-primary"
+                                        href="#!">Terms of Service</a></label>
+                                <br>
+                                <span class="text-tiny color-red" id="niceTry"></span>
+                            </div> --}}
+                            <button id="confirm" class="btn btn-theme-secondary btn-lg">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{{> footer }}
+

@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("dogs", {
+    return queryInterface.createTable('dogs', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,31 +20,31 @@ module.exports = {
         type: Sequelize.DATE
       },
       photoUrl: {
-        allowNull: true,
+        allowNull : true,
         type: Sequelize.STRING
       },
       size: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       breed: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       age: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       profile: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       available: {
         type: Sequelize.BOOLEAN,
         defaultValue: true
       },
       card_color: {
-        type: Sequelize.INTEGER
+          type: Sequelize.INTEGER,
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("dogs");
+    return queryInterface.dropTable('dogs');
   }
 };

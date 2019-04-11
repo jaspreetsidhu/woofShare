@@ -51,6 +51,13 @@
         /* For reference, use the link: */
         /* https://developers.google.com/maps/documentation/javascript/places#place_details_results */
     }
+    if ('{{name}}' != '') {
+        var userDetails = { id: '{{id}}', name: '{{name}}', photo: '{{photo}}' }
+        window.localStorage.setItem("userDetails", JSON.stringify(userDetails))
+        window.location.replace("/gallery");
+    }
+
+    // 
 </script>
 <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW6weTjEKjfBWH8WvjmTsfvvNfxYKldqY&libraries=places&callback=activatePlacesSearch"></script>
