@@ -36,27 +36,24 @@ class UserController {
   //getDog Rentals
   static getDogRentals(userRecordId, response) {
     models.Rental.findAll({
-      attributes: ["returnDate","pickUpDate","userId","dogId"
-      ],
+      attributes: ["returnDate", "pickUpDate", "userId", "dogId"],
       include: [
         {
           model: models.Dog,
           as: "dog",
-          attributes:
-            ["id","name","breed","profile","photoUrl"
-            ]
+          attributes: ["id", "name", "breed", "profile", "photoUrl"]
         }
       ],
       where: {
         userId: userRecordId
       }
     })
-      .then(function (dogRentals) {
+      .then(function(dogRentals) {
         console.log("dogRentals", dogRentals);
         return dogRentals;
         // response.render("userProfile", { user: userRecord });
       })
-      .catch(function (err) {
+      .catch(function(err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error retrieving user, please try again",
@@ -68,12 +65,12 @@ class UserController {
   //get user
   static getUser(request, response) {
     models.User.findOne({
-      attributes: ["id","userName","email","photo"],
+      attributes: ["id", "userName", "email", "photo"],
       where: {
         email: request.user.emails[0].value
       }
     })
-      .then(function (userRecord) {
+      .then(function(userRecord) {
         console.log("User Details:", userRecord);
         if (userRecord) {
           console.log("userdetails", userRecord.dataValues.id);
@@ -81,38 +78,37 @@ class UserController {
           // console.log("DogRentals", res);
           //,userRentDetails: res
           models.Rental.findAll({
-            attributes: ["returnDate","pickUpDate","userId","dogId"
-          ],
+            attributes: ["returnDate","pickUpDate","userId","dogId"],
             include: [
               {
                 model: models.Dog,
                 as: "dog",
-                attributes:
-                  ["id","name","breed","profile","photoUrl"
-                  ]
+                attributes:["id","name","breed","profile","photoUrl"]
               }
             ],
             where: {
               userId: userRecord.dataValues.id
             }
           })
-            .then(function (dogRentals) {
+            .then(function(dogRentals) {
               console.log("dogRentals", dogRentals);
               //return dogRentals;
               // response.render("userProfile", { user: userRecord });
-              response.render("userProfile", { user: userRecord, rentals: dogRentals });
+              response.render("userProfile", {
+                user: userRecord,
+                rentals: dogRentals
+               });
             })
-            .catch(function (err) {
+            .catch(function(err) {
               response.status(500).json({
                 status: "FAILED",
                 message: "Error retrieving Rental, please try again",
                 error: err.toString()
               });
             });
-
         }
       })
-      .catch(function (err) {
+      .catch(function(err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error retrieving user, please try again",
@@ -120,7 +116,5 @@ class UserController {
         });
       });
   }
-
-
 }
 module.exports = UserController;
