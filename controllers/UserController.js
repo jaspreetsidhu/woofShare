@@ -22,10 +22,10 @@ class UserController {
         photo: request.user.photos[0].value
       }
     })
-      .spread(function () {
+      .spread(function() {
         response.cookie("userDetails", sendUserDetails).send("done");
       })
-      .catch(function (err) {
+      .catch(function(err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error saving user, please try again",
@@ -36,23 +36,14 @@ class UserController {
   //getDog Rentals
   static getDogRentals(userRecordId, response) {
     models.Rental.findAll({
-      attributes: [
-        "returnDate",
-        "pickUpDate",
-        "userId",
-        "dogId"
+      attributes: ["returnDate","pickUpDate","userId","dogId"
       ],
       include: [
         {
           model: models.Dog,
           as: "dog",
           attributes:
-            [
-              "id",
-              "name",
-              "breed",
-              "profile",
-              "photoUrl"
+            ["id","name","breed","profile","photoUrl"
             ]
         }
       ],
@@ -77,12 +68,7 @@ class UserController {
   //get user
   static getUser(request, response) {
     models.User.findOne({
-      attributes: [
-        "id",
-        "userName",
-        "email",
-        "photo"
-      ],
+      attributes: ["id","userName","email","photo"],
       where: {
         email: request.user.emails[0].value
       }
@@ -95,23 +81,14 @@ class UserController {
           // console.log("DogRentals", res);
           //,userRentDetails: res
           models.Rental.findAll({
-            attributes: [
-              "returnDate",
-              "pickUpDate",
-              "userId",
-              "dogId"
-            ],
+            attributes: ["returnDate","pickUpDate","userId","dogId"
+          ],
             include: [
               {
                 model: models.Dog,
                 as: "dog",
                 attributes:
-                  [
-                    "id",
-                    "name",
-                    "breed",
-                    "profile",
-                    "photoUrl"
+                  ["id","name","breed","profile","photoUrl"
                   ]
               }
             ],
