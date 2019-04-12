@@ -94,7 +94,7 @@ class UserController {
       }
     })
       .then(function(userRecord) {
-        console.log("User Details:", userRecord);
+        //console.log("User Details:", userRecord);
         if (userRecord) {
           console.log("userdetails", userRecord.dataValues.id);
           //  var userRentalDetail= getDogRentals(userRecord.dataValues.id,response);
@@ -122,7 +122,7 @@ class UserController {
             }
           })
             .then(function(dogRentals) {
-              console.log("dogRentals", dogRentals);
+             // console.log("dogRentals", dogRentals);
               //return dogRentals;
               // response.render("userProfile", { user: userRecord });
               response.render("userProfile", {
@@ -163,7 +163,7 @@ class UserController {
         }     
     })
       .then(function (updatedRentals) {
-        console.log("updatedRentals:", updatedRentals);
+       // console.log("updatedRentals:", updatedRentals);
         response.json(updatedRentals)
       })
       .catch(function (err) {
@@ -181,7 +181,7 @@ class UserController {
     var rentId = parseInt(request.params.rentId);
     if(rentId)
     {
-      console.log("rentId", rentId);
+     // console.log("rentId", rentId);
       models.Rental.update({
         statusArchive: true
         },
@@ -191,7 +191,7 @@ class UserController {
         }     
     })
       .then(function (updatedRentals) {
-        console.log("updatedRentals:", updatedRentals);
+      //  console.log("updatedRentals:", updatedRentals);
         response.json(updatedRentals)
       })
       .catch(function (err) {

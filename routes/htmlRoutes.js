@@ -25,6 +25,7 @@ router.get("/create/dog", authenticate, function (req, res) {
   res.render('createDog')
 });
 router.get("/dog/:dogId/rate", authenticate, function (req, res) {
+  console.log("DOG Rating hit");
   RatingController.rateDog(req, res);
 });
 
