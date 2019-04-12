@@ -1,3 +1,4 @@
+//Validation for Dog
 module.exports = function dogValidation(request, response, next) {
   var { name } = request.body;
 
@@ -9,7 +10,7 @@ module.exports = function dogValidation(request, response, next) {
 
   if (requestMethod.post) {
     if (!name || name.trim() === "") {
-      error.push("name cannot be empty");
+      error.push("Name cannot be empty");
     }
 
     if (specialChar.test(name)) {
@@ -17,7 +18,7 @@ module.exports = function dogValidation(request, response, next) {
     }
 
     if (typeof name === "boolean" || typeof name !== "string") {
-      error.push("name must be a string");
+      error.push("Name must be a string");
     }
   }
   if (requestMethod.patch) {

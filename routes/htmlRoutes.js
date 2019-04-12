@@ -29,26 +29,12 @@ router.get("/dog/:dogId/rate", authenticate, function (req, res) {
   RatingController.rateDog(req, res);
 });
 
-// Rating filtering for distance
-// I believe Zach was working on this feature
-router.get("gallery/distance/:distance", function (req, res) {
-  let distSearch = req.params.distance;
-  console.log(distSearch);
-  DogController.filterDogs(distSearch, res);
-  res.render("gallery", res);
-});
-
 
 router.get("/rentals", authenticate, function (req, res) {
   RentalController.getRentals(req, res);
 });
 
 
-
-// router.get("/confirmation/:dogId", authenticate, function (req, res) {
-//     DogController.getSingleDog(req, res)
-
-// });
 
 router.get("/confirmation/:dogId", function (req, res) {
   // res.render("confirmation");
