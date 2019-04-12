@@ -58,15 +58,6 @@ $("#tos").change(function () {
   }
 });
 
-// function confirmResValidation() {
-//   var pickUpDate = $("#pickUpDate").val();
-//   var returnDate = $("#returnDate").val();
-//   console.log ("pickUpDate", pickUpDate);
-//   console.log ("returnDate", returnDate);
-//   var start = moment(pickUpDate, "M/D/YYYY");
-//   var end = moment(returnDate, "M/D/YYYY");
-//   console.log(end.diff(start, "days"));
-// }
 
 $("#confirmReservation").on("click", function () {
   event.preventDefault();
