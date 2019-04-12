@@ -1,8 +1,8 @@
 var models = require("../models/index");
 var Sequelize = require("sequelize");
-var moment = require("moment");
+//var moment = require("moment");
 
-var Op = Sequelize.Op;
+//var Op = Sequelize.Op;
 
 /**
  * @class RatingController

@@ -19,7 +19,7 @@ function renderHearts() {
 renderHearts();
 
 // Favorites feature which highlights hearts on favorited dogs and saves that dog to localStorage.
-$(".fa-heart").on("click", function() {
+$(".fa-heart").on("click", function () {
   var thisDog = $(this).data("dogid");
   if (favorites.includes(thisDog)) {
     $("#heart-one-" + thisDog).removeClass("fas");
@@ -42,7 +42,7 @@ function confirmTos() {
   }
 }
 
-$("#tos").change(function() {
+$("#tos").change(function () {
   if ($(this).is(":checked")) {
     $("#confirmReservation").removeAttr("disabled");
     $("#tosWarning").empty();
@@ -52,43 +52,33 @@ $("#tos").change(function() {
   }
 });
 
-// function confirmResValidation() {
-//   var pickUpDate = $("#pickUpDate").val();
-//   var returnDate = $("#returnDate").val();
-//   console.log ("pickUpDate", pickUpDate);
-//   console.log ("returnDate", returnDate);
-//   var start = moment(pickUpDate, "M/D/YYYY");
-//   var end = moment(returnDate, "M/D/YYYY");
-//   console.log(end.diff(start, "days"));
-// }
 
-$("#confirmReservation").on("click", function() {
+$("#confirmReservation").on("click", function () {
   event.preventDefault();
   //confirmResValidation();
   var pickUpDate = $("#pickUpDate").val();
   var returnDate = $("#returnDate").val();
-  var start = moment(pickUpDate, "M/D/YYYY");
-  var end = moment(returnDate, "M/D/YYYY");
-  console.log(end.diff(start, "days"));
-  var diff = end.diff(start, "days");
+  // var start = moment(pickUpDate, "M/D/YYYY");
+  // var end = moment(returnDate, "M/D/YYYY");
+  // console.log(end.diff(start, "days"));
+  // var diff = end.diff(start, "days");
   var dogId = $(this).attr("data-dogId");
 
-    var reserveDetails={
-        pickUpDate: pickUpDate,
-        returnDate: returnDate,
-        daysToRent: diff,
-        dogId: dogId
+  var reserveDetails = {
+    pickUpDate: pickUpDate,
+    returnDate: returnDate,
+    //daysToRent: diff,
+    dogId: dogId
+  }
+  // AJAX post the data to reserve dog.
+  $.post("/api/dogs/reserve", reserveDetails, function (data) {
+    if (data) {
+      console.log("successful reserve");
+      window.location.replace('/gallery')
+    } else {
+      console.log("Fail to obtain data userDetails");
     }
-      // AJAX post the data to reserve dog.
-      $.post("/api/dogs/reserve", reserveDetails, function(data) {
-        if(data){
-          console.log("successful reserve");
-          window.location.replace('/gallery')
-        }
-        else {
-          console.log("Fail to obtain data userDetails");
-        }
-    });
+  });
 
 });
 // get favorites from local storage or empty array
