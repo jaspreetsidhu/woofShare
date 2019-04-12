@@ -175,5 +175,33 @@ class UserController {
       });
     }
   }
+   //update the rental return date along with status flags
+   static updateDogArchiveRentals(request, response) {
+    //console.log("rental id : ******", request.params.rentId);
+    var rentId = parseInt(request.params.rentId);
+    if(rentId)
+    {
+      console.log("rentId", rentId);
+      models.Rental.update({
+        statusArchive: true
+        },
+        {
+        where:{
+          id: rentId
+        }     
+    })
+      .then(function (updatedRentals) {
+        console.log("updatedRentals:", updatedRentals);
+        response.json(updatedRentals)
+      })
+      .catch(function (err) {
+        response.status(500).json({
+          status: "FAILED",
+          message: "Error updating rentals, please try again",
+          error: err.toString()
+        });
+      });
+    }
+  }
 }
 module.exports = UserController;
