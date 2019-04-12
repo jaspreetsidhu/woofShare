@@ -20,6 +20,7 @@
       </div>
     </div>
   </div>
+  <div class="paw-bg">
   <div class="container">
     <section class="section__about">
       <div class="row section__about__what-is">
@@ -42,6 +43,7 @@
         </div>
       </div>
     </section>
+  </div>
   </div>
   <section class="section__about">
     <div class="bg-video">
@@ -135,6 +137,7 @@
     </div>
 
   </section>
+  <div class="paw-bg">
   <div class="container">
     <section class="section__about">
       <h1 class="my-5 text-center">How it Works</h1>
@@ -169,9 +172,9 @@
               when you can't be there for them. Complete this application to start the process. You get to personally
               approve all potential renters.
             </p>
-            <a href="#!" class="btn btn-lg btn-theme-secondary my-3" data-toggle="modal" data-target="#applyToShareModal"
-                id="indexApplytoShare">Apply to Share</a>
-        
+            {{!-- <li> --}}<a href="#!" class="btn btn-lg btn-theme-secondary my-3" data-toggle="modal" data-target="#applyToShareModal"
+                id="indexApplytoShare">Apply to Share</a>{{!-- </li> --}}
+            {{!-- <a class="btn btn-lg btn-theme-secondary my-3">Apply to Share</a> --}}
           </div>
         </div>
 
@@ -187,7 +190,9 @@
                 </button>
               </div>
               <div class="modal-body text-center">
-                         <div class="text-left m-5">
+               {{!--  <button id="btnApplyToShare" class="btn btn-theme-red btn-lg m-5"> <i class="fab fa-google pr-3"></i>Apply
+                  to Share</button>  --}}
+                <div class="text-left m-5">
                   <p>We are currently researching and gathering data to ensure that WoofShare provides the most optimal experience for those who are sharing there beloved pets.  Please check back soon to utilize this feature.</p>
                 </div>
               </div>
@@ -195,11 +200,15 @@
           </div>
         </div>
 
+
+
+
+
+
       </div>
     </section>
+  </div>
   </div>
   {{> footer }}
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
