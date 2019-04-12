@@ -586,6 +586,10 @@ h1, h2 {
     font-size: 2rem;
     backface-visibility: hidden; }
 
+@media screen and (max-width: 800px) {
+  .feature-box {
+    margin-bottom: 2rem; } }
+
 .form__group:not(:last-child) {
   margin-bottom: 2rem; }
 
@@ -897,6 +901,15 @@ h1, h2 {
         z-index: 20; }
     .section__about__composition:hover .section__about__composition__photo:not(:hover) {
       transform: scale(0.95); }
+
+@media screen and (max-width: 800px) {
+  .section__about {
+    padding: 5rem 0; }
+    .section__about__what-is {
+      padding: 0;
+      margin: auto; }
+      .section__about__what-is__desc {
+        width: 100%; } }
 
 .signUp {
   min-height: 45rem; }
