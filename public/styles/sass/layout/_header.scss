@@ -1,11 +1,18 @@
 .header {
-    padding: 1rem 0rem; 
-    position: relative;
-    cursor: pointer;
 
-    img {
-        height: 10rem;
+    box-shadow: 0 1px 7px #888888;
+
+    &__logo {
+        padding: 1rem 0rem; 
+        position: relative;
+        cursor: pointer;
+            
+        img {
+            height: 10rem;
+        }
     }
+
+
     &__logo-text {
         font-family: 'Chango', cursive;        
         text-transform: uppercase;

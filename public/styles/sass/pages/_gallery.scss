@@ -1,11 +1,13 @@
 .gallery {
     
     &__controls {
-
+        padding: 2rem;
+        background-color: $color-grey-light;
+        border-radius: 4px;
         &-menu {
-            border: 1px solid $color-grey-dark;
-            padding: 4rem;
-            border-radius: 4px;
+            select {
+                margin-right: 2rem;
+            }
         }
     }
 
