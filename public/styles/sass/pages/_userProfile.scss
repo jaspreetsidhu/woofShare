@@ -51,7 +51,8 @@
     }
 
     &__active {
-
+            background: $color-white;
+            padding: 2rem;
             &__img {
 
                 img {

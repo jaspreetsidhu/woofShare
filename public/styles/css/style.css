@@ -935,13 +935,14 @@ h1, h2 {
       margin: 0;
       padding: .6rem 1rem; }
 
-.profile__active__img img {
-  width: 100%; }
-
-.profile__active__schedule-details h4 {
-  display: inline; }
-
-.profile__active__schedule-details span {
-  margin-right: 2rem;
-  padding-left: .5rem;
-  font-size: 1.4rem; }
+.profile__active {
+  background: #fff;
+  padding: 2rem; }
+  .profile__active__img img {
+    width: 100%; }
+  .profile__active__schedule-details h4 {
+    display: inline; }
+  .profile__active__schedule-details span {
+    margin-right: 2rem;
+    padding-left: .5rem;
+    font-size: 1.4rem; }
