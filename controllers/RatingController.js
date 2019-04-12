@@ -56,14 +56,14 @@ class RatingController {
    */
   static rateDogApi(request, response) {
     var { dogId, review, score } = request.body;
-    models.Dog.findOne({
+      models.Dog.findOne({
       where: {
         id: dogId
       },
       attributes: ["id"]
     })
       .then(function(dog) {
-        if (dog) {
+         if (dog) {
           models.Rating.create({
             score,
             review,

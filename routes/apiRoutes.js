@@ -17,6 +17,7 @@ router.get("/api/dogs", authenticate, DogController.getAllDogs);
 router.get("/api/dogs/:dogId", authenticate, DogController.getSingleDogApi);
 router.post("/api/dogs/reserve", authenticate, DogController.reserve);
 router.post("/api/dogs/filterdog", authenticate, DogController.filterDogs);
-
+router.post("/api/user-profile/:rentId",authenticate, UserController.updateDogRentals);
+router.post("/api/user-profile/archive/:rentId", authenticate, UserController.updateDogArchiveRentals);
 
 module.exports = router;

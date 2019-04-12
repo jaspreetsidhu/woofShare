@@ -94,7 +94,7 @@ class UserController {
       }
     })
       .then(function(userRecord) {
-        console.log("User Details:", userRecord);
+        //console.log("User Details:", userRecord);
         if (userRecord) {
           console.log("userdetails", userRecord.dataValues.id);
           //  var userRentalDetail= getDogRentals(userRecord.dataValues.id,response);
@@ -102,6 +102,7 @@ class UserController {
           //,userRentDetails: res
           models.Rental.findAll({
             attributes: [
+              "id",
               "returnDate",
               "pickUpDate",
               "userId",
@@ -121,7 +122,7 @@ class UserController {
             }
           })
             .then(function(dogRentals) {
-              console.log("dogRentals", dogRentals);
+             // console.log("dogRentals", dogRentals);
               //return dogRentals;
               // response.render("userProfile", { user: userRecord });
               response.render("userProfile", {
@@ -146,6 +147,61 @@ class UserController {
         });
       });
   }
+  //update the rental return date along with status flags
+  static updateDogRentals(request, response) {
+    //console.log("rental id : ******", request.params.rentId);
+    var rentId = parseInt(request.params.rentId);
+    if(rentId)
+    {
+      console.log("rentId", rentId);
+      models.Rental.update({
+        returnComplete: true
+        },
+        {
+        where:{
+          id: rentId
+        }     
+    })
+      .then(function (updatedRentals) {
+       // console.log("updatedRentals:", updatedRentals);
+        response.json(updatedRentals)
+      })
+      .catch(function (err) {
+        response.status(500).json({
+          status: "FAILED",
+          message: "Error updating rentals, please try again",
+          error: err.toString()
+        });
+      });
+    }
+  }
+   //update the rental return date along with status flags
+   static updateDogArchiveRentals(request, response) {
+    //console.log("rental id : ******", request.params.rentId);
+    var rentId = parseInt(request.params.rentId);
+    if(rentId)
+    {
+     // console.log("rentId", rentId);
+      models.Rental.update({
+        statusArchive: true
+        },
+        {
+        where:{
+          id: rentId
+        }     
+    })
+      .then(function (updatedRentals) {
+      //  console.log("updatedRentals:", updatedRentals);
+        response.json(updatedRentals)
+      })
+      .catch(function (err) {
+        response.status(500).json({
+          status: "FAILED",
+          message: "Error updating rentals, please try again",
+          error: err.toString()
+        });
+      });
+    }
+  }
 }
-
 module.exports = UserController;

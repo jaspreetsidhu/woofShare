@@ -1,24 +1,47 @@
-    <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab">
-        <div class="row profile__active">
-            <div class="col-3">
-                <div class="profile__active__img">
-                    <img src="{{this.Dog.dataValues.photoUrl}}" />
-                </div>
-            </div>
-            <div class="col-9">
-                <div class="confirmation__selection__description">
-                    <h3><span>{{this.Dog.dataValues.name}}</span> | <span>{{this.Dog.dataValues.breed}}</span></h3>
-                    <hr />
-                    <p class="text-small">{{this.Dog.dataValues.profile}}</p>
-                </div>
-                <div class="profile__active__schedule-details">
-                    <h4 class="color-primary bold">Returned:</h4>
-                    <span id="pickedUpDate">{{this.dataValues.returnDate}}</span>
-                    <button class="btn btn-theme-primary">Leave a Review</button>
-                    <button class="btn btn-secondary">Archive</button>
-                </div>
+<div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab">
+    <div class="row profile__active">
+        <div class="col-3">
+            <div class="profile__active__img">
+                <img src="{{this.Dog.dataValues.photoUrl}}" />
             </div>
         </div>
+        <div class="col-9">
+            <div class="confirmation__selection__description">
+                <h3><span>{{this.Dog.dataValues.name}}</span> | <span>{{this.Dog.dataValues.breed}}</span></h3>
+                <hr />
+                <p class="text-small">{{this.Dog.dataValues.profile}}</p>
+            </div>
+            <div class="profile__active__schedule-details">
+                <h4 class="color-primary bold">Returned:</h4>
+                <span id="pickedUpDate">{{this.dataValues.returnDate}}</span>
+                <div class="well well-sm">
+                    <div class="text-right">
+                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a
+                            Review</a>
+                    </div>
+                    <div class="row" id="post-review-box" style="display:none;">
+                        <div class="col-md-12">
+                            <form accept-charset="UTF-8" action="/api/rate/dogs" method="post">
+                                <input id="ratings-hidden" name="dogId" type="hidden" value="{{this.Dog.id}}">
+                                <textarea class="form-control animated" cols="50" id="new-review" name="review"
+                                    placeholder="Enter your review here..." rows="5"></textarea>
+                                <div class="text-right">
+                                    <input type="radio" name="score" value="1">
+                                    <input type="radio" name="score" value="2">
+                                    <input type="radio" name="score" value="3">
+                                    <input type="radio" name="score" value="4">
+                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-
+                <button class="btn btn-secondary statusArchive" data-rentalId={{this.dataValues.id}}>Archive</button>
+            </div>
+        </div>
     </div>
+
+
+</div>
