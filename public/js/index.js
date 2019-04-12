@@ -14,10 +14,10 @@ function renderHearts() {
     return;
   } else {
     for (i = 0; i < favoriteHearts.length; i++) {
-      $("#heartOne-" + [favoriteHearts[i]]).removeClass("far");
-      $("#heartOne-" + [favoriteHearts[i]]).addClass("fas");
-      $("#heartTwo-" + [favoriteHearts[i]]).removeClass("far");
-      $("#heartTwo-" + [favoriteHearts[i]]).addClass("fas");
+      $("#heart-one-" + [favoriteHearts[i]]).removeClass("far");
+      $("#heart-one-" + [favoriteHearts[i]]).addClass("fas");
+      $("#heart-two-" + [favoriteHearts[i]]).removeClass("far");
+      $("#heart-two-" + [favoriteHearts[i]]).addClass("fas");
     }
   }
 }
@@ -28,10 +28,10 @@ renderHearts();
 $(".fa-heart").on("click", function() {
   var thisDog = $(this).data("dogid");
   if (favorites.includes(thisDog)) {
-    $("#heartOne-" + thisDog).removeClass("fas");
-    $("#heartOne-" + thisDog).addClass("far");
-    $("#heartTwo-" + thisDog).removeClass("fas");
-    $("#heartTwo-" + thisDog).addClass("far");
+    $("#heart-one-" + thisDog).removeClass("fas");
+    $("#heart-one-" + thisDog).addClass("far");
+    $("#heart-two-" + thisDog).removeClass("fas");
+    $("#heart-two-" + thisDog).addClass("far");
     let index = favorites.indexOf(thisDog);
     favorites.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(favorites));
