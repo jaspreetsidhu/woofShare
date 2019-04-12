@@ -13,7 +13,11 @@
 
        
         &--1 {
-            
+            padding: 5rem;
+            a:hover,
+            a:active {
+               color: $color-primary-light;
+            }
         }
 
         &--2 {
@@ -22,16 +26,28 @@
             font-size: 1.4rem;
             a:hover,
             a:active {
-                text-decoration: underline;
+                text-decoration: underline; 
             }
 
         }
 
         &--3 {
-            padding: 5rem;
-            a:hover,
-            a:active {
-               color: $color-primary-light;
+            h3 {
+                font-size: 2rem;
+            }
+            margin-top: 6rem;
+            padding: 0 3rem;
+            font-size: 1.4rem;
+        }
+    }
+
+    &__nav {
+        margin-top: 6rem;
+        li {
+            display: inline;
+
+            &:not(:last-child) {
+                margin-right: 2rem;
             }
         }
     }

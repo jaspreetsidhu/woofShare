@@ -793,6 +793,11 @@ h1, h2 {
   .footer__col a:visited {
     color: #fff;
     transition: all 1s; }
+  .footer__col--1 {
+    padding: 5rem; }
+    .footer__col--1 a:hover,
+    .footer__col--1 a:active {
+      color: #4a80d3; }
   .footer__col--2 {
     text-align: center;
     margin-top: 6rem;
@@ -801,10 +806,17 @@ h1, h2 {
     .footer__col--2 a:active {
       text-decoration: underline; }
   .footer__col--3 {
-    padding: 5rem; }
-    .footer__col--3 a:hover,
-    .footer__col--3 a:active {
-      color: #4a80d3; }
+    margin-top: 6rem;
+    padding: 0 3rem;
+    font-size: 1.4rem; }
+    .footer__col--3 h3 {
+      font-size: 2rem; }
+  .footer__nav {
+    margin-top: 6rem; }
+    .footer__nav li {
+      display: inline; }
+      .footer__nav li:not(:last-child) {
+        margin-right: 2rem; }
 
 .confirmation__selection__img img {
   width: 100%;
