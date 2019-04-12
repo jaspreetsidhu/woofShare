@@ -46,11 +46,11 @@ module.exports = (sequelize, DataTypes) => {
     Rental.belongsTo(models.Dog, {
       // as: 'dog',
       onDelete: "CASCADE",
-      //foreignKey: "dogId"
+      foreignKey: "dogId"
     });
     Rental.belongsTo(models.User, {
       onDelete: "CASCADE",
-      //foreignKey: "userId"
+      foreignKey: "userId"
     });
   };
   return Rental;
