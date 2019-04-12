@@ -42,7 +42,15 @@ module.exports = {
           key: 'id',
           as: 'dogId'
         }
+      },      
+      returnComplete: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
+      statusArchive: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
