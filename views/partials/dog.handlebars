@@ -1,7 +1,7 @@
 <div class="col-4 pb-5">
     <div class="gallery-card">
         <div class="gallery-card__side gallery-card__side--front">
-            <i class="far fa-heart"></i>
+            <i id="heart-one-{{this.dataValues.id}}" class="far fa-heart"></i>
             <div class="gallery-card__picture">
                 <img src="/{{this.dataValues.photoUrl}}" alt="dog+{{this.dataValues.id}}" />
             </div>
@@ -24,20 +24,26 @@
                 </div>
             </div>
         </div>
-        <div class="gallery-card__side gallery-card__side--back gallery-card__side--back-{{this.dataValues.card_color}}">
+        <div
+            class="gallery-card__side gallery-card__side--back gallery-card__side--back-{{this.dataValues.card_color}}">
             {{#if this.dataValues.available}}
-                <div class="gallery-card__cta">
-                    <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite" data-dogid="{{this.dataValues.name}}"></i>
-                    <a href="/api/dogs/{{this.dataValues.id}}" class="gallery-card__cta--profile" onClick="myFunction(event)">See Full Profile...</a>
-                    <a href="/confirmation/{{this.dataValues.id}}" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
-                        now!</a>
-                </div>
+            <div class="gallery-card__cta">
+                <i id="heart-two-{{this.dataValues.id}}" class="far fa-heart icon-xl p-5 gallery-card__cta--favorite"
+                    data-dogid="{{this.dataValues.id}}"></i>
+                <a href="/api/dogs/{{this.dataValues.id}}" class="gallery-card__cta--profile"
+                    onClick="myFunction(event)">See Full Profile...</a>
+                <a href="/confirmation/{{this.dataValues.id}}"
+                    class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserve
+                    now!</a>
+            </div>
             {{else}}
-                 <div class="gallery-card__cta">
-                    <i class="far fa-heart icon-xl p-5 gallery-card__cta--favorite" data-dogid="{{this.dataValues.name}}"></i>
-                    <a href="/api/dogs/{{this.dataValues.id}}" class="gallery-card__cta--profile" onClick="myFunction(event)">See Full Profile...</a>
-                    <a href="#" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserved</a>
-                </div>
+            <div class="gallery-card__cta">
+                <i id="heart-two-{{this.dataValues.id}}" class="far fa-heart icon-xl p-5 gallery-card__cta--favorite"
+                    data-dogid="{{this.dataValues.name}}"></i>
+                <a href="/api/dogs/{{this.dataValues.id}}" class="gallery-card__cta--profile"
+                    onClick="myFunction(event)">See Full Profile...</a>
+                <a href="#" class="btn btn-theme-red btn-lg gallery-card__cta--reserve">Reserved</a>
+            </div>
             {{/if}}
 
         </div>
@@ -50,4 +56,3 @@
     console.log('{{this.ratings}}')
     console.log(JSON.stringify('{{this.ratings}}'))
 </script>
-
