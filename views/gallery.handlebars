@@ -1,44 +1,47 @@
 <div id="gallery">
     {{> header }}
-    <div class="container mt-5">
-        <section class="gallery__controls">
-            <div class="row">
-                <div class="col-12">
-                    <div class="gallery__controls-menu">
-                    <form action="/filter" method="post">
-                        {{!-- <input type="search" name="search" placeholder="Tag Search" class="mr-4" /> --}}
-                        <select name="age" id="age" class="mr-4">
-                            <option selected="selected">--Sort By Age--</option>
-                            <option value="puppy">Puppy</option>
-                            <option value="adult">Adult</option>
-                            <option value="senior">Senior</option>
-                        </select>
-                        <select name="size" id="size" class="mr-4">
-                            <option selected="selected">--Sort By Size--</option>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                        </select>
-                        <select name="available" id="available" class="mr-4">
-                            <option selected="selected">--Sort By Availability--</option>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
-                        </select>
-                        <button class="btn btn-success btn-lg "> filter </button>
-                    </form>
-                      <button class="btn btn-warning btn-lg " onclick='window.location.replace("/gallery")'>
-                             Clear</button>
+    <div class="paw-bg">
+        <div class="container mt-5">
+            <section class="gallery__controls">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="gallery__controls-menu">
+                            <form action="/filter" method="post">
+                                <select name="age" id="age" class="filter-css filter-css-select">
+                                    <option selected="selected">--Sort By Age--&nbsp;</option>
+                                    <option value="puppy">Puppy</option>
+                                    <option value="adult">Adult</option>
+                                    <option value="senior">Senior</option>
+                                </select>
+                                <select name="size" id="size" class="filter-css filter-css-select">
+                                    <option selected="selected">--Sort By Size--&nbsp;</option>
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                                <select name="available" id="available" class="filter-css filter-css-select">
+                                    <option selected="selected">--Sort By Availability--&nbsp;</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                                <button class="filter-css filter-css-btn filter-css-btn-filter">Filter</button>
+                                <button class="filter-css filter-css-btn filter-css-btn-clear"
+                                    onclick='window.location.replace("/gallery")'>
+                                    Clear</button>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="gallery__table mt-5">
-            <div class="row galler__table__row">
-                {{#each dogs}}
+            </section>
+            <section class="gallery__table mt-5">
+                <div class="row galler__table__row">
+                    {{#each dogs}}
                     {{> dog}}
-                {{/each}}
-            </div>
-        </section>
+                    {{/each}}
+                </div>
+            </section>
+        </div>
     </div>
     <!-- MODAL -->
     <!-- Large modal -->
@@ -59,20 +62,20 @@
         e.preventDefault()
         var link = e.target.href;
         fetch(link)
-        .then(function (res) {
-            return res.json();
-        }).then(function (data) {
-            var { dog } = data
-            if (!dog.name) {
-                $('.notification').html('Dog is not found')
-                $('.notification').show()
-            } else {
-                var reviews = ''
-                var score = 0
-                if (dog.ratings.length) {
-                    for (i = 0; i < dog.ratings.length; i++) {
-                        score += dog.ratings[i].score
-                        reviews += `
+            .then(function (res) {
+                return res.json();
+            }).then(function (data) {
+                var { dog } = data
+                if (!dog.name) {
+                    $('.notification').html('Dog is not found')
+                    $('.notification').show()
+                } else {
+                    var reviews = ''
+                    var score = 0
+                    if (dog.ratings.length) {
+                        for (i = 0; i < dog.ratings.length; i++) {
+                            score += dog.ratings[i].score
+                            reviews += `
                         <div class="gallery__user-review">
                             <div class="row">
                                 <div class="col-3 pr-0 text-center">
@@ -86,13 +89,13 @@
                                 </div>
                             </div>
                         </div>`
+                        }
+                        score = Math.round(score / dog.ratings.length)
+                    } else {
+                        reviews = 'no user reviews'
                     }
-                    score = Math.round(score/dog.ratings.length)
-                } else {
-                    reviews = 'no user reviews'
-                }
-                
-                var html = `
+
+                    var html = `
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 gallery-card__modal__left-col">
@@ -106,7 +109,7 @@
                                         <img src="images/rating_${score}.svg" width="100px" class="pb-2" />
                                     </div>
                                     <div class="col-6 gallery-card__details__icons--schedule">
-                                        <h3>Availability: ${dog.available ? 'yes' : 'no' }</h3>
+                                        <h3>Availability: ${dog.available ? 'yes' : 'no'}</h3>
                                         <i class="fas fa-calendar-alt"></i> M T W R F S U
                                     </div>
                                 </div>
@@ -124,10 +127,10 @@
                     <button type="button" class="btn btn-secondary btn-med" data-dismiss="modal">Cancel</button>
                 </div>
                 `;
-                document.getElementById("inserted-modal-content").innerHTML = html;
-                $('.gallery-card__modal').modal('show')
-            }
-        });
+                    document.getElementById("inserted-modal-content").innerHTML = html;
+                    $('.gallery-card__modal').modal('show')
+                }
+            });
     }
 
 </script>
