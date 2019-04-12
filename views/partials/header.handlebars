@@ -12,28 +12,30 @@
         <nav class="nav float-right">
           <ul>
             <li class="pr-5"><a href="/">Home</a></li>
-            <li class="pr-5"><a href="/gallery">Gallery</a></li>
-            <li class="pr-5"><a href="/user-profile">Account</a></li>
+            <li id="gallery-header-link" class="pr-5"><a href="/gallery">Gallery</a></li>
+            <li id="gallery-user-link" class="pr-5"><a href="/user-profile">Account</a></li>
             <li>
               {{!-- <a href="/signUp" class="btn btn-theme-primary">Get Started</a> --}}
-             <div class="dropdown header__user-details header__user-details__toggle btn-login-primary" id="dropDownUser" >
-                            <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
-                                <span class="d-none d-lg-inline d-xl-inline" id="userProfileName">Username</span>
-                            </a>
-                            <div class="dropdown-menu header__user-details__dropdown" aria-labelledby="dropdownMenuLink">
-                               
-                                <a class="dropdown-item" id="logOutLink" href="#">Logout</a>
-                            </div>
-                        </div>
+              <div class="dropdown header__user-details header__user-details__toggle btn-login-primary"
+                id="dropDownUser">
+                <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="https://via.placeholder.com/50x50" alt="Logo" id="userProfilePic">
+                  <span class="d-none d-lg-inline d-xl-inline" id="userProfileName">Username</span>
+                </a>
+                <div class="dropdown-menu header__user-details__dropdown" aria-labelledby="dropdownMenuLink">
+
+                  <a class="dropdown-item" id="logOutLink" href="#">Logout</a>
+                </div>
+              </div>
             </li>
-          
-            <li><a href="#!" class="btn btn-theme-secondary" data-toggle="modal" data-target="#loginModal" id="indexloginLink">Login</a>
+
+            <li><a href="#!" class="btn btn-theme-secondary" data-toggle="modal" data-target="#loginModal"
+                id="indexloginLink">Login</a>
             </li>
           </ul>
         </nav>
-         
+
       </div>
     </div>
   </header>
@@ -53,7 +55,8 @@
         </button>
       </div>
       <div class="modal-body text-center">
-        <button id="btnGoogleLogin" class="btn btn-theme-red btn-lg m-5"><i class="fab fa-google pr-3"></i>Login with Google</button>
+        <button id="btnGoogleLogin" class="btn btn-theme-red btn-lg m-5"><i class="fab fa-google pr-3"></i>Login with
+          Google</button>
         <div class="text-left m-5">
           <p><span class="color-red-dark bold">Note:</span> We are currently in beta testing. As such, we are only
             providing login authentication via Google. If
@@ -64,4 +67,3 @@
     </div>
   </div>
 </div>
-
