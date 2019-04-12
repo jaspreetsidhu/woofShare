@@ -47,7 +47,7 @@ function confirmTos() {
     $("#tos").click();
   }
 }
-confirmTos();
+
 $("#tos").change(function() {
   if ($(this).is(":checked")) {
     $("#confirmReservation").removeAttr("disabled");
