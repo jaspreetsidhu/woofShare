@@ -96,7 +96,7 @@ class UserController {
       .then(function(userRecord) {
         //console.log("User Details:", userRecord);
         if (userRecord) {
-          console.log("userdetails", userRecord.dataValues.id);
+          // console.log("userdetails", userRecord.dataValues.id);
           //  var userRentalDetail= getDogRentals(userRecord.dataValues.id,response);
           // console.log("DogRentals", res);
           //,userRentDetails: res
@@ -153,7 +153,7 @@ class UserController {
     var rentId = parseInt(request.params.rentId);
     if(rentId)
     {
-      console.log("rentId", rentId);
+      //console.log("rentId", rentId);
       models.Rental.update({
         returnComplete: true
         },
