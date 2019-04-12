@@ -25,7 +25,7 @@ class UserController {
         },
         attributes: ["email", "userName", "photo", "id"]
       })
-        .then(function (user) {
+        .then(function(user) {
           if (user) {
             var userDetails = {
               id: user.dataValues.id,
@@ -38,7 +38,7 @@ class UserController {
             response.render("signUp", { data: null });
           }
         })
-        .catch(function (err) {
+        .catch(function(err) {
           response.render("signUp", { data: null });
         });
     } else {
@@ -58,7 +58,7 @@ class UserController {
         photo: request.user.photos[0].value
       }
     })
-      .spread(function (user, created) {
+      .spread(function(user, created) {
         if (!created) {
           var userDetails = {
             id: user.dataValues.id,
@@ -77,7 +77,7 @@ class UserController {
           response.send(userDetails);
         }
       })
-      .catch(function (err) {
+      .catch(function(err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error saving user, please try again",
@@ -93,7 +93,7 @@ class UserController {
         email: request.user.emails[0].value
       }
     })
-      .then(function (userRecord) {
+      .then(function(userRecord) {
         console.log("User Details:", userRecord);
         if (userRecord) {
           console.log("userdetails", userRecord.dataValues.id);
@@ -120,7 +120,7 @@ class UserController {
               userId: userRecord.dataValues.id
             }
           })
-            .then(function (dogRentals) {
+            .then(function(dogRentals) {
               console.log("dogRentals", dogRentals);
               //return dogRentals;
               // response.render("userProfile", { user: userRecord });
@@ -129,7 +129,7 @@ class UserController {
                 rentals: dogRentals
               });
             })
-            .catch(function (err) {
+            .catch(function(err) {
               response.status(500).json({
                 status: "FAILED",
                 message: "Error retrieving Rental, please try again",
@@ -138,7 +138,7 @@ class UserController {
             });
         }
       })
-      .catch(function (err) {
+      .catch(function(err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error retrieving user, please try again",

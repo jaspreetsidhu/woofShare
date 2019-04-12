@@ -7,6 +7,8 @@ $(document).ready(function() {
   var tokenAvailable = false;
   $("#indexloginLink").hide();
   $("#dropDownUser").hide();
+  $("#gallery-header-link").hide();
+  $("#gallery-user-link").hide();
   $.get("/api/checkToken", function() {
     console.log("success");
   })
@@ -38,6 +40,8 @@ $(document).ready(function() {
 
       $("#dropDownUser").hide();
     } else {
+      $("#gallery-header-link").show();
+      $("#gallery-user-link").show();
       console.log("logged in");
       console.log("username:", userDetail.name);
       $("#indexloginLink").hide();
