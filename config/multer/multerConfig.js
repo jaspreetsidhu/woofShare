@@ -1,3 +1,5 @@
+//allows you to upload dog image for create dog functionality
+
 var multer = require("multer");
 var path = require("path");
 
