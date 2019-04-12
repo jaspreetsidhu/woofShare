@@ -131,7 +131,8 @@ h1, h2 {
 
 .paw-bg {
   background-image: url("../../images/paw-bg.jpg");
-  background-repeat: repeat; }
+  background-repeat: repeat;
+  min-height: 75vh; }
 
 .bg-video {
   position: absolute;
@@ -760,9 +761,12 @@ h1, h2 {
     .header__user-details img {
       width: 2rem;
       margin-bottom: .33rem; }
-    .header__user-details__toggle a {
-      color: white !important;
-      text-transform: none; }
+    .header__user-details__toggle {
+      padding: .6rem;
+      border-radius: 4px; }
+      .header__user-details__toggle a {
+        color: white !important;
+        text-transform: none; }
     .header__user-details__dropdown a {
       color: #295ba7 !important;
       text-transform: uppercase; }
@@ -818,16 +822,18 @@ h1, h2 {
       .footer__nav li:not(:last-child) {
         margin-right: 2rem; }
 
-.confirmation__selection__img img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 4px; }
-
-.confirmation__selection__rating {
-  text-align: center; }
-  .confirmation__selection__rating img {
-    width: 70%;
-    margin: 1rem 0; }
+.confirmation__selection {
+  padding: 2rem;
+  background-color: #fff; }
+  .confirmation__selection__img img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px; }
+  .confirmation__selection__rating {
+    text-align: center; }
+    .confirmation__selection__rating img {
+      width: 70%;
+      margin: 1rem 0; }
 
 .confirmation__tos__content {
   padding: 2rem 4rem 4rem; }

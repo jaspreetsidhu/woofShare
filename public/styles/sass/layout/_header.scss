@@ -42,9 +42,14 @@
             margin-bottom: .33rem;
         }
 
-        &__toggle a {
-            color: white !important;
-            text-transform: none;
+        &__toggle {
+            padding: .6rem;
+            border-radius: 4px;
+        
+            a {
+                color: white !important;
+                text-transform: none;            
+            }
         }
 
         &__dropdown a {
