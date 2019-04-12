@@ -586,6 +586,10 @@ h1, h2 {
     font-size: 2rem;
     backface-visibility: hidden; }
 
+@media screen and (max-width: 800px) {
+  .feature-box {
+    margin-bottom: 2rem; } }
+
 .form__group:not(:last-child) {
   margin-bottom: 2rem; }
 
@@ -789,6 +793,22 @@ h1, h2 {
           font-size: 1.2rem;
           outline: none; }
 
+@media screen and (max-width: 800px) {
+  .header__logo {
+    padding: .5rem 0rem;
+    position: relative;
+    cursor: pointer; }
+    .header__logo img {
+      height: 5rem; }
+  .header__logo-text {
+    display: none; }
+  .header__user-details {
+    max-width: 15rem;
+    display: inline; }
+  .nav {
+    margin-top: 1.5rem;
+    display: inline; } }
+
 .footer {
   background-color: #295ba7;
   color: #fff;
@@ -881,6 +901,15 @@ h1, h2 {
         z-index: 20; }
     .section__about__composition:hover .section__about__composition__photo:not(:hover) {
       transform: scale(0.95); }
+
+@media screen and (max-width: 800px) {
+  .section__about {
+    padding: 5rem 0; }
+    .section__about__what-is {
+      padding: 0;
+      margin: auto; }
+      .section__about__what-is__desc {
+        width: 100%; } }
 
 .signUp {
   min-height: 45rem; }
