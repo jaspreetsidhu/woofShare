@@ -225,6 +225,8 @@ class DogController {
     var { pickUpDate, returnDate, dogId } = request.body
     pickUpDate = moment(pickUpDate, "MM-DD-YYYY")
     returnDate = moment(returnDate, "MM-DD-YYYY")
+    console.log("pickUpDate",pickUpDate);
+    console.log("returnDate",returnDate);
     var duration = moment.duration(returnDate.diff(pickUpDate));
     var days = duration.asDays();
     models.Rental.create({
