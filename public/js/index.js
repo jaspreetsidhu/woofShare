@@ -7,30 +7,31 @@ $(".header").on("click", function() {
 // get favorites from local storage or empty array
 var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+// Function to render hearts on favorited/unfavorited dogs.
 function renderHearts() {
   var favoriteHearts = JSON.parse(localStorage.getItem("favorites"));
   if (localStorage.getItem("favorites") === null) {
     return;
   } else {
     for (i = 0; i < favoriteHearts.length; i++) {
-      $("#heartOne" + [favoriteHearts[i]]).removeClass("far");
-      $("#heartOne" + [favoriteHearts[i]]).addClass("fas");
-      $("#heartTwo" + [favoriteHearts[i]]).removeClass("far");
-      $("#heartTwo" + [favoriteHearts[i]]).addClass("fas");
+      $("#heartOne-" + [favoriteHearts[i]]).removeClass("far");
+      $("#heartOne-" + [favoriteHearts[i]]).addClass("fas");
+      $("#heartTwo-" + [favoriteHearts[i]]).removeClass("far");
+      $("#heartTwo-" + [favoriteHearts[i]]).addClass("fas");
     }
   }
-
 }
 
 renderHearts();
 
+// Favorites feature which highlights hearts on favorited dogs and saves that dog to localStorage.
 $(".fa-heart").on("click", function() {
   var thisDog = $(this).data("dogid");
   if (favorites.includes(thisDog)) {
-    $("#heartOne" + thisDog).removeClass("fas");
-    $("#heartOne" + thisDog).addClass("far");
-    $("#heartTwo" + thisDog).removeClass("fas");
-    $("#heartTwo" + thisDog).addClass("far");
+    $("#heartOne-" + thisDog).removeClass("fas");
+    $("#heartOne-" + thisDog).addClass("far");
+    $("#heartTwo-" + thisDog).removeClass("fas");
+    $("#heartTwo-" + thisDog).addClass("far");
     let index = favorites.indexOf(thisDog);
     favorites.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(favorites));
