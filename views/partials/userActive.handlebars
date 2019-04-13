@@ -15,9 +15,9 @@
                 </div>
                 <div class="profile__active__schedule-details">
                     <h4 class="color-primary bold">Picked Up:</h4>
-                    <span id="pickedUpDate">{{this.dataValues.pickUpDate}}</span>
+                    <span id="pickedUpDate">{{format_date this.dataValues.pickUpDate}}</span>
                     <h4 class="color-primary bold">Return By:</h4>
-                    <span id="returnDate">{{this.dataValues.returnDate}}</span>
+                    <span id="returnDate">{{format_date this.dataValues.returnDate}}</span>
                     <button class="btn btn-theme-red completeReturn" data-rentalId={{this.dataValues.id}}>Mark Complete</button>
                 </div>
             </div>
