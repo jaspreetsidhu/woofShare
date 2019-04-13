@@ -73,7 +73,7 @@ $("#confirmReservation").on("click", function() {
   $.post("/api/dogs/reserve", reserveDetails, function(data) {
     if (data) {
       console.log("successful reserve");
-      window.location.replace("/gallery");
+      window.location.replace("/user-profile");
     } else {
       console.log("Fail to obtain data userDetails");
     }
