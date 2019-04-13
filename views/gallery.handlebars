@@ -2,27 +2,27 @@
     {{> header }}
     <div class="paw-bg">
         <div class="container mt-5">
-            <section class="gallery__controls">
+            <section class="gallery__controls d-none d-sm-none d-med-block d-lg-block d-xl-block">
                 <div class="row">
                     <div class="col-12">
                         <div class="gallery__controls-menu">
                             <form action="/filter" method="post">
                                 <select name="age" id="age" class="filter-css filter-css-select">
-                                    <option selected="selected">--Sort By Age--&nbsp;</option>
+                                    <option disabled selected="selected">--Sort By Age--&nbsp;</option>
                                     <option value="puppy">Puppy</option>
                                     <option value="adult">Adult</option>
                                     <option value="senior">Senior</option>
                                 </select>
                                 <select name="size" id="size" class="filter-css filter-css-select">
-                                    <option selected="selected">--Sort By Size--&nbsp;</option>
+                                    <option disabled selected="selected">--Sort By Size--&nbsp;</option>
                                     <option value="small">Small</option>
                                     <option value="medium">Medium</option>
                                     <option value="large">Large</option>
                                 </select>
                                 <select name="available" id="available" class="filter-css filter-css-select">
-                                    <option selected="selected">--Sort By Availability--&nbsp;</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option disabled selected="selected">--Sort By Availability--&nbsp;</option>
+                                    <option value="true">Available</option>
+                                    <option value="false">Currently Rented</option>
                                 </select>
                                 <button class="filter-css filter-css-btn filter-css-btn-filter">Filter</button>
                                 <button class="filter-css filter-css-btn filter-css-btn-clear"
@@ -98,7 +98,7 @@
                     var html = `
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6 gallery-card__modal__left-col">
+                        <div class="col-xl-6 col-lg-6 col-med-12 col-sm-12 col-12 gallery-card__modal__left-col">
                             <img src="/${dog.photoUrl}" alt="dog-1" class="gallery-card__modal__left-col__img" />
                             <h1 class="gallery-card__modal__left-col__heading">${dog.name}</h1>
                             <p>${dog.profile}</p>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6  gallery-card__modal__right-col">
+                        <div class="col-xl-6 col-lg-6 col-med-12 col-sm-12 col-12  gallery-card__modal__right-col">
                             <h2 class="my-3 gallery-card__modal__right-col__heading">User Reviews</h2>
                             ${reviews}
                         </div>

@@ -21,10 +21,10 @@ class UserController {
     if (request.user) {
       models.User.findOne({
         where: {
-          email: request.user.emails[0].value
-        },
-        attributes: ["email", "userName", "photo", "id"]
-      })
+            email: request.user.emails[0].value
+          },
+          attributes: ["email", "userName", "photo", "id"]
+        })
         .then(function (user) {
           if (user) {
             var userDetails = {
@@ -35,11 +35,15 @@ class UserController {
             request.session.user = userDetails;
             response.render("signUp", userDetails);
           } else {
-            response.render("signUp", { data: null });
+            response.render("signUp", {
+              data: null
+            });
           }
         })
         .catch(function (err) {
-          response.render("signUp", { data: null });
+          response.render("signUp", {
+            data: null
+          });
         });
     } else {
       response.redirect("/");
@@ -48,16 +52,16 @@ class UserController {
   // Creat new user
   static createUser(request, response) {
     models.User.findOrCreate({
-      where: {
-        email: request.user.emails[0].value
-      },
-      defaults: {
-        address: request.body.address,
-        email: request.user.emails[0].value,
-        userName: request.body.name,
-        photo: request.user.photos[0].value
-      }
-    })
+        where: {
+          email: request.user.emails[0].value
+        },
+        defaults: {
+          address: request.body.address,
+          email: request.user.emails[0].value,
+          userName: request.body.name,
+          photo: request.user.photos[0].value
+        }
+      })
       .spread(function (user, created) {
         if (!created) {
           var userDetails = {
@@ -88,11 +92,11 @@ class UserController {
   //get user along with rental details
   static getUser(request, response) {
     models.User.findOne({
-      attributes: ["id", "userName", "email", "photo"],
-      where: {
-        email: request.user.emails[0].value
-      }
-    })
+        attributes: ["id", "userName", "email", "photo"],
+        where: {
+          email: request.user.emails[0].value
+        }
+      })
       .then(function (userRecord) {
         //console.log("User Details:", userRecord);
         if (userRecord) {
@@ -101,26 +105,24 @@ class UserController {
           // console.log("DogRentals", res);
           //,userRentDetails: res
           models.Rental.findAll({
-            attributes: [
-              "id",
-              "returnDate",
-              "pickUpDate",
-              "userId",
-              "dogId",
-              "returnComplete",
-              "statusArchive"
-            ],
-            include: [
-              {
+              attributes: [
+                "id",
+                "returnDate",
+                "pickUpDate",
+                "userId",
+                "dogId",
+                "returnComplete",
+                "statusArchive"
+              ],
+              include: [{
                 model: models.Dog,
                 as: "Dog",
                 attributes: ["id", "name", "breed", "profile", "photoUrl"]
+              }],
+              where: {
+                userId: userRecord.dataValues.id
               }
-            ],
-            where: {
-              userId: userRecord.dataValues.id
-            }
-          })
+            })
             .then(function (dogRentals) {
               // console.log("dogRentals", dogRentals);
               //return dogRentals;
@@ -154,9 +156,8 @@ class UserController {
     if (rentId) {
       //console.log("rentId", rentId);
       models.Rental.update({
-        returnComplete: true
-      },
-        {
+          returnComplete: true
+        }, {
           where: {
             id: rentId
           }
@@ -181,9 +182,8 @@ class UserController {
     if (rentId) {
       // console.log("rentId", rentId);
       models.Rental.update({
-        statusArchive: true
-      },
-        {
+          statusArchive: true
+        }, {
           where: {
             id: rentId
           }

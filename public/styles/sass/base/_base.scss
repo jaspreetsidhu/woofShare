@@ -11,6 +11,14 @@ html {
 body {
     box-sizing: border-box; 
 }
+a:link,
+a:visited {
+    color: $color-primary;
+}
+a:hover,
+a:active {
+    color: $color-primary-light;
+}
 
 ul {
     list-style-type: none !important;

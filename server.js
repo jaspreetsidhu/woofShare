@@ -9,12 +9,21 @@ var exphbs = require("express-handlebars");
 var flash = require("connect-flash");
 var helpers = require("handlebars-helpers")();
 
+var hbsHelpers = exphbs.create({
+  helpers: require("./public/js/helpers.js").helpers,
+  defaultLayout: 'main',
+  extname: '.handlebars'
+});
+ 
+
 app.use(
   bodyParser.urlencoded({
     extended: true
   })
 );
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine('.handlebars', hbsHelpers.engine);
+
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));

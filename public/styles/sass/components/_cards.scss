@@ -119,6 +119,11 @@
         position: relative;
         width: 100%;
         height: 100%;
+
+        a:link, 
+        a:visited {
+            color: $color-white;
+        }
         
         &--favorite {
             position: absolute;

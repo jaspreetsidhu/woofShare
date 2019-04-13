@@ -42,9 +42,14 @@
             margin-bottom: .33rem;
         }
 
-        &__toggle a {
-            color: white !important;
-            text-transform: none;
+        &__toggle {
+            padding: .6rem;
+            border-radius: 4px;
+        
+            a {
+                color: white !important;
+                text-transform: none;            
+            }
         }
 
         &__dropdown a {
@@ -84,3 +89,36 @@
     }
 
 }
+
+@media screen and (max-width: 800px) {
+
+    .header {
+
+        &__logo {
+            padding: .5rem 0rem; 
+            position: relative;
+            cursor: pointer;
+                
+            img {
+                height: 5rem;
+            }
+        }
+    
+    
+        &__logo-text {      
+            display: none;
+        }
+
+        &__user-details {
+
+            max-width: 15rem;
+            display: inline;
+        }
+
+    }
+
+    .nav {    
+        margin-top: 1.5rem;
+        display: inline;
+    }
+ }

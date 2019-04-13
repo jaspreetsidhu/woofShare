@@ -39,18 +39,33 @@ $(document).ready(function() {
       }
 
       $("#dropDownUser").hide();
+      setHomeButtons(true);
     } else {
       $("#gallery-header-link").show();
       $("#gallery-user-link").show();
-      console.log("logged in");
-      console.log("username:", userDetail.name);
       $("#indexloginLink").hide();
       $("#dropDownUser").show();
       $("#userProfileName").text(userDetail.name);
       $("#userProfilePic").attr("src", userDetail.photo);
+      setHomeButtons(false);
     }
   }
-
+  // function to change home page buttons
+  function setHomeButtons(bool){
+    var borrower1 =  $("#borrower1");
+    var borrower2 =  $("#borrower2");
+    if(bool === true) {
+      borrower1.attr("href", "#!");
+      borrower1.attr("data-toggle", "modal");
+      borrower1.attr("data-target", "#loginModal");
+      borrower2.attr("href", "#!");
+      borrower2.attr("data-toggle", "modal");
+      borrower2.attr("data-target", "#loginModal");
+    } else {
+      borrower1.attr("href", "/gallery");
+      borrower2.attr("href", "/gallery");
+    }
+  }
   // A function to handle what happens when the form is submitted to create a new Author
   function handleAuthFormSubmit(event) {
     event.preventDefault();

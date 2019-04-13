@@ -1,6 +1,9 @@
 .confirmation {
 
     &__selection {
+
+        padding: 2rem;
+        background-color: $color-white;
         
         &__img img {
             width: 100%;

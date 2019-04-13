@@ -1,9 +1,10 @@
 <div id="userProfile">
     {{> header }}
+    <div class="paw-bg">
     <div class="container mt-5">
         <section class="profile" style="min-height: 400px">
             <div class="row">
-                <div class="col-3 profile__left-col">
+                <div class="col-xl-3 col-lg-3 col-med-12 col-sm-12 col-12 profile__left-col">
                     <div class="profile__left-col__img">
                         <img src="{{this.user.dataValues.photo}}" />
                         <h3>{{this.user.dataValues.userName}}</h3>
@@ -25,7 +26,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-xl-9 col-lg-9 col-med-12 col-sm-12 col-12">
                     <div class="tab-content" id="nav-tabContent">
                         {{!-- {{#each rentals }}
                         {{#unless returnComplete}}
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </section>
+    </div>
     </div>
 </div>
 {{> footer }}
