@@ -25,7 +25,7 @@ class UserController {
         },
         attributes: ["email", "userName", "photo", "id"]
       })
-        .then(function(user) {
+        .then(function (user) {
           if (user) {
             var userDetails = {
               id: user.dataValues.id,
@@ -38,14 +38,14 @@ class UserController {
             response.render("signUp", { data: null });
           }
         })
-        .catch(function(err) {
+        .catch(function (err) {
           response.render("signUp", { data: null });
         });
     } else {
       response.redirect("/");
     }
   }
-
+  // Creat new user
   static createUser(request, response) {
     models.User.findOrCreate({
       where: {
@@ -58,7 +58,7 @@ class UserController {
         photo: request.user.photos[0].value
       }
     })
-      .spread(function(user, created) {
+      .spread(function (user, created) {
         if (!created) {
           var userDetails = {
             id: user.dataValues.id,
@@ -77,7 +77,7 @@ class UserController {
           response.send(userDetails);
         }
       })
-      .catch(function(err) {
+      .catch(function (err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error saving user, please try again",
@@ -93,7 +93,7 @@ class UserController {
         email: request.user.emails[0].value
       }
     })
-      .then(function(userRecord) {
+      .then(function (userRecord) {
         //console.log("User Details:", userRecord);
         if (userRecord) {
           // console.log("userdetails", userRecord.dataValues.id);
@@ -121,8 +121,8 @@ class UserController {
               userId: userRecord.dataValues.id
             }
           })
-            .then(function(dogRentals) {
-             // console.log("dogRentals", dogRentals);
+            .then(function (dogRentals) {
+              // console.log("dogRentals", dogRentals);
               //return dogRentals;
               // response.render("userProfile", { user: userRecord });
               response.render("userProfile", {
@@ -130,7 +130,7 @@ class UserController {
                 rentals: dogRentals
               });
             })
-            .catch(function(err) {
+            .catch(function (err) {
               response.status(500).json({
                 status: "FAILED",
                 message: "Error retrieving Rental, please try again",
@@ -139,7 +139,7 @@ class UserController {
             });
         }
       })
-      .catch(function(err) {
+      .catch(function (err) {
         response.status(500).json({
           status: "FAILED",
           message: "Error retrieving user, please try again",
@@ -151,57 +151,104 @@ class UserController {
   static updateDogRentals(request, response) {
     //console.log("rental id : ******", request.params.rentId);
     var rentId = parseInt(request.params.rentId);
-    if(rentId)
-    {
+    if (rentId) {
       //console.log("rentId", rentId);
       models.Rental.update({
         returnComplete: true
-        },
+      },
         {
-        where:{
-          id: rentId
-        }     
-    })
-      .then(function (updatedRentals) {
-       // console.log("updatedRentals:", updatedRentals);
-        response.json(updatedRentals)
-      })
-      .catch(function (err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error updating rentals, please try again",
-          error: err.toString()
+          where: {
+            id: rentId
+          }
+        })
+        .then(function (updatedRentals) {
+          // console.log("updatedRentals:", updatedRentals);
+          response.json(updatedRentals)
+        })
+        .catch(function (err) {
+          response.status(500).json({
+            status: "FAILED",
+            message: "Error updating rentals, please try again",
+            error: err.toString()
+          });
         });
-      });
     }
   }
-   //update the rental return date along with status flags
-   static updateDogArchiveRentals(request, response) {
+  //update the rental return date along with status flags
+  static updateDogArchiveRentals(request, response) {
     //console.log("rental id : ******", request.params.rentId);
     var rentId = parseInt(request.params.rentId);
-    if(rentId)
-    {
-     // console.log("rentId", rentId);
+    if (rentId) {
+      // console.log("rentId", rentId);
       models.Rental.update({
         statusArchive: true
-        },
+      },
         {
-        where:{
-          id: rentId
-        }     
-    })
-      .then(function (updatedRentals) {
-      //  console.log("updatedRentals:", updatedRentals);
-        response.json(updatedRentals)
-      })
-      .catch(function (err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error updating rentals, please try again",
-          error: err.toString()
+          where: {
+            id: rentId
+          }
+        })
+        .then(function (updatedRentals) {
+          //  console.log("updatedRentals:", updatedRentals);
+          response.json(updatedRentals)
+        })
+        .catch(function (err) {
+          response.status(500).json({
+            status: "FAILED",
+            message: "Error updating rentals, please try again",
+            error: err.toString()
+          });
         });
-      });
     }
   }
-}
+
+  //Get Dog Rating By User
+  static getDogRatingByUser(request, response) {
+    console.log("userId:",request.params.userId);
+    var userId = parseInt(request.params.userId);
+    if(isNaN(userId)) {
+      return response.status(400).json({
+        status: 'Failed',
+        message: 'User Id must be a number'
+      })
+    }
+    
+    models.User.findOne({
+      where: {
+        userId:userId 
+      },
+      include: [{
+        model: models.Rating,
+        as: 'ratings',
+        attributes: ['review', 'score', 'userId', 'dogId'],
+        include: [{
+          model: models.Dog,
+          as: 'dog',
+          attributes: ['dogName', 'photo'],
+        }]
+      }],
+    })
+    .then( function(singleUser){
+      if(singleUser){
+        console.log(singleUser);
+        return response.status(200).json({
+          User: singleUser.dataValues
+        })
+      } else { 
+        return response.status(404).json({
+          status: 'FAILED',
+          message: 'Could not find user',
+          dog: []
+        })
+      }
+    })
+    .catch( function(error){
+      return response.status(500).json({
+        status: 'FAILED',
+        message: 'Error processing request, please try again',
+        Error: error.toString()
+      })
+    })
+  }
+ }
 module.exports = UserController;
