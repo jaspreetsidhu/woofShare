@@ -38,12 +38,12 @@ class RatingController {
           response.render("rateDog", { dog });
         } else {
           request.flash("info", "Could not find dog");
-          response.redirect("/gallery");
+          response.redirect("/user-profile");
         }
       })
       .catch(function(err) {
         request.flash("info", "An error occured");
-        response.redirect("/gallery");
+        response.redirect("/user-profile");
       });
   }
 
@@ -72,7 +72,7 @@ class RatingController {
           })
             .then(function(ratedDog) {
               request.flash("info", "Dog has been rated");
-              response.redirect("/gallery");
+              response.redirect("/user-profile");
             })
             .catch(function(err) {
               request.flash("info", "Could not rate, please try again");
@@ -85,7 +85,7 @@ class RatingController {
       })
       .catch(function(error) {
         request.flash("info", "An error occured");
-        response.redirect("/gallery");
+        response.redirect("/user-profile");
       });
   }
 }
