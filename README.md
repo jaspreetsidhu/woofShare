@@ -1,6 +1,6 @@
 # WoofShare
 
-![landing](public\images\landing.PNG)
+![landing](https://i.imgur.com/KAbv4da.jpg)
 
 ## Deployed app
 
@@ -25,25 +25,13 @@ To use this app:
 
 Visit us on [Twitter](https://twitter.com/woofshare) and [Facebook](https://www.facebook.com/WoofShare/?modal=admin_todo_tour).
 
-## Build Status
-
-This application utilizes Travis CI which automatically builds and tests code changes, providing immediate feedback on the success of the change.
-
-Travis CI clones the repository into a virtual environment, and carries out a series of tasks to build and test code.
-
-If one or more of those tasks fails, the build is considered broken. If none of the tasks fail, the build is considered passed, and Travis CI deploys to the application host.
-
 ## Code Style
 
 Developers of WoofShare took advantage of tools to help create code that is clean, consistent and easy to read including:
 
-- chai
-- chai-http
-- cross-env
 - slint
 - eslint-config-prettier
 - eslint-plugin-prettier
-- mocha
 - prettier
 
 ## Technologies
@@ -56,9 +44,11 @@ Developers of WoofShare took advantage of tools to help create code that is clea
 - MVC Paradigm folder structure
 - API keys protected in Node with environment variables
 - Handlebars - Server-Side Templating
-- Google User Authentication - Passport
+- Google User Authentication via Passport.js
 - Google API external autocomplete
 - Migration strategy – seeds/schema files
+- Custom Handlebar Helpers
+- Multer to upload client files
 
 ### Application Dependencies
 
