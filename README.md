@@ -29,8 +29,7 @@ Visit us on [Twitter](https://twitter.com/woofshare) and [Facebook](https://www.
 
 Developers of WoofShare took advantage of tools to help create code that is clean, consistent and easy to read including:
 
-- slint
-- eslint-config-prettier
+- eslint
 - eslint-plugin-prettier
 - prettier
 
