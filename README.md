@@ -4,7 +4,7 @@
 
 ## Deployed app
 
-Check out the app [here[https://polar-basin-98786.herokuapp.com/]
+Check out the app [here](https://polar-basin-98786.herokuapp.com/).
 
 ## Description
 
@@ -23,7 +23,7 @@ To use this app:
 
 ## Social Media
 
-Visit us on [Twitter[https://twitter.com/woofshare] and [Facebook[https://www.facebook.com/WoofShare/?modal=admin_todo_tour].
+Visit us on [Twitter](https://twitter.com/woofshare) and [Facebook](https://www.facebook.com/WoofShare/?modal=admin_todo_tour).
 
 ## Build Status
 
@@ -91,11 +91,11 @@ Developers of WoofShare took advantage of tools to help create code that is clea
 
 WoofShare Development Team:
 
-- [Trent Davis[https://github.com/trentdavis78]
-- [Chandni Patel[https://github.com/chandnibpatel]
-- [Jaspreet Sidhu[https://github.com/jaspreetsidhu]
-- [Zach Selindh[https://github.com/ZachSelindh]
-- [Penny Arnold[https://github.com/PennyArnold]
+- [Trent Davis](https://github.com/trentdavis78)
+- [Chandni Patel](https://github.com/chandnibpatel)
+- [Jaspreet Sidhu](https://github.com/jaspreetsidhu)
+- [Zach Selindh](https://github.com/ZachSelindh)
+- [Penny Arnold](https://github.com/PennyArnold)
 
 ## License
 
