@@ -25,6 +25,21 @@ To use this app:
 
 Visit us on [Twitter](https://twitter.com/woofshare) and [Facebook](https://www.facebook.com/WoofShare/?modal=admin_todo_tour).
 
+##Installing
+If you would like to run the application locally:
+
+Clone this repository to your local machine with git clone <repo-url>.
+Install NPM dependencies by running npm install in the project directory.
+Open config/config.json and update the development password to your local mySQL password
+Open a SQL IDE like MySQL Workbench
+Run CREATE DATABASE dog_db;
+Ensure that you are in the root project directory
+Run npm run migrate
+Run nom run seed (seeds sample files to database)
+Then run node server.
+The application will be running at localhost:3000/
+
+
 ## Code Style
 
 Developers of WoofShare took advantage of tools to help create code that is clean, consistent and easy to read including:
