@@ -291,6 +291,9 @@ h1, h2 {
     position: relative;
     width: 100%;
     height: 100%; }
+    .gallery-card__cta a:link,
+    .gallery-card__cta a:visited {
+      color: #fff; }
     .gallery-card__cta--favorite {
       position: absolute;
       top: 0;
