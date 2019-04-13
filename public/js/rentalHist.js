@@ -23,7 +23,7 @@ function statusUpdate(event) {
 
 function statusArchiveUpdate(event) {
   event.preventDefault();
-  console.log($(this).attr("data-rentalId"));
+  // console.log($(this).attr("data-rentalId"));
   var rentId = $(this).attr("data-rentalId");
   var updateRental = {
     statusArchive: true,
@@ -36,14 +36,5 @@ function statusArchiveUpdate(event) {
     } else {
       console.log("Fail to obtain data userDetails");
     }
-      // AJAX post the data to the users API.
-      $.post("/api/user-profile/archive/" + rentId, updateRental, function(data) {
-        if(data){
-          window.location.replace("/user-profile");
-        }
-        else {
-          console.log("Fail to obtain data userDetails");
-        }
-    });
   })
 }
