@@ -820,29 +820,33 @@ h1, h2 {
 .footer {
   background-color: #295ba7;
   color: #fff;
-  padding: 6rem 0rem; }
+  overflow-x: hidden; }
   .footer__col a:link,
   .footer__col a:visited {
     color: #fff;
     transition: all 1s; }
   .footer__col--1 {
-    padding: 5rem; }
+    padding: 5rem 0; }
     .footer__col--1 a:hover,
     .footer__col--1 a:active {
       color: #4a80d3; }
   .footer__col--2 {
     text-align: center;
     margin-top: 6rem;
+    padding-top: 3rem;
     font-size: 1.4rem; }
     .footer__col--2 a:hover,
     .footer__col--2 a:active {
       text-decoration: underline; }
   .footer__col--3 {
-    margin-top: 6rem;
-    padding: 0 3rem;
+    padding: 3rem;
     font-size: 1.4rem; }
     .footer__col--3 h3 {
       font-size: 2rem; }
+  .footer__col--4 {
+    padding: 2rem 0; }
+  .footer__row--2 {
+    border-top: 1px solid #4a80d3; }
   .footer__nav {
     margin-top: 6rem; }
     .footer__nav li {
