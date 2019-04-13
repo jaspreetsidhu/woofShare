@@ -1,7 +1,8 @@
 .footer {
     background-color: $color-primary;
     color: $color-white;
-    padding: 6rem 0rem;
+    // padding: 6rem 0rem;
+    overflow-x: hidden;
 
     &__col {
         
@@ -13,7 +14,7 @@
 
        
         &--1 {
-            padding: 5rem;
+            padding: 5rem 0;
             a:hover,
             a:active {
                color: $color-primary-light;
@@ -23,6 +24,7 @@
         &--2 {
             text-align: center;
             margin-top: 6rem;
+            padding-top: 3rem;
             font-size: 1.4rem;
             a:hover,
             a:active {
@@ -35,9 +37,21 @@
             h3 {
                 font-size: 2rem;
             }
-            margin-top: 6rem;
-            padding: 0 3rem;
+           
+            padding: 3rem;
             font-size: 1.4rem;
+        }
+
+        &--4 {
+            padding: 2rem 0;
+            
+        }
+    }
+
+    &__row {
+
+        &--2 {
+            border-top: 1px solid $color-primary-light;
         }
     }
 
