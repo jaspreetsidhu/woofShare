@@ -39,14 +39,6 @@ html {
 body {
   box-sizing: border-box; }
 
-a:link,
-a:visited {
-  color: #295ba7; }
-
-a:hover,
-a:active {
-  color: #4a80d3; }
-
 ul {
   list-style-type: none !important; }
 
@@ -874,6 +866,14 @@ h1, h2 {
   padding: 2rem 4rem 4rem; }
   .confirmation__tos__content h2 {
     margin-bottom: 2rem; }
+
+.modal-footer a:link,
+.modal-footer a:visited {
+  color: #fff; }
+
+.modal-footer a:hover,
+.modal-footer a:active {
+  color: #fff; }
 
 .section__about {
   position: relative;
