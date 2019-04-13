@@ -273,7 +273,7 @@ class DogController {
                     "info",
                     `Dog (${updatedDog.dataValues.name}) has been reserved!`
                   );
-                  response.redirect("/gallery");
+                  response.redirect("user-profile");
                 });
             } else {
               request.flash("info", "Dog cannot be found!");

@@ -1,5 +1,5 @@
 var models = require("../models/index");
-var Sequelize = require("sequelize");
+//var Sequelize = require("sequelize");
 //var moment = require("moment");
 
 //var Op = Sequelize.Op;
@@ -76,11 +76,11 @@ class RatingController {
             })
             .catch(function(err) {
               request.flash("info", "Could not rate, please try again");
-              response.redirect("/create/dog");
+              response.redirect("/user-profile");
             });
         } else {
           request.flash("info", "Could not find dog");
-          response.redirect("/gallery");
+          response.redirect("/user-profile");
         }
       })
       .catch(function(error) {
