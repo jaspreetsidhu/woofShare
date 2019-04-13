@@ -58,13 +58,11 @@
                             {{/if}}
                         {{/each}}
                         </div>       
-                          <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">
-                        {{#each userRatingDetails }}
-                              {{>userRating}}
-                        {{/each}}
+                        <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">
+                        {{#each rating }} 
+                              {{> userRating}}
+                        {{/each}} 
                         </div>                     
-                        <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">           
-                        </div>
                     </div>
                 </div>
             </div>

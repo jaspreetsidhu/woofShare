@@ -1,7 +1,6 @@
 $(document).ready(function () {
   $(document).on("click", ".completeReturn", statusUpdate);
   $(document).on("click",".statusArchive",statusArchiveUpdate);
-  $(document).on("click","#nav-reviewed-tab",userRatingCall);
 });
 
 function statusUpdate(event) {
@@ -47,20 +46,4 @@ function statusArchiveUpdate(event) {
         }
     });
   })
-}
-
-function userRatingCall(event) {
-    event.preventDefault();
-    console.log($(this).attr("data-userId"));
-    var userId = $(this).attr("data-userId");
-
-      // AJAX post the data to the users.
-      $.get("/api/userRate/" + userId,  function(data) {
-        if(data){
-            console.log("DataReceived:",data);
-        }
-        else {
-          console.log("Fail to obtain data userDetails");
-        }
-    });
 }
