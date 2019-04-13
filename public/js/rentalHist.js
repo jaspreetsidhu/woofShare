@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $(document).on("click", ".completeReturn", statusUpdate);
-  $(document).on("click", ".statusArchive", statusArchiveUpdate)
+  $(document).on("click",".statusArchive",statusArchiveUpdate);
 });
 
 function statusUpdate(event) {
@@ -23,7 +23,7 @@ function statusUpdate(event) {
 
 function statusArchiveUpdate(event) {
   event.preventDefault();
-  console.log($(this).attr("data-rentalId"));
+  // console.log($(this).attr("data-rentalId"));
   var rentId = $(this).attr("data-rentalId");
   var updateRental = {
     statusArchive: true,
@@ -36,5 +36,5 @@ function statusArchiveUpdate(event) {
     } else {
       console.log("Fail to obtain data userDetails");
     }
-  });
+  })
 }

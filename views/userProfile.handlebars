@@ -16,10 +16,10 @@
                                     aria-controls="nav-active" aria-selected="true">Active</a></li>
                             <li><a class="nav-item nav-link profile__left-col__menu__nav-link" id="nav-completed-tab"
                                     data-toggle="tab" href="#nav-completed" role="tab" aria-controls="nav-completed"
-                                    aria-selected="false">Completed</a></li>
+                                    aria-selected="false" >Completed</a></li>
                             <li><a class="nav-item nav-link profile__left-col__menu__nav-link" id="nav-reviewed-tab"
                                     data-toggle="tab" href="#nav-reviewed" role="tab" aria-controls="nav-reviewed"
-                                    aria-selected="false">Reviews</a></li>
+                                    aria-selected="false" data-userId="{{user.dataValues.id}}">Reviews</a></li>
                             <li><a class="nav-item nav-link profile__left-col__menu__nav-link" id="nav-archived-tab"
                                     data-toggle="tab" href="#nav-archived" role="tab" aria-controls="nav-archived"
                                     aria-selected="false">Archive</a></li>
@@ -33,20 +33,36 @@
                             {{>userActive}}
                         {{/unless}}
                         {{/each}} --}}
+                        <div class="tab-pane fade show active" id="nav-active" role="tabpanel" aria-labelledby="nav-active-tab">
+                        {{#each rentals }}
+                            {{#unless returnComplete}}
+                               {{>userActive}}
+                            {{/unless}}
+                        {{/each}}
+                        </div>
+                        <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab">
+                        {{#each rentals }}
+                            {{#if returnComplete}}
+                                {{#unless statusArchive}}
+                                   {{>userCompleted}}
+                                {{/unless}}
+                            {{/if}}
+                        {{/each}}
+                        </div>
+                        <div class="tab-pane fade" id="nav-archived" role="tabpanel" aria-labelledby="nav-archived-tab">
                         {{#each rentals }}
                             {{#if returnComplete}}
                                 {{#if statusArchive}}
-                                    {{>userArchive}}
-                                {{else}}
-                                    {{>userCompleted}}
+                                   {{>userArchive}}
                                 {{/if}}
-                            {{else}}
-                                {{>userActive}}
                             {{/if}}
                         {{/each}}
-
-                        <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">           
-                        </div>
+                        </div>       
+                        <div class="tab-pane fade" id="nav-reviewed" role="tabpanel" aria-labelledby="nav-reviewed-tab">
+                        {{#each rating }} 
+                              {{> userRating}}
+                        {{/each}} 
+                        </div>                     
                     </div>
                 </div>
             </div>

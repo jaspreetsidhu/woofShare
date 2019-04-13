@@ -21,10 +21,10 @@ class UserController {
     if (request.user) {
       models.User.findOne({
         where: {
-            email: request.user.emails[0].value
-          },
-          attributes: ["email", "userName", "photo", "id"]
-        })
+          email: request.user.emails[0].value
+        },
+        attributes: ["email", "userName", "photo", "id"]
+      })
         .then(function (user) {
           if (user) {
             var userDetails = {
@@ -49,19 +49,19 @@ class UserController {
       response.redirect("/");
     }
   }
-
+  // Creat new user
   static createUser(request, response) {
     models.User.findOrCreate({
-        where: {
-          email: request.user.emails[0].value
-        },
-        defaults: {
-          address: request.body.address,
-          email: request.user.emails[0].value,
-          userName: request.body.name,
-          photo: request.user.photos[0].value
-        }
-      })
+      where: {
+        email: request.user.emails[0].value
+      },
+      defaults: {
+        address: request.body.address,
+        email: request.user.emails[0].value,
+        userName: request.body.name,
+        photo: request.user.photos[0].value
+      }
+    })
       .spread(function (user, created) {
         if (!created) {
           var userDetails = {
@@ -89,66 +89,7 @@ class UserController {
         });
       });
   }
-  //get user along with rental details
-  static getUser(request, response) {
-    models.User.findOne({
-        attributes: ["id", "userName", "email", "photo"],
-        where: {
-          email: request.user.emails[0].value
-        }
-      })
-      .then(function (userRecord) {
-        //console.log("User Details:", userRecord);
-        if (userRecord) {
-          // console.log("userdetails", userRecord.dataValues.id);
-          //  var userRentalDetail= getDogRentals(userRecord.dataValues.id,response);
-          // console.log("DogRentals", res);
-          //,userRentDetails: res
-          models.Rental.findAll({
-              attributes: [
-                "id",
-                "returnDate",
-                "pickUpDate",
-                "userId",
-                "dogId",
-                "returnComplete",
-                "statusArchive"
-              ],
-              include: [{
-                model: models.Dog,
-                as: "Dog",
-                attributes: ["id", "name", "breed", "profile", "photoUrl"]
-              }],
-              where: {
-                userId: userRecord.dataValues.id
-              }
-            })
-            .then(function (dogRentals) {
-              // console.log("dogRentals", dogRentals);
-              //return dogRentals;
-              // response.render("userProfile", { user: userRecord });
-              response.render("userProfile", {
-                user: userRecord,
-                rentals: dogRentals
-              });
-            })
-            .catch(function (err) {
-              response.status(500).json({
-                status: "FAILED",
-                message: "Error retrieving Rental, please try again",
-                error: err.toString()
-              });
-            });
-        }
-      })
-      .catch(function (err) {
-        response.status(500).json({
-          status: "FAILED",
-          message: "Error retrieving user, please try again",
-          error: err.toString()
-        });
-      });
-  }
+  
   //update the rental return date along with status flags
   static updateDogRentals(request, response) {
     //console.log("rental id : ******", request.params.rentId);
@@ -156,8 +97,8 @@ class UserController {
     if (rentId) {
       //console.log("rentId", rentId);
       models.Rental.update({
-          returnComplete: true
-        }, {
+        returnComplete: true
+      }, {
           where: {
             id: rentId
           }
@@ -182,8 +123,8 @@ class UserController {
     if (rentId) {
       // console.log("rentId", rentId);
       models.Rental.update({
-          statusArchive: true
-        }, {
+        statusArchive: true
+      }, {
           where: {
             id: rentId
           }
@@ -200,6 +141,88 @@ class UserController {
           });
         });
     }
+  }
+
+  //get user along with rental and rating details
+  static getUser(request, response) {
+    models.User.findOne({
+      attributes: ["id", "userName", "email", "photo"],
+      where: {
+        email: request.user.emails[0].value
+      }
+    })
+      .then(function (userRecord) {
+        //console.log("User Details:", userRecord);
+        if (userRecord) {
+      
+          models.Rental.findAll({
+            attributes: [
+              "id",
+              "returnDate",
+              "pickUpDate",
+              "userId",
+              "dogId",
+              "returnComplete",
+              "statusArchive"
+            ],
+            include: [{
+              model: models.Dog,
+              as: "Dog",
+              attributes: ["id", "name", "breed", "profile", "photoUrl"]
+            }],
+            where: {
+              userId: userRecord.dataValues.id
+            }
+          })
+            .then(function (dogRentals) {
+              // console.log("dogRentals", dogRentals);
+            
+              models.Rating.findAll({
+                attributes: ['id', 'review', 'score', 'userId', 'dogId'],
+                include: [{
+                  model: models.Dog,
+                  as: "dog",
+                  attributes: ["id", "name", "breed", "profile", "photoUrl"]
+                }],
+                where: {
+                  userId: userRecord.dataValues.id
+                }
+              }).then(function (userRatingDetails) {
+                // console.log("dogRatings", userRatingDetails);
+                // console.log("rating successful");
+
+                response.render("userProfile", {
+                  user: userRecord,
+                  rentals: dogRentals,
+                  rating: userRatingDetails
+                });
+              })
+                .catch(function (err) {
+                  response.status(500).json({
+                    status: "FAILED",
+                    message: "Error retrieving Rental, please try again",
+                    error: err.toString()
+                  });
+                });
+
+
+            })
+            .catch(function (err) {
+              response.status(500).json({
+                status: "FAILED",
+                message: "Error retrieving Rental, please try again",
+                error: err.toString()
+              });
+            });
+        }
+      })
+      .catch(function (err) {
+        response.status(500).json({
+          status: "FAILED",
+          message: "Error retrieving user, please try again",
+          error: err.toString()
+        });
+      });
   }
 }
 module.exports = UserController;

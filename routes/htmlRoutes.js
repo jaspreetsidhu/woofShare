@@ -61,6 +61,10 @@ router.get("/user-profile", function (req, res) {
     res.redirect("/auth/google/callback");
   }
 });
+router.get("/user-profile/:userId",authenticate, function (req, res) {
+    UserController.getDogRatingByUser(req, res);
+});
+
 
 router.get("/privacy-policy", function (req, res) {
   res.render("privacyPolicy");

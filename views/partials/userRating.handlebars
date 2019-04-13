@@ -1,0 +1,19 @@
+<div class="row profile__active">
+    <div class="col-3">
+        <div class="profile__active__img">
+            <img src="{{this.dog.dataValues.photoUrl}}" />
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="confirmation__selection__description">
+            <h3><span>{{this.dog.dataValues.name}}</span> | <span>{{this.dog.dataValues.breed}}</span></h3>
+            <hr />
+
+            <p class="text-small">{{this.dataValues.review}}</p>
+        </div>
+        <div class="profile__active__schedule-details">
+            <img src="images/rating_{{this.dataValues.score}}.svg" width="20%" />
+        </div>
+    </div>
+    <hr />
+</div>
