@@ -70,3 +70,23 @@
 
 
 }
+
+
+@media screen and (max-width: 800px) { 
+
+    .section__about {
+        padding: 5rem 0;
+
+        &__what-is {
+
+            padding: 0;
+            margin: auto;
+
+            &__desc {
+                width: 100%;
+            }
+        }
+
+    }
+
+}

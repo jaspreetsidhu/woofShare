@@ -25,12 +25,24 @@
                                 <input id="ratings-hidden" name="dogId" type="hidden" value="{{this.Dog.id}}">
                                 <textarea class="form-control animated" cols="50" id="new-review" name="review"
                                     placeholder="Enter your review here..." rows="5"></textarea>
-                                <div class="text-right">
+                                <div class="text-center">
+                                    <br>
+                                    <img src="/images/rating_1.svg" width="100px" />
                                     <input type="radio" name="score" value="1">
+                                    <br>
+                                    <img src="/images/rating_2.svg" width="100px" />
                                     <input type="radio" name="score" value="2">
+                                    <br>
+                                    <img src="/images/rating_3.svg" width="100px" />
                                     <input type="radio" name="score" value="3">
+                                    <br>
+                                    <img src="/images/rating_4.svg" width="100px" />
                                     <input type="radio" name="score" value="4">
-                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="text-right">
+                                    <button id="close-review-box" class="btn btn-danger btn-lg">Cancel</button>
                                     <button class="btn btn-success btn-lg" type="submit">Save</button>
                                 </div>
                             </form>

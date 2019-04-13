@@ -66,5 +66,8 @@ router.get("/privacy-policy", function (req, res) {
   res.render("privacyPolicy");
 });
 
+router.get("/sitemap", function (req, res) {
+  res.render("sitemap");
+});
 
 module.exports = router;

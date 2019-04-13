@@ -1,96 +1,103 @@
-# woofShare
+# WoofShare
 
-## What Is WoofShare
-  Woofshare connects people to dogs and dogs to people, and provides innovative solutions for dogs, dog lovers and dog owners.
+![landing](public\images\landing.PNG)
 
-     * Dog Lovers- WoofShare allows an individual to rent a dog, spend time with them, and return them.  
-     * Dog Owners (Future Feature)- WoofShare Share A Dog program allows a dog owner to rent their dog to other dog lovers who spend time with them and love them when working or traveling.
-     * Dog Shelters and Fosters (Future Feature)- WoofShare Share A Dog program also allows dog shelters and fosters to rent dogs in their care to individuals to help exercise their dogs and provide human interaction with them.
+## Deployed app
 
-## How WoofShare Works
-  There are 2 User Groups:  Dog Renters and Dog Owners
+Check out the app [here](https://polar-basin-98786.herokuapp.com/).
 
-  * Dog Renters - To become an approved renter, the user must provide basic identifying information and sign the WoofShare Renters Terms of Service.  Dog renters can access WoofShare and view the Dog Gallery which allows the user to view and select the dogs that are available to rent.  Upon returning the dog in, the user, completes a review which displays review rating and description.  MySql database stores and retreives all data for the dog and renter.
-   
-    
-  * Dog Owners (Future Feature) - Dog Owners sign up by completing a rental agreement.  Upon approval of terms, their dog is posted and available for renters to view in the dog gallery.  This user group includes dog shelters and fosters who may have more than one dog to rent.
+## Description
 
-# Application Overview
-  The following appications, libraries, methods and packages are utilized:
-  * Node and Express Web Server
-  * MySQL Database with a Sequelize ORM
-  * GET and POST routes for retrieving and adding new data
-  * Deployed in Heroku (with Data)
-  * Google API
-  * Google User Authentication (see User Authentication below for details)
-    
-This application also contains a folder structure which meets MVC Paradigm, and adheres to quality coding standards and formatting (including indentation, scoping, and naming).  Also, the application is designed to protect sensitive API key information on the server.
+WoofShare provides innovative solutions dog lovers and dog owners.
 
-## Application Dependencies
-   * body-parser
-   * cookie-parser
-   * cookies
-   * express
-   * express-handlebars
-   * express-jwt
-   * express-session
-   * jsonwebtoken
-   * mysql
-   * mysql2
-   * node-sass
-   * nodemon
-   * passport
-   * passport-google-oauth20
-   * sequelize
+To use this app:
 
-## User Authentication using Passport-Google-oauth20
+- Visit the link above.
+- Sign in and set up an account using Google.
+- View the dog gallery.
+- Use the search function to narrow your view.
+- Click each card for dog reviews and renter's favorites.
+- Click Reserve Now to check out a dog.
+- Select dates, consent to the rental agreement, and click Confirm.
+- On your account page, you can manage your status and reviews.
 
-### Required Packages
+## Social Media
 
-     1. passport
-     2. passport-google-oauth20
-     3. cookie-parser
-     4. express-session
+Visit us on [Twitter](https://twitter.com/woofshare) and [Facebook](https://www.facebook.com/WoofShare/?modal=admin_todo_tour).
 
-### Usage
+## Build Status
 
-    Registered a woofShare application with Google using passport-google-oauth20. A new project created in the Google Developers Console to get a client ID and client secret, which need to be provided to the strategy. Configured a redirect URI (Heroku as well as Local Host) which matches the route in the application.
+This application utilizes Travis CI which automatically builds and tests code changes, providing immediate feedback on the success of the change.
 
-### Configure Strategy
+Travis CI clones the repository into a virtual environment, and carries out a series of tasks to build and test code.
 
-    The Google authentication strategy authenticates users using a Google account and OAuth 2.0 tokens. The client ID and secret obtained when creating an application are supplied as options when creating the strategy. The strategy also requires a verify callback, which receives the access token and optional refresh token, as well as profile which contains the authenticated user's Google profile. The verify callback must call cb providing a user to complete authentication.
+If one or more of those tasks fails, the build is considered broken. If none of the tasks fail, the build is considered passed, and Travis CI deploys to the application host.
 
-    var GoogleStrategy = require('passport-google-oauth20').Strategy;
+## Code Style
 
-    passport.use(new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_ID || '382558953142-m0ik7j02qokj2kmggaf5hvo1qku4t109.apps.googleusercontent.com',
-      clientSecret: process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_SECRET || 'TjzHVzxiKU68XSrMCtzIERJe',
-      callbackURL: process.env.GOOGLE_CALL_BACK_URL ||'/auth/google/callback',
-      scope: ['email'],
-    },
-    // This is a "verify" function required by all Passport strategies
-    (accessToken, refreshToken, profile, cb) => {
-       console.log('Google Profile:', profile);
-      return cb(null, profile);
-    },
-    ));
+Developers of WoofShare took advantage of tools to help create code that is clean, consistent and easy to read including:
 
-### Authenticate Requests
+- chai
+- chai-http
+- cross-env
+- slint
+- eslint-config-prettier
+- eslint-plugin-prettier
+- mocha
+- prettier
 
-    The following identifies where Google sends users once they authenticate with Google
-    app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/', session: true }),
-        (req, res) => {
-        const jwt = JSON.stringify(req.user);
-        If New User
-           {
-            Redirect to SignUp page and complete registeration with Profile Info
-           }
-        else
-            Set the Cookies with user details
-            Redirect to Gallery page
-           }
-        });
-        }
-    );
+## Technologies
+
+- Node and Express Web Server
+- MySQL Database/Sequelize ORM
+- GET and POST routes
+- Heroku Deployment including data
+- sass-loader node-sass webpack
+- MVC Paradigm folder structure
+- API keys protected in Node with environment variables
+- Handlebars - Server-Side Templating
+- Google User Authentication - Passport
+- Google API external autocomplete
+- Migration strategy – seeds/schema files
+
+### Application Dependencies
+
+- body-parser
+- connect-flash
+- cookie-parser
+- cookies
+- dot-env
+- express
+- express-handlebars
+- express-jwt
+- express-session
+- handlebars-helpers
+- jsonwebtoken
+- migrate
+- moment
+- multer
+- mysql
+- mysql2
+- node-sass
+- nodemon
+- npm
+- passport
+- passport-google-oauth20
+- seed
+- sequelize
+- sequelize-cli
+
+## Credits
+
+WoofShare Development Team:
+
+- [Trent Davis](https://github.com/trentdavis78)
+- [Chandni Patel](https://github.com/chandnibpatel)
+- [Jaspreet Sidhu](https://github.com/jaspreetsidhu)
+- [Zach Selindh](https://github.com/ZachSelindh)
+- [Penny Arnold](https://github.com/PennyArnold)
+
+## License
+
+© Copyright 2019
+WoofShare, Co.
