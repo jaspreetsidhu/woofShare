@@ -4,7 +4,7 @@
 
 ## Deployed App
 
-Check out the app [here](https://polar-basin-98786.herokuapp.com/).
+Check out the app [here](https://woofshare.herokuapp.com/).
 
 ## Description
 
